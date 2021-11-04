@@ -10,7 +10,6 @@ import java.awt.Component;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,8 +21,8 @@ import javax.swing.border.Border;
  */
 public class DashboardForm extends javax.swing.JFrame {
     //button border
-    Border panelHeaderBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.white);
-    
+    Border buttonBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.white);
+    Border buttonWithoutBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(36,37,42));
     /**
      * Creates new form DashboardForm
      */
@@ -61,6 +60,24 @@ public class DashboardForm extends javax.swing.JFrame {
        Image image = imgIco.getImage().getScaledInstance(jLabelDashboardLogo.getWidth(), jLabelDashboardLogo.getHeight(), Image.SCALE_SMOOTH);
 //        //set image in label
         jLabelDashboardLogo.setIcon(new ImageIcon(image));
+        //addBorders
+        AddBorders();
+        // hover effect 
+        buttonsHoverEffect();
+    }
+    
+    public void AddBorders(){
+        Component[] comps = jPanelMenu.getComponents();
+        
+        for(Component comp : comps){
+            //check if component is button
+            if(comp instanceof JButton){
+                JButton button = (JButton) comp;
+                
+                        button.setBorder(buttonWithoutBorder);
+   
+            }
+        }
     }
     
     //add hover effect on menu buttons
@@ -73,9 +90,13 @@ public class DashboardForm extends javax.swing.JFrame {
                 JButton button = (JButton) comp;
                 
                 button.addMouseListener(new MouseAdapter() {
-                
-                    public void MouseEntered(MouseEvent e){
-                        button.setBorder(border);
+                    @Override
+                    public void mouseEntered(MouseEvent evt){
+                        button.setBorder(buttonBorder);
+                    }
+                    @Override
+                    public void mouseExited(MouseEvent evt){
+                        button.setBorder(buttonWithoutBorder);
                     }
                 });
             }
@@ -162,6 +183,7 @@ public class DashboardForm extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add a New One");
         jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -172,6 +194,7 @@ public class DashboardForm extends javax.swing.JFrame {
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Add a New One");
         jButton3.setContentAreaFilled(false);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
