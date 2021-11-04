@@ -37,17 +37,19 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
     
         f.displayImage(75, 60, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\notepad.png", jLabelFormTitle);
 
-        jTableGenres.setSelectionBackground(new Color(249,105,14));
-        jTableGenres.setSelectionForeground(Color.white);
-        jTableGenres.setRowHeight(30);
-        jTableGenres.setShowGrid(false);
-        jTableGenres.setBackground(new Color(248,248,248));
-        
-        jTableGenres.getTableHeader().setBackground(new Color(42,187,155));
-        jTableGenres.getTableHeader().setForeground(Color.white);
-        jTableGenres.getTableHeader().setFont(new Font("Verdana", Font.BOLD,20));
-        jTableGenres.getTableHeader().setOpaque(false);
-    
+//        jTableAuthors.setSelectionBackground(new Color(249,105,14));
+//        jTableAuthors.setSelectionForeground(Color.white);
+//        jTableAuthors.setRowHeight(35);
+//        jTableAuthors.setShowGrid(false);
+//        jTableAuthors.setBackground(new Color(248,248,248));
+//        jTableAuthors.setShowHorizontalLines(true);
+//        jTableAuthors.setGridColor(Color.orange);
+        f.customTable(jTableAuthors);
+//        jTableAuthors.getTableHeader().setBackground(new Color(34,167,240));
+//        jTableAuthors.getTableHeader().setForeground(Color.white);
+//        jTableAuthors.getTableHeader().setFont(new Font("Verdana", Font.BOLD,16));
+//        jTableAuthors.getTableHeader().setOpaque(false);
+        f.customTableHeader(jTableAuthors, new Color(34,167,240), 16);
         // hiding jlabel empty message
         jLabelEmptyName.setVisible(false);
         jLabelEmptySurname.setVisible(false);
@@ -74,7 +76,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         jButtonAdd = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableGenres = new javax.swing.JTable();
+        jTableAuthors = new javax.swing.JTable();
         jLabelEmptyName = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldSurname = new javax.swing.JTextField();
@@ -82,7 +84,8 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextFieldExpertise = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldAbout = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -118,7 +121,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
 
         jTextFieldName.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
 
-        jTextFieldID.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jTextFieldID.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
         jButtonEdit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonEdit.setText("Edit");
@@ -144,8 +147,8 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
             }
         });
 
-        jTableGenres.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTableGenres.setModel(new javax.swing.table.DefaultTableModel(
+        jTableAuthors.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTableAuthors.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -153,12 +156,12 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
 
             }
         ));
-        jTableGenres.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableAuthors.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableGenresMouseClicked(evt);
+                jTableAuthorsMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTableGenres);
+        jScrollPane1.setViewportView(jTableAuthors);
 
         jLabelEmptyName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelEmptyName.setForeground(new java.awt.Color(255, 0, 0));
@@ -172,7 +175,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel3.setText("Surname:");
 
-        jTextFieldSurname.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jTextFieldSurname.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
         jLabelEmptySurname.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelEmptySurname.setForeground(new java.awt.Color(255, 0, 0));
@@ -186,58 +189,57 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel4.setText("Expertise:");
 
-        jTextFieldExpertise.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jTextFieldExpertise.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel5.setText("About:");
 
-        jTextFieldAbout.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabelFormTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelFormTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelClose, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 4, Short.MAX_VALUE))
+                .addComponent(jLabelClose, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldSurname)
-                    .addComponent(jTextFieldName, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldExpertise)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(46, 46, 46)
-                                .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabelEmptyName, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabelEmptySurname, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTextFieldAbout))
+                        .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelEmptyName, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabelEmptySurname, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldSurname)
+                    .addComponent(jTextFieldExpertise)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jTextFieldName))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelFormTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelClose, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelFormTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                    .addComponent(jLabelClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -263,8 +265,8 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldAbout, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -299,17 +301,26 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         jLabelEmptyName.setVisible(false);
     }//GEN-LAST:event_jLabelEmptyNameMouseClicked
 
-    private void jTableGenresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableGenresMouseClicked
+    private void jTableAuthorsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAuthorsMouseClicked
 
         //get selected row index
-        int index = jTableGenres.getSelectedRow();
-        String id = jTableGenres.getValueAt(index, 0).toString();
-        String name = jTableGenres.getValueAt(index, 1).toString();
+        int index = jTableAuthors.getSelectedRow();
+        String id = jTableAuthors.getValueAt(index, 0).toString();
+        String name = jTableAuthors.getValueAt(index, 1).toString();
+        String surname = jTableAuthors.getValueAt(index, 2).toString();
+        String expertise = jTableAuthors.getValueAt(index, 3).toString();
+        String about = jTableAuthors.getValueAt(index, 4).toString();
+        
+        
         
         jTextFieldID.setText(id);
         jTextFieldName.setText(name);
+        jTextFieldSurname.setText(surname);
+        jTextFieldExpertise.setText(expertise);
+        jTextArea1.setText(about);
         
-    }//GEN-LAST:event_jTableGenresMouseClicked
+        
+    }//GEN-LAST:event_jTableAuthorsMouseClicked
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         try{
@@ -321,7 +332,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
             jTextFieldName.setText("");
             jTextFieldSurname.setText("");
             jTextFieldExpertise.setText("");
-            jTextFieldAbout.setText("");
+            jTextArea1.setText("");
         }
         catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Invalid Author ID - " + ex.getMessage(),"error",0);
@@ -334,7 +345,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         String name = jTextFieldName.getText();
         String surname = jTextFieldSurname.getText();
         String expertise = jTextFieldExpertise.getText();
-        String about = jTextFieldAbout.getText();
+        String about = jTextArea1.getText();
         
         if(name.isEmpty()){
             jLabelEmptyName.setVisible(true);
@@ -356,7 +367,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         String newName = jTextFieldName.getText();
         String newSurname = jTextFieldSurname.getText();
         String newExpertise = jTextFieldExpertise.getText();
-        String newAbout = jTextFieldAbout.getText();
+        String newAbout = jTextArea1.getText();
         
 
         if(newName.isEmpty()){
@@ -404,7 +415,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         }
         
         DefaultTableModel model  = new DefaultTableModel(rows, colNames);
-        jTableGenres.setModel(model);
+        jTableAuthors.setModel(model);
     }
     
     /**
@@ -459,8 +470,9 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFormTitle;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableGenres;
-    private javax.swing.JTextField jTextFieldAbout;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableAuthors;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextFieldExpertise;
     private javax.swing.JTextField jTextFieldID;
     private javax.swing.JTextField jTextFieldName;
