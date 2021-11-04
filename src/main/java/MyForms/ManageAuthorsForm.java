@@ -5,17 +5,52 @@
  */
 package MyForms;
 
+import MyClasses.Functions;
+import MyClasses.Genre;
+import java.awt.Color;
+import java.awt.Font;
+import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author xxx
  */
 public class ManageAuthorsForm extends javax.swing.JFrame {
-
+            Functions f = new Functions();
+            Genre genre = new Genre();
     /**
-     * Creates new form ManageAuthorsForm
+     * Creates new form ManageGenresForm
      */
     public ManageAuthorsForm() {
         initComponents();
+        
+        this.setLocationRelativeTo(null);
+    
+        // add gray border 
+        Border panelHeaderBorder = BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(1,50,67));
+        jPanel1.setBorder(panelHeaderBorder);
+    
+        f.displayImage(75, 60, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\hierarchy.png", jLabelFormTitle);
+
+        jTableGenres.setSelectionBackground(new Color(249,105,14));
+        jTableGenres.setSelectionForeground(Color.white);
+        jTableGenres.setRowHeight(30);
+        jTableGenres.setShowGrid(false);
+        jTableGenres.setBackground(new Color(248,248,248));
+        
+        jTableGenres.getTableHeader().setBackground(new Color(42,187,155));
+        jTableGenres.getTableHeader().setForeground(Color.white);
+        jTableGenres.getTableHeader().setFont(new Font("Verdana", Font.BOLD,20));
+        jTableGenres.getTableHeader().setOpaque(false);
+    
+        // hiding jlabel empty message
+        jLabelEmptyName.setVisible(false);
+        jLabelEmptySurname.setVisible(false);
+        populateJtableWithGenres();
     }
 
     /**
@@ -27,22 +62,334 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabelFormTitle = new javax.swing.JLabel();
+        jLabelClose = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldName = new javax.swing.JTextField();
+        jTextFieldID = new javax.swing.JTextField();
+        jButtonEdit = new javax.swing.JButton();
+        jButtonAdd = new javax.swing.JButton();
+        jButtonDelete = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableGenres = new javax.swing.JTable();
+        jLabelEmptyName = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldName1 = new javax.swing.JTextField();
+        jLabelEmptySurname = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextFieldName2 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldName3 = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setUndecorated(true);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabelFormTitle.setBackground(new java.awt.Color(1, 50, 67));
+        jLabelFormTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabelFormTitle.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelFormTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelFormTitle.setText("Manage Books Authors");
+        jLabelFormTitle.setOpaque(true);
+
+        jLabelClose.setBackground(new java.awt.Color(1, 50, 67));
+        jLabelClose.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        jLabelClose.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelClose.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelClose.setText("X");
+        jLabelClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelClose.setOpaque(true);
+        jLabelClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelCloseMouseClicked(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel1.setText("ID:");
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel2.setText("Name:");
+
+        jTextFieldName.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+
+        jTextFieldID.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+
+        jButtonEdit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonEdit.setText("Edit");
+        jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditActionPerformed(evt);
+            }
+        });
+
+        jButtonAdd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonAdd.setText("Add");
+        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddActionPerformed(evt);
+            }
+        });
+
+        jButtonDelete.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonDelete.setText("Delete");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
+
+        jTableGenres.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTableGenres.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jTableGenres.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableGenresMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableGenres);
+
+        jLabelEmptyName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelEmptyName.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelEmptyName.setText("* enter the author name");
+        jLabelEmptyName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelEmptyNameMouseClicked(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel3.setText("Surname:");
+
+        jTextFieldName1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+
+        jLabelEmptySurname.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelEmptySurname.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelEmptySurname.setText("* enter the author surname");
+        jLabelEmptySurname.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelEmptySurnameMouseClicked(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel4.setText("Expertise:");
+
+        jTextFieldName2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel5.setText("About:");
+
+        jTextFieldName3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabelFormTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelClose, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 4, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldName1)
+                    .addComponent(jTextFieldName, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldName2)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelEmptyName, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabelEmptySurname, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jTextFieldName3))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelFormTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelClose, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelEmptyName, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldName1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelEmptySurname)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldName2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldName3, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabelEmptyNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelEmptyNameMouseClicked
+
+        jLabelEmptyName.setVisible(false);
+    }//GEN-LAST:event_jLabelEmptyNameMouseClicked
+
+    private void jTableGenresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableGenresMouseClicked
+
+        //get selected row index
+        int index = jTableGenres.getSelectedRow();
+        String id = jTableGenres.getValueAt(index, 0).toString();
+        String name = jTableGenres.getValueAt(index, 1).toString();
+        
+        jTextFieldID.setText(id);
+        jTextFieldName.setText(name);
+        
+    }//GEN-LAST:event_jTableGenresMouseClicked
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        try{
+            int id = Integer.parseInt(jTextFieldID.getText());
+            genre.removeGenre(id);
+            populateJtableWithGenres();
+            
+            jTextFieldID.setText("");
+            jTextFieldName.setText("");
+        }
+        catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Invalid Genre ID - " + ex.getMessage(),"error",0);
+        }
+
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
+
+        String name = jTextFieldName.getText();
+
+        if(name.isEmpty()){
+            jLabelEmptyName.setVisible(true);
+        }
+        else{
+
+            genre.addGenre(name);
+            
+            populateJtableWithGenres();
+        }
+
+    }//GEN-LAST:event_jButtonAddActionPerformed
+
+    private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
+
+        String newName = jTextFieldName.getText();
+
+        if(newName.isEmpty()){
+            jLabelEmptyName.setVisible(true);
+        }
+        else{
+            try{
+                int id = Integer.parseInt(jTextFieldID.getText());
+                genre.editGenre(id, newName);
+                populateJtableWithGenres();
+            }
+            catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null, "Invalid Genre ID","error",0);
+            }
+        }
+
+    }//GEN-LAST:event_jButtonEditActionPerformed
+
+    private void jLabelCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCloseMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLabelCloseMouseClicked
+
+    private void jLabelEmptySurnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelEmptySurnameMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelEmptySurnameMouseClicked
+
+    
+    //function to populate jtable with genres
+    public void populateJtableWithGenres()
+    {
+        ArrayList<Genre> genres = genre.genreList();
+        
+        //jtable columns
+        String[] colNames = {"ID","NAME"};
+        
+        //rows
+        Object[][] rows = new Object[genres.size()][colNames.length];
+        
+        for(int i = 0; i < genres.size(); i++){
+            rows[i][0] = genres.get(i).getId();
+            rows[i][1] = genres.get(i).getName();
+        }
+        
+        DefaultTableModel model  = new DefaultTableModel(rows, colNames);
+        jTableGenres.setModel(model);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -55,7 +402,8 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    //javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
                     break;
                 }
             }
@@ -69,6 +417,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ManageAuthorsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -79,5 +428,25 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAdd;
+    private javax.swing.JButton jButtonDelete;
+    private javax.swing.JButton jButtonEdit;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelClose;
+    private javax.swing.JLabel jLabelEmptyName;
+    private javax.swing.JLabel jLabelEmptySurname;
+    private javax.swing.JLabel jLabelFormTitle;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableGenres;
+    private javax.swing.JTextField jTextFieldID;
+    private javax.swing.JTextField jTextFieldName;
+    private javax.swing.JTextField jTextFieldName1;
+    private javax.swing.JTextField jTextFieldName2;
+    private javax.swing.JTextField jTextFieldName3;
     // End of variables declaration//GEN-END:variables
 }
