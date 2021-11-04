@@ -34,7 +34,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         Border panelHeaderBorder = BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(1,50,67));
         jPanel1.setBorder(panelHeaderBorder);
     
-        f.displayImage(75, 60, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\hierarchy.png", jLabelFormTitle);
+        f.displayImage(75, 60, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\notepad.png", jLabelFormTitle);
 
         jTableGenres.setSelectionBackground(new Color(249,105,14));
         jTableGenres.setSelectionForeground(Color.white);
@@ -76,12 +76,12 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         jTableGenres = new javax.swing.JTable();
         jLabelEmptyName = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldName1 = new javax.swing.JTextField();
+        jTextFieldSurname = new javax.swing.JTextField();
         jLabelEmptySurname = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldName2 = new javax.swing.JTextField();
+        jTextFieldExpertise = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldName3 = new javax.swing.JTextField();
+        jTextFieldAbout = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -93,7 +93,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         jLabelFormTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabelFormTitle.setForeground(new java.awt.Color(255, 255, 255));
         jLabelFormTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelFormTitle.setText("Manage Books Authors");
+        jLabelFormTitle.setText("Manage Authors");
         jLabelFormTitle.setOpaque(true);
 
         jLabelClose.setBackground(new java.awt.Color(1, 50, 67));
@@ -171,7 +171,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel3.setText("Surname:");
 
-        jTextFieldName1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jTextFieldSurname.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
 
         jLabelEmptySurname.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelEmptySurname.setForeground(new java.awt.Color(255, 0, 0));
@@ -185,12 +185,12 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel4.setText("Expertise:");
 
-        jTextFieldName2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jTextFieldExpertise.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel5.setText("About:");
 
-        jTextFieldName3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jTextFieldAbout.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -204,9 +204,9 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldName1)
+                    .addComponent(jTextFieldSurname)
                     .addComponent(jTextFieldName, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldName2)
+                    .addComponent(jTextFieldExpertise)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -226,7 +226,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabelEmptySurname, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTextFieldName3))
+                    .addComponent(jTextFieldAbout))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
@@ -252,17 +252,17 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldName1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelEmptySurname)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldName2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldExpertise, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldName3, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                        .addComponent(jTextFieldAbout, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -328,7 +328,10 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
 
         String name = jTextFieldName.getText();
-
+        String surname = jTextFieldSurname.getText();
+        String expertise = jTextFieldExpertise.getText();
+        String about = jTextFieldAbout.getText();
+        
         if(name.isEmpty()){
             jLabelEmptyName.setVisible(true);
         }
@@ -366,7 +369,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelCloseMouseClicked
 
     private void jLabelEmptySurnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelEmptySurnameMouseClicked
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jLabelEmptySurnameMouseClicked
 
     
@@ -443,10 +446,10 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableGenres;
+    private javax.swing.JTextField jTextFieldAbout;
+    private javax.swing.JTextField jTextFieldExpertise;
     private javax.swing.JTextField jTextFieldID;
     private javax.swing.JTextField jTextFieldName;
-    private javax.swing.JTextField jTextFieldName1;
-    private javax.swing.JTextField jTextFieldName2;
-    private javax.swing.JTextField jTextFieldName3;
+    private javax.swing.JTextField jTextFieldSurname;
     // End of variables declaration//GEN-END:variables
 }

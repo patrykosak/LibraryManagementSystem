@@ -63,9 +63,9 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTextFieldName1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jTextFieldSurname" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextFieldName" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jTextFieldName2" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jTextFieldExpertise" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -89,7 +89,7 @@
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jTextFieldName3" max="32767" attributes="0"/>
+                      <Component id="jTextFieldAbout" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="301" max="-2" attributes="0"/>
@@ -120,17 +120,17 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" pref="38" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldName1" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="jTextFieldSurname" min="-2" pref="38" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabelEmptySurname" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" pref="38" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldName2" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="jTextFieldExpertise" min="-2" pref="38" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel5" min="-2" pref="38" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFieldName3" pref="113" max="32767" attributes="0"/>
+                          <Component id="jTextFieldAbout" pref="113" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jButtonEdit" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -161,7 +161,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Manage Books Authors"/>
+            <Property name="text" type="java.lang.String" value="Manage Authors"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
         </Component>
@@ -300,7 +300,7 @@
             <Property name="text" type="java.lang.String" value="Surname:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldName1">
+        <Component class="javax.swing.JTextField" name="jTextFieldSurname">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="18" style="0"/>
@@ -329,7 +329,7 @@
             <Property name="text" type="java.lang.String" value="Expertise:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldName2">
+        <Component class="javax.swing.JTextField" name="jTextFieldExpertise">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="18" style="0"/>
@@ -344,7 +344,7 @@
             <Property name="text" type="java.lang.String" value="About:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldName3">
+        <Component class="javax.swing.JTextField" name="jTextFieldAbout">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="18" style="0"/>
