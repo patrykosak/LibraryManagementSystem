@@ -220,6 +220,8 @@ public class LoginForm extends javax.swing.JFrame {
                 if(rs.next()){
                     DashboardForm dash = new DashboardForm();
                     dash.setVisible(true);
+                    
+                    this.dispose();
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "invalid username or password", "Wrong data",0);
