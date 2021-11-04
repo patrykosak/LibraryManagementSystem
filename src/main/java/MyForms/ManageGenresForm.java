@@ -262,6 +262,10 @@ public class ManageGenresForm extends javax.swing.JFrame {
         try{
             int id = Integer.parseInt(jTextFieldID.getText());
             genre.removeGenre(id);
+            populateJtableWithGenres();
+            
+            jTextFieldID.setText("");
+            jTextFieldName.setText("");
         }
         catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Invalid Genre ID - " + ex.getMessage(),"error",0);
@@ -296,6 +300,7 @@ public class ManageGenresForm extends javax.swing.JFrame {
             try{
                 int id = Integer.parseInt(jTextFieldID.getText());
                 genre.editGenre(id, newName);
+                populateJtableWithGenres();
             }
             catch(NumberFormatException ex){
                 JOptionPane.showMessageDialog(null, "Invalid Genre ID","error",0);
