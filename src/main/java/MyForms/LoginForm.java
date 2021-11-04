@@ -5,7 +5,10 @@
  */
 package MyForms;
 
+import MyClasses.DB;
 import java.awt.Image;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.ImageIcon;
 
 /**
@@ -24,7 +27,8 @@ public class LoginForm extends javax.swing.JFrame {
         
         displayImage();
         
-        
+        DB db = new DB();
+        db.getConnection();
     }
 
     //display image in label
@@ -192,6 +196,17 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         
+        String username = jTextFieldUsername.getText();
+        String password = String.valueOf(jPasswordField1.getPassword());
+        
+        ResultSet rs;
+        PreparedStatement st;
+        
+        String query = "SELECT * FROM `users` WHERE `username` = ? AND `password` = ?";
+        
+        if(username.trim().equals("")|| password.trim().equals("")){
+            System.out.println("empty");
+        }
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
     /**

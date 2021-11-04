@@ -21,7 +21,7 @@ public class DB {
     private static String username = "root";
     private static String dbname = "libraryDB";
     private static Integer portNumber = 3306;
-    private static String password = "patryk";
+    private static String password = "patryk2";
 
     public static Connection getConnection(){
         System.out.println("connecting");
