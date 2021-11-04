@@ -6,7 +6,9 @@
 package MyClasses;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -105,5 +107,29 @@ public class Genre {
         }
        
     }
+       
+       // function to populate an arrayList with geners
+       public ArrayList<Genre> genreList(){
+           ArrayList<Genre> gList = new ArrayList<>();
+           
+           String selectQuery = "SELECT * FROM `bookgenres`";
+           PreparedStatement ps;
+           ResultSet rs;
+           
+        try {
+            ps = DB.getConnection().prepareStatement(selectQuery);
+            rs = ps.executeQuery();
+            Genre genre;
+            
+            while(rs.next()){
+                genre = new Genre(rs.getInt("id"), rs.getString("name"));
+                gList.add(genre);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Genre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+           return gList;
+       }
        
 }

@@ -9,9 +9,11 @@ import MyClasses.Functions;
 import MyClasses.Genre;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -47,7 +49,8 @@ public class ManageGenresForm extends javax.swing.JFrame {
     
         // hiding jlabel empty message
         jLabelEmptyName.setVisible(false);
-        
+     
+        populateJtableWithGenres();
     }
 
     /**
@@ -289,10 +292,31 @@ public class ManageGenresForm extends javax.swing.JFrame {
 
     private void jTableGenresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableGenresMouseClicked
        
-        
+       
         
     }//GEN-LAST:event_jTableGenresMouseClicked
 
+    
+    //function to populate jtable with genres
+    public void populateJtableWithGenres()
+    {
+        ArrayList<Genre> genres = genre.genreList();
+        
+        //jtable columns
+        String[] colNames = {"ID","NAME"};
+        
+        //rows
+        Object[][] rows = new Object[genres.size()][colNames.length];
+        
+        for(int i = 0; i < genres.size(); i++){
+            rows[i][0] = genres.get(i).getId();
+            rows[i][1] = genres.get(i).getName();
+        }
+        
+        DefaultTableModel model  = new DefaultTableModel(rows, colNames);
+        jTableGenres.setModel(model);
+    }
+    
     private void jLabelEmptyNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelEmptyNameMouseClicked
 
             jLabelEmptyName.setVisible(false);
