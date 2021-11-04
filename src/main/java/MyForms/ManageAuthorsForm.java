@@ -5,6 +5,7 @@
  */
 package MyForms;
 
+import MyClasses.Author;
 import MyClasses.Functions;
 import MyClasses.Genre;
 import java.awt.Color;
@@ -21,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManageAuthorsForm extends javax.swing.JFrame {
             Functions f = new Functions();
-            Genre genre = new Genre();
+            Author author = new Author();
     /**
      * Creates new form ManageGenresForm
      */
@@ -50,7 +51,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         // hiding jlabel empty message
         jLabelEmptyName.setVisible(false);
         jLabelEmptySurname.setVisible(false);
-        populateJtableWithGenres();
+        populateJtableWithAuthors();
     }
 
     /**
@@ -313,14 +314,17 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         try{
             int id = Integer.parseInt(jTextFieldID.getText());
-            genre.removeGenre(id);
-            populateJtableWithGenres();
+            author.removeAuthor(id);
+            populateJtableWithAuthors();
             
             jTextFieldID.setText("");
             jTextFieldName.setText("");
+            jTextFieldSurname.setText("");
+            jTextFieldExpertise.setText("");
+            jTextFieldAbout.setText("");
         }
         catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "Invalid Genre ID - " + ex.getMessage(),"error",0);
+            JOptionPane.showMessageDialog(null, "Invalid Author ID - " + ex.getMessage(),"error",0);
         }
 
     }//GEN-LAST:event_jButtonDeleteActionPerformed
@@ -335,11 +339,14 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         if(name.isEmpty()){
             jLabelEmptyName.setVisible(true);
         }
+        else if(surname.isEmpty()){
+            jLabelEmptySurname.setVisible(true);
+        }
         else{
 
-            genre.addGenre(name);
+            author.addAuthor(name, surname, expertise, about);
             
-            populateJtableWithGenres();
+            populateJtableWithAuthors();
         }
 
     }//GEN-LAST:event_jButtonAddActionPerformed
@@ -347,6 +354,10 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
     private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
 
         String newName = jTextFieldName.getText();
+        String newSurname = jTextFieldSurname.getText();
+        String newExpertise = jTextFieldExpertise.getText();
+        String newAbout = jTextFieldAbout.getText();
+        
 
         if(newName.isEmpty()){
             jLabelEmptyName.setVisible(true);
@@ -354,11 +365,11 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         else{
             try{
                 int id = Integer.parseInt(jTextFieldID.getText());
-                genre.editGenre(id, newName);
-                populateJtableWithGenres();
+                author.editAuthor(id, newName, newSurname, newExpertise, newAbout);
+                populateJtableWithAuthors();
             }
             catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(null, "Invalid Genre ID","error",0);
+                JOptionPane.showMessageDialog(null, "Invalid Author ID","error",0);
             }
         }
 
@@ -369,24 +380,27 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelCloseMouseClicked
 
     private void jLabelEmptySurnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelEmptySurnameMouseClicked
-        
+        jLabelEmptySurname.setVisible(false);
     }//GEN-LAST:event_jLabelEmptySurnameMouseClicked
 
     
     //function to populate jtable with genres
-    public void populateJtableWithGenres()
+    public void populateJtableWithAuthors()
     {
-        ArrayList<Genre> genres = genre.genreList();
+        ArrayList<Author> authors = author.authorsList();
         
         //jtable columns
-        String[] colNames = {"ID","NAME"};
+        String[] colNames = {"ID","NAME","SURNAME","EXPERTISE","ABOUT"};
         
         //rows
-        Object[][] rows = new Object[genres.size()][colNames.length];
+        Object[][] rows = new Object[authors.size()][colNames.length];
         
-        for(int i = 0; i < genres.size(); i++){
-            rows[i][0] = genres.get(i).getId();
-            rows[i][1] = genres.get(i).getName();
+        for(int i = 0; i < authors.size(); i++){
+            rows[i][0] = authors.get(i).getId();
+            rows[i][1] = authors.get(i).getName();
+            rows[i][2] = authors.get(i).getSurname();
+            rows[i][3] = authors.get(i).getFieldOfExpertise();
+            rows[i][4] = authors.get(i).getAbout();
         }
         
         DefaultTableModel model  = new DefaultTableModel(rows, colNames);
