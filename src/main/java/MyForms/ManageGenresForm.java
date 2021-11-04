@@ -135,13 +135,10 @@ public class ManageGenresForm extends javax.swing.JFrame {
 
         jTableGenres.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jTableGenres.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -265,7 +262,13 @@ public class ManageGenresForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        
+        try{
+             int id = Integer.parseInt(jTextFieldID.getText());
+             genre.removeGenre(id);
+             }
+             catch(NumberFormatException ex){
+                 JOptionPane.showMessageDialog(null, "Invalid Genre ID - " + ex.getMessage(),"error",0); 
+             }
         
         
     }//GEN-LAST:event_jButtonDeleteActionPerformed

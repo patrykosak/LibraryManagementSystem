@@ -85,4 +85,25 @@ public class Genre {
        
     }
     
+       public void removeGenre(int id){
+        
+        String removeQuery = "DELETE FROM `bookgenres` WHERE `id` = ?";
+        
+        try {
+            PreparedStatement ps = DB.getConnection().prepareStatement(removeQuery);
+            ps.setInt(1, id);
+            
+            
+            if(ps.executeUpdate() != 0){
+                JOptionPane.showMessageDialog(null, "Genre Removed","remove genre",1);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Genre Not Removed","remove genre",2);
+                  }
+        } catch (SQLException ex) {
+            Logger.getLogger(Genre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+       
 }
