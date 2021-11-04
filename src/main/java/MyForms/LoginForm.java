@@ -218,10 +218,11 @@ public class LoginForm extends javax.swing.JFrame {
                 rs = ps.executeQuery();
                 
                 if(rs.next()){
-                    System.out.println("YES");            
+                    DashboardForm dash = new DashboardForm();
+                    dash.setVisible(true);
                 }
                 else{
-                    System.out.println("NO");
+                    JOptionPane.showMessageDialog(null, "invalid username or password", "Wrong data",0);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
