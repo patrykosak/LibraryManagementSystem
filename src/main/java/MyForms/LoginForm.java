@@ -9,7 +9,11 @@ import MyClasses.DB;
 import java.awt.Image;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,9 +30,7 @@ public class LoginForm extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         displayImage();
-        
-        DB db = new DB();
-        db.getConnection();
+
     }
 
     //display image in label
@@ -200,12 +202,30 @@ public class LoginForm extends javax.swing.JFrame {
         String password = String.valueOf(jPasswordField1.getPassword());
         
         ResultSet rs;
-        PreparedStatement st;
+        PreparedStatement ps;
         
         String query = "SELECT * FROM `users` WHERE `username` = ? AND `password` = ?";
         
         if(username.trim().equals("")|| password.trim().equals("")){
-            System.out.println("empty");
+            JOptionPane.showMessageDialog(null, "Enter all fields", "Empty fields",2);
+        }
+        else{
+            try {
+                ps = DB.getConnection().prepareStatement(query);
+                ps.setString(1, username);
+                ps.setString(2, password);
+                
+                rs = ps.executeQuery();
+                
+                if(rs.next()){
+                    System.out.println("YES");            
+                }
+                else{
+                    System.out.println("NO");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
