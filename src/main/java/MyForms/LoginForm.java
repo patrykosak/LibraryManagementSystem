@@ -6,6 +6,7 @@
 package MyForms;
 
 import MyClasses.DB;
+import MyClasses.Functions;
 import java.awt.Image;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +21,9 @@ import javax.swing.JOptionPane;
  * @author xxx
  */
 public class LoginForm extends javax.swing.JFrame {
-
+    
+    
+Functions f = new Functions();
     /**
      * Creates new form LoginForm
      */
@@ -29,7 +32,8 @@ public class LoginForm extends javax.swing.JFrame {
         
         this.setLocationRelativeTo(null);
         
-        displayImage();
+        f.displayImage(jLabelLogo.getWidth(), jLabelLogo.getHeight(), "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\bookLoginLogo.png", jLabelLogo);
+
 
     }
 

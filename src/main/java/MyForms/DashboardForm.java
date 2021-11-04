@@ -5,6 +5,7 @@
  */
 package MyForms;
 
+import MyClasses.Functions;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
@@ -23,6 +24,8 @@ public class DashboardForm extends javax.swing.JFrame {
     //button border
     Border buttonBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.white);
     Border buttonWithoutBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(36,37,42));
+    
+    Functions f = new Functions();
     /**
      * Creates new form DashboardForm
      */
@@ -30,7 +33,8 @@ public class DashboardForm extends javax.swing.JFrame {
         initComponents();
         
         this.setLocationRelativeTo(null);
-        displayImage();
+        f.displayImage(jLabelDashboardLogo.getWidth(), jLabelDashboardLogo.getHeight(), "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\dashboardLogo.png", jLabelDashboardLogo);
+
         
         //add border to header
         Border panelHeaderBorder = BorderFactory.createMatteBorder(0, 0, 1, 0, Color.white);
@@ -47,24 +51,16 @@ public class DashboardForm extends javax.swing.JFrame {
         
         Border panelHeader4Border = BorderFactory.createMatteBorder(0, 0, 3, 0, new Color(58,83,155));
         jPanel_4_header.setBorder(panelHeader4Border);
-    }
-
-   
     
-    public void displayImage()
-    {
-        //get image
-        //ImageIcon imgIco = new ImageIcon(getClass().getResource("/images/bookLoginLogo"));      
-        ImageIcon imgIco = new ImageIcon("C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\dashboardLogo.png");
-//        //make image fit in label
-       Image image = imgIco.getImage().getScaledInstance(jLabelDashboardLogo.getWidth(), jLabelDashboardLogo.getHeight(), Image.SCALE_SMOOTH);
-//        //set image in label
-        jLabelDashboardLogo.setIcon(new ImageIcon(image));
-        //addBorders
+            //addBorders
         AddBorders();
         // hover effect 
         buttonsHoverEffect();
+        
+   
     }
+
+   
     
     public void AddBorders(){
         Component[] comps = jPanelMenu.getComponents();
