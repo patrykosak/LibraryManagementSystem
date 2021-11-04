@@ -42,7 +42,7 @@ public class Genre {
         this.name = name;
     }
     
-    public boolean addGenre(String name){
+    public void addGenre(String name){
         
         String insertQuery = "INSERT INTO `bookgenres` (`name`) VALUES (?)";
         
@@ -59,7 +59,30 @@ public class Genre {
         } catch (SQLException ex) {
             Logger.getLogger(Genre.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        return true;
+       
     }
+    
+       public void editGenre(int id,String name){
+        
+        String editQuery = "UPDATE `bookgenres` SET `name` = ? WHERE `id` = ?";
+        
+        try {
+            PreparedStatement ps = DB.getConnection().prepareStatement(editQuery);
+              
+            ps.setString(1, name);
+            ps.setInt(2, id);
+            
+            
+            if(ps.executeUpdate() != 0){
+                JOptionPane.showMessageDialog(null, "Genre Edited","edit genre",1);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Genre Not Edited","edit genre",2);
+                  }
+        } catch (SQLException ex) {
+            Logger.getLogger(Genre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+    
 }
