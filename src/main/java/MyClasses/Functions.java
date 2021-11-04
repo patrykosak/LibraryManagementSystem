@@ -5,9 +5,17 @@
  */
 package MyClasses;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 
 /**
  *
@@ -25,6 +33,20 @@ public class Functions {
         label.setIcon(new ImageIcon(image));
 
     }
-    
-    
+    public void customTable(JTable table){
+        table.setSelectionBackground(new Color(249,105,14));
+        table.setSelectionForeground(Color.white);
+        table.setRowHeight(35);
+        table.setShowGrid(false);
+        table.setBackground(new Color(248,248,248));
+        table.setShowHorizontalLines(true);
+        table.setGridColor(Color.orange);
+    }
+   
+    public void customTableHeader(JTable table, Color backColor, Integer fontSize){
+        table.getTableHeader().setBackground(backColor);
+        table.getTableHeader().setForeground(Color.white);
+        table.getTableHeader().setFont(new Font("Verdana", Font.BOLD,fontSize));
+        table.getTableHeader().setOpaque(false);
+    }
 }

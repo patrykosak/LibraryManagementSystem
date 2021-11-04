@@ -36,17 +36,17 @@ public class ManageGenresForm extends javax.swing.JFrame {
     
         f.displayImage(75, 60, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\hierarchy.png", jLabelFormTitle);
 
-        jTableGenres.setSelectionBackground(new Color(249,105,14));
-        jTableGenres.setSelectionForeground(Color.white);
-        jTableGenres.setRowHeight(30);
-        jTableGenres.setShowGrid(false);
-        jTableGenres.setBackground(new Color(248,248,248));
-        
-        jTableGenres.getTableHeader().setBackground(new Color(42,187,155));
-        jTableGenres.getTableHeader().setForeground(Color.white);
-        jTableGenres.getTableHeader().setFont(new Font("Verdana", Font.BOLD,20));
-        jTableGenres.getTableHeader().setOpaque(false);
-    
+//        jTableGenres.setSelectionBackground(new Color(249,105,14));
+//        jTableGenres.setSelectionForeground(Color.white);
+//        jTableGenres.setRowHeight(30);
+//        jTableGenres.setShowGrid(false);
+//        jTableGenres.setBackground(new Color(248,248,248));
+        f.customTable(jTableGenres);
+//        jTableGenres.getTableHeader().setBackground(new Color(42,187,155));
+//        jTableGenres.getTableHeader().setForeground(Color.white);
+//        jTableGenres.getTableHeader().setFont(new Font("Verdana", Font.BOLD,20));
+//        jTableGenres.getTableHeader().setOpaque(false);
+        f.customTableHeader(jTableGenres, new Color(42,187,155), 20);
         // hiding jlabel empty message
         jLabelEmptyName.setVisible(false);
      
@@ -169,7 +169,7 @@ public class ManageGenresForm extends javax.swing.JFrame {
                 .addComponent(jLabelFormTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelClose, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 4, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -218,7 +218,7 @@ public class ManageGenresForm extends javax.swing.JFrame {
                                     .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabelEmptyName)))
-                        .addGap(0, 13, Short.MAX_VALUE))
+                        .addGap(0, 2, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
@@ -230,12 +230,15 @@ public class ManageGenresForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
