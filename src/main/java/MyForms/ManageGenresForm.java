@@ -279,6 +279,8 @@ public class ManageGenresForm extends javax.swing.JFrame {
         else{
 
             genre.addGenre(name);
+            
+            populateJtableWithGenres();
         }
 
     }//GEN-LAST:event_jButtonAddActionPerformed
