@@ -49,4 +49,7 @@ public class Functions {
         table.getTableHeader().setFont(new Font("Verdana", Font.BOLD,fontSize));
         table.getTableHeader().setOpaque(false);
     }
+
+
 }
+
