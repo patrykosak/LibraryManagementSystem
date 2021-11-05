@@ -8,10 +8,17 @@ package MyForms;
 import MyClasses.Author;
 import MyClasses.Functions;
 import MyClasses.Genre;
+import MyClasses.Student;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -25,8 +32,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AddStudentForm extends javax.swing.JFrame {
             Functions f = new Functions();
-            Author author = new Author();
-    /**
+            Student student = new Student();
+            String imagePath=null;
+            /**
      * Creates new form ManageGenresForm
      */
     public AddStudentForm() {
@@ -179,8 +187,9 @@ public class AddStudentForm extends javax.swing.JFrame {
 
         JLabelImagePath.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         JLabelImagePath.setForeground(new java.awt.Color(0, 0, 204));
-        JLabelImagePath.setText("choose profile picture...");
+        JLabelImagePath.setText("choose profile picture......");
 
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "male", "female" }));
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -227,8 +236,8 @@ public class AddStudentForm extends javax.swing.JFrame {
                                 .addComponent(jTextFieldPhoneNumber)
                                 .addComponent(jTextFieldEmail)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(JLabelImagePath)
-                                    .addGap(18, 18, 18)
+                                    .addComponent(JLabelImagePath, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(48, 48, 48)
                                     .addComponent(jButtonSelectProfilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel8)
@@ -314,6 +323,7 @@ public class AddStudentForm extends javax.swing.JFrame {
         String surname = jTextFieldSurname.getText();
         String phoneNumber = jTextFieldPhoneNumber.getText();
         String email = jTextFieldEmail.getText();
+        String gender = jComboBox1.getSelectedItem().toString();
         
         if(name.isEmpty()){
             jLabelEmptyName.setVisible(true);
@@ -325,8 +335,22 @@ public class AddStudentForm extends javax.swing.JFrame {
             jLabelEmptySurname.setVisible(true);
         }
         else{
-
-            //author.addAuthor(name, surname, expertise, about);
+            byte[] img = null;
+            
+            if(imagePath!=null){
+            Path path = Paths.get(imagePath);
+                try {
+                    img = Files.readAllBytes(path);
+                    student.addStudent(id, name, surname, phoneNumber, email, gender, img);
+                } catch (IOException ex) {
+                    Logger.getLogger(AddStudentForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+            } 
+            else
+            {
+            JOptionPane.showMessageDialog(null, "Select a Profile Picture For This Student","No Picture Selected",2);    
+            }
             
             
         }
@@ -360,6 +384,7 @@ public class AddStudentForm extends javax.swing.JFrame {
         {
             String path = fileChooser.getSelectedFile().getAbsolutePath();
             JLabelImagePath.setText(path);
+            imagePath=path;
         }
     }//GEN-LAST:event_jButtonSelectProfilePictureActionPerformed
 

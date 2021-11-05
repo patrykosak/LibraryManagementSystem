@@ -94,58 +94,60 @@ public class Student {
         this.picture = picture;
     }
     
-    public void addAuthor(String name,String surname,String expertise, String about){
+    public void addStudent(int id,String name,String surname,String phoneNumber, String email,String gender,byte[] picture){
         
-        String insertQuery = "INSERT INTO `authors` (`name`,`surname`,`expertise`,`about`) VALUES (?,?,?,?)";
+        String insertQuery = "INSERT INTO `students` (`id`,`name`,`surname`,`phonenumber`,`email`,`picture`,`gender`) VALUES (?,?,?,?,?,?,?)";
         
         try {
             PreparedStatement ps = DB.getConnection().prepareStatement(insertQuery);
-            ps.setString(1, name);
-            ps.setString(2, surname);
-            ps.setString(3, expertise);
-            ps.setString(4, about);
+            ps.setInt(1, id);
+            ps.setString(2, name);
+            ps.setString(3, surname);
+            ps.setString(4, phoneNumber);
+            ps.setString(5, email);
+            ps.setBytes(6, picture);
+            ps.setString(7, gender);
             
             if(ps.executeUpdate() != 0){
-                JOptionPane.showMessageDialog(null, "Author Added","add author",1);
+                JOptionPane.showMessageDialog(null, "Student Added","add student",1);
             }
             else{
-                    JOptionPane.showMessageDialog(null, "Author Not Added","add author",2);
+                    JOptionPane.showMessageDialog(null, "Student Not Added","add student",2);
                     }
         } catch (SQLException ex) {
-            Logger.getLogger(Author.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
         }
        
     }
-    
-       public void editAuthor(int id,String name,String surname,String expertise, String about){
+    public void editStudent(int id,String name,String surname,String phoneNumber, String email,String gender,byte[] picture){
         
-        String editQuery = "UPDATE `authors` SET `name` = ?,`surname`=?,`expertise`=?,`about`=? WHERE `id` = ?";
+        String editQuery = "UPDATE `students` SET `name` = ?,`surname`=?,`phonenumber`=?,`email`=?,`picture`=?,`gender`=? WHERE `id` = ?";
         
         try {
             PreparedStatement ps = DB.getConnection().prepareStatement(editQuery);
               
+            
             ps.setString(1, name);
             ps.setString(2, surname);
-            ps.setString(3, expertise);
-            ps.setString(4, about);
-            ps.setInt(5, id);
-            
+            ps.setString(3, phoneNumber);
+            ps.setString(4, email);
+            ps.setBytes(5, picture);
+            ps.setString(6, gender);
+            ps.setInt(7, id);
             
             if(ps.executeUpdate() != 0){
-                JOptionPane.showMessageDialog(null, "Author Edited","edit author",1);
+                JOptionPane.showMessageDialog(null, "Student Edited","edit student",1);
             }
             else{
-                JOptionPane.showMessageDialog(null, "Author Not Edited","edit author",2);
+                JOptionPane.showMessageDialog(null, "Student Not Edited","edit student",2);
                   }
         } catch (SQLException ex) {
-            Logger.getLogger(Author.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
     }
-    
-       public void removeAuthor(int id){
+        public void removeStudent(int id){
         
-        String removeQuery = "DELETE FROM `authors` WHERE `id` = ?";
+        String removeQuery = "DELETE FROM `students` WHERE `id` = ?";
         
         try {
             PreparedStatement ps = DB.getConnection().prepareStatement(removeQuery);
@@ -153,40 +155,16 @@ public class Student {
             
             
             if(ps.executeUpdate() != 0){
-                JOptionPane.showMessageDialog(null, "Author Removed","remove author",1);
+                JOptionPane.showMessageDialog(null, "Student Removed","remove student",1);
             }
             else{
-                JOptionPane.showMessageDialog(null, "Author Not Removed","remove author",2);
+                JOptionPane.showMessageDialog(null, "Student Not Removed","remove student",2);
                   }
         } catch (SQLException ex) {
-            Logger.getLogger(Genre.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
         }
        
     }
        
-       // function to populate an arrayList with geners
-       public ArrayList<Author> authorsList(){
-           ArrayList<Author> aList = new ArrayList<>();
-           
-           String selectQuery = "SELECT * FROM `authors`";
-           PreparedStatement ps;
-           ResultSet rs;
-           
-        try {
-            ps = DB.getConnection().prepareStatement(selectQuery);
-            rs = ps.executeQuery();
-            Author author;
-            
-            while(rs.next()){
-                author = new Author(rs.getInt("id"), rs.getString("name"), rs.getString("surname"), rs.getString("expertise"), rs.getString("about"));
-                aList.add(author);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Author.class.getName()).log(Level.SEVERE, null, ex);
-        }
-           
-           return aList;
-       }
-    
     
 }
