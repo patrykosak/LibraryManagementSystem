@@ -10,10 +10,13 @@ import MyClasses.Functions;
 import MyClasses.Genre;
 import java.awt.Color;
 import java.awt.Font;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -343,7 +346,21 @@ public class AddStudentForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelEmptyPhoneNumberMouseClicked
 
     private void jButtonSelectProfilePictureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectProfilePictureActionPerformed
-        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Select Profile Picture");
+        
+        fileChooser.setCurrentDirectory(new File("C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images"));
+        
+        FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image",".png",".jpg",".jpeg");
+        fileChooser.addChoosableFileFilter(extensionFilter);
+        
+        int fileState = fileChooser.showSaveDialog(null);
+        
+        if(fileState == JFileChooser.APPROVE_OPTION)
+        {
+            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            JLabelImagePath.setText(path);
+        }
     }//GEN-LAST:event_jButtonSelectProfilePictureActionPerformed
 
     private void jLabelEmptyIdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelEmptyIdMouseClicked
