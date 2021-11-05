@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -400,8 +401,23 @@ public class EditStudentForm extends javax.swing.JFrame {
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
         
-        Integer id = Integer.parseInt(jTextFieldID.getText());
         
+                try {
+                    int id = Integer.parseInt(jTextFieldID.getText());
+                    Student s = student.getStudentById(id);
+                    
+                    jTextFieldID.setText(String.valueOf(s.getId()));
+                    jTextFieldName.setText(s.getName());
+                    jTextFieldSurname.setText(s.getSurname());
+                    jTextFieldPhoneNumber.setText(s.getPhoneNumber());
+                    jTextFieldEmail.setText(s.getEmail());
+                    jComboBox1.setSelectedItem(s.getGender());
+                    
+                } catch (SQLException ex) {
+                    //Logger.getLogger(EditStudentForm.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Enter a Vaild Student Id", "Invalid ID",3);
+                }
+                
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
     

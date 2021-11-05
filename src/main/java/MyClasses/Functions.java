@@ -49,7 +49,20 @@ public class Functions {
         table.getTableHeader().setFont(new Font("Verdana", Font.BOLD,fontSize));
         table.getTableHeader().setOpaque(false);
     }
-
+    public ResultSet getData(String query)
+    {
+        PreparedStatement ps;
+        ResultSet rs = null;
+        
+        try{
+            ps=DB.getConnection().prepareStatement(query);
+            rs=ps.executeQuery();
+        }
+        catch(SQLException ex){
+            Logger.getLogger(Functions.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        return rs; 
+    }
 
 }
 

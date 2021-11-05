@@ -165,6 +165,15 @@ public class Student {
         }
        
     }
-       
-    
+       public Student getStudentById(int id) throws SQLException{
+           Functions f = new Functions();
+           String query="SELECT * FROM `students` WHERE `id`="+id;
+           ResultSet rs = f.getData(query);
+           if(rs.next()){
+               return new Student(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(7),rs.getBytes(6));
+           }
+           else{
+               return null;
+           }
+       }
 }
