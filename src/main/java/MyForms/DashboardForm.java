@@ -33,7 +33,7 @@ public class DashboardForm extends javax.swing.JFrame {
         initComponents();
         
         this.setLocationRelativeTo(null);
-        f.displayImage(jLabelDashboardLogo.getWidth(), jLabelDashboardLogo.getHeight(), "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\dashboardLogo.png", jLabelDashboardLogo);
+        f.displayImage(jLabelDashboardLogo.getWidth(), jLabelDashboardLogo.getHeight(),null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\dashboardLogo.png", jLabelDashboardLogo);
 
         
         //add border to header

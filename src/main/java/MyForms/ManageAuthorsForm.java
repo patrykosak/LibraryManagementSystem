@@ -35,7 +35,7 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         Border panelHeaderBorder = BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(1,50,67));
         jPanel1.setBorder(panelHeaderBorder);
     
-        f.displayImage(75, 60, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\notepad.png", jLabelFormTitle);
+        f.displayImage(75, 60,null,"C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\notepad.png", jLabelFormTitle);
 
 //        jTableAuthors.setSelectionBackground(new Color(249,105,14));
 //        jTableAuthors.setSelectionForeground(Color.white);

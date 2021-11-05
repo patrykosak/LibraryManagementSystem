@@ -34,7 +34,7 @@ public class ManageGenresForm extends javax.swing.JFrame {
         Border panelHeaderBorder = BorderFactory.createMatteBorder(3, 3, 3, 3, Color.gray);
         jPanel1.setBorder(panelHeaderBorder);
     
-        f.displayImage(75, 60, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\hierarchy.png", jLabelFormTitle);
+        f.displayImage(75, 60,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\hierarchy.png", jLabelFormTitle);
 
 //        jTableGenres.setSelectionBackground(new Color(249,105,14));
 //        jTableGenres.setSelectionForeground(Color.white);

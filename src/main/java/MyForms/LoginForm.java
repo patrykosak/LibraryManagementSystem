@@ -32,7 +32,7 @@ Functions f = new Functions();
         
         this.setLocationRelativeTo(null);
         
-        f.displayImage(jLabelLogo.getWidth(), jLabelLogo.getHeight(), "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\bookLoginLogo.png", jLabelLogo);
+        f.displayImage(jLabelLogo.getWidth(), jLabelLogo.getHeight(),null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\bookLoginLogo.png", jLabelLogo);
 
 
     }

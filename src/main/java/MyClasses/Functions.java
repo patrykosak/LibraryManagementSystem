@@ -22,12 +22,19 @@ import javax.swing.JTable;
  * @author xxx
  */
 public class Functions {
-    public void displayImage(int width,int height,String imagePath, JLabel label)
+    public void displayImage(int width,int height,byte[] imagebyte,String imagePath, JLabel label)
     {
+        ImageIcon imgIco;
         //get image
+        if(imagebyte!=null){
+            imgIco = new ImageIcon(imagebyte);
+        }
+        else{
         //ImageIcon imgIco = new ImageIcon(getClass().getResource("/images/bookLoginLogo"));      
-        ImageIcon imgIco = new ImageIcon(imagePath);
-//        //make image fit in label
+        imgIco = new ImageIcon(imagePath);
+        }
+//        
+//make image fit in label
        Image image = imgIco.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
 //        //set image in label
         label.setIcon(new ImageIcon(image));
