@@ -394,8 +394,12 @@ public class EditStudentForm extends javax.swing.JFrame {
         if(fileState == JFileChooser.APPROVE_OPTION)
         {
             String path = fileChooser.getSelectedFile().getAbsolutePath();
-            //JLabelImagePath.setText(path);
+            JLabelImagePath.setText(path);
             imagePath=path;
+            
+            //displaying new image
+            f.displayImage(125, 80, null, imagePath, jLabelImage);
+            
         }
     }//GEN-LAST:event_jButtonSelectProfilePictureActionPerformed
 

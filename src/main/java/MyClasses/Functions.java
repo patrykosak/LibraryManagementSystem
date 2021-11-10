@@ -30,8 +30,19 @@ public class Functions {
             imgIco = new ImageIcon(imagebyte);
         }
         else{
-        //ImageIcon imgIco = new ImageIcon(getClass().getResource("/images/bookLoginLogo"));      
-        imgIco = new ImageIcon(imagePath);
+            try{
+                
+                       //ImageIcon imgIco = new ImageIcon(getClass().getResource("/images/bookLoginLogo"));    
+                       
+                       // get img from  project resources
+        
+                       imgIco = new ImageIcon(getClass().getResource(imagePath));
+                       //imgIco = new ImageIcon(imagePath); 
+            }
+            catch(Exception e){
+                //get image from deskop
+                    imgIco = new ImageIcon(imagePath);
+                    }
         }
 //        
 //make image fit in label
