@@ -168,13 +168,7 @@ public class AuthorsListForm extends javax.swing.JFrame {
 
     private void jTableAuthorsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAuthorsMouseClicked
 
-        //get selected row index
-        int index = jTableAuthors.getSelectedRow();
-        String id = jTableAuthors.getValueAt(index, 0).toString();
-        String name = jTableAuthors.getValueAt(index, 1).toString();
-        String surname = jTableAuthors.getValueAt(index, 2).toString();
-        String fullName = name + " " + surname;
-        
+
         
         
     }//GEN-LAST:event_jTableAuthorsMouseClicked
@@ -184,7 +178,14 @@ public class AuthorsListForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelCloseMouseClicked
 
     private void jButtonSelectAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectAuthorActionPerformed
-       
+               //get selected row index
+        int index = jTableAuthors.getSelectedRow();
+        int id = Integer.parseInt(jTableAuthors.getValueAt(index, 0).toString());
+        String name = jTableAuthors.getValueAt(index, 1).toString();
+        String surname = jTableAuthors.getValueAt(index, 2).toString();
+        String fullName = name + " " + surname;
+        
+        AddBookForm.displayAuthorData(id, fullName);
     }//GEN-LAST:event_jButtonSelectAuthorActionPerformed
 
     
@@ -260,6 +261,6 @@ public class AuthorsListForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFormTitle;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableAuthors;
+    static javax.swing.JTable jTableAuthors;
     // End of variables declaration//GEN-END:variables
 }
