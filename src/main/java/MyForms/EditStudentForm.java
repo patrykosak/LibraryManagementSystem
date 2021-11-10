@@ -410,6 +410,7 @@ public class EditStudentForm extends javax.swing.JFrame {
                     int id = Integer.parseInt(jTextFieldID.getText());
                     Student s = student.getStudentById(id);
                     
+                    if(s!=null){
                     jTextFieldID.setText(String.valueOf(s.getId()));
                     jTextFieldName.setText(s.getName());
                     jTextFieldSurname.setText(s.getSurname());
@@ -418,7 +419,12 @@ public class EditStudentForm extends javax.swing.JFrame {
                     jComboBox1.setSelectedItem(s.getGender());
                     
                     byte[] image = s.getPicture();
-                    f.displayImage(90, 60, image,"", jLabelImage);
+                    f.displayImage(125, 80, image,"", jLabelImage);   
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "No Student With This Id Is Found", "Invalid ID",3);
+                    }
+                   
                     
                 } catch (SQLException ex) {
                     //Logger.getLogger(EditStudentForm.class.getName()).log(Level.SEVERE, null, ex);
