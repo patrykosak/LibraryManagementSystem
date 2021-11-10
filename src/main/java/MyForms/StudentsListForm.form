@@ -71,15 +71,15 @@
                                   <Component id="jScrollPane1" min="-2" pref="785" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabelImage" min="-2" pref="136" max="-2" attributes="0"/>
                                       <Component id="jLabelPhone" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabelFullName" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabelGender" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabelEmail" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelImage" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="141" max="32767" attributes="0"/>
+                          <EmptySpace pref="152" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -102,8 +102,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jScrollPane1" min="-2" pref="443" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="jLabelImage" min="-2" pref="96" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                          <Component id="jLabelImage" min="-2" pref="80" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Component id="jLabelFullName" min="-2" pref="38" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabelPhone" min="-2" pref="38" max="-2" attributes="0"/>
