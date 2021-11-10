@@ -329,6 +329,10 @@ public class EditStudentForm extends javax.swing.JFrame {
 
     private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
 
+        jLabelEmptyName.setVisible(false);
+        jLabelEmptySurname.setVisible(false);
+        jLabelEmptyPhoneNumber.setVisible(false);
+        
         int id = Integer.parseInt(jTextFieldID.getText());
         String name = jTextFieldName.getText();
         String surname = jTextFieldSurname.getText();
@@ -352,7 +356,7 @@ public class EditStudentForm extends javax.swing.JFrame {
             Path path = Paths.get(imagePath);
                 try {
                     img = Files.readAllBytes(path);
-                    student.addStudent(id, name, surname, phoneNumber, email, gender, img);
+                    student.editStudent(id, name, surname, phoneNumber, email, gender, img);
                 } catch (IOException ex) {
                     Logger.getLogger(EditStudentForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
