@@ -98,6 +98,7 @@ public class AddBookForm extends javax.swing.JFrame {
         jComboBoxGenre = new javax.swing.JComboBox<>();
         jDateChooser = new com.toedter.calendar.JDateChooser();
         jSpinnerQuantity = new javax.swing.JSpinner();
+        jButtonSelectAuthor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -221,6 +222,14 @@ public class AddBookForm extends javax.swing.JFrame {
 
         jSpinnerQuantity.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        jButtonSelectAuthor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonSelectAuthor.setText("select author");
+        jButtonSelectAuthor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSelectAuthorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -265,7 +274,9 @@ public class AddBookForm extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextFieldAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonSelectAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -309,7 +320,8 @@ public class AddBookForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSelectAuthor))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -379,7 +391,7 @@ public class AddBookForm extends javax.swing.JFrame {
             imagePath=path;
             
             //displaying new image
-            f.displayImage(140, 110, null, imagePath, jLabelImage);
+            f.displayImage(140, 120, null, imagePath, jLabelImage);
             
     }//GEN-LAST:event_jButtonSelectPictureActionPerformed
 
@@ -444,6 +456,11 @@ public class AddBookForm extends javax.swing.JFrame {
     private void jTextFieldAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAuthorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldAuthorActionPerformed
+
+    private void jButtonSelectAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectAuthorActionPerformed
+        AuthorsListForm authorsForm = new AuthorsListForm();
+        authorsForm.setVisible(true);
+    }//GEN-LAST:event_jButtonSelectAuthorActionPerformed
 
     
     
@@ -519,6 +536,7 @@ public class AddBookForm extends javax.swing.JFrame {
     private javax.swing.JLabel JLabelImagePath;
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonCancel;
+    private javax.swing.JButton jButtonSelectAuthor;
     private javax.swing.JButton jButtonSelectPicture;
     private javax.swing.JComboBox<String> jComboBoxGenre;
     private com.toedter.calendar.JDateChooser jDateChooser;
