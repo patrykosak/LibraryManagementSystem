@@ -318,6 +318,11 @@ public class AddStudentForm extends javax.swing.JFrame {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
 
+        jLabelEmptyId.setVisible(false);
+        jLabelEmptyName.setVisible(false);
+        jLabelEmptySurname.setVisible(false);
+        jLabelEmptyPhoneNumber.setVisible(false);
+        
         int id = Integer.parseInt(jTextFieldID.getText());
         String name = jTextFieldName.getText();
         String surname = jTextFieldSurname.getText();
@@ -325,6 +330,9 @@ public class AddStudentForm extends javax.swing.JFrame {
         String email = jTextFieldEmail.getText();
         String gender = jComboBox1.getSelectedItem().toString();
         
+        if(jTextFieldID.getText().isEmpty()){
+            jLabelEmptyId.setVisible(true);
+        }
         if(name.isEmpty()){
             jLabelEmptyName.setVisible(true);
         }
