@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -130,6 +131,26 @@ public class Genre {
         }
            
            return gList;
+       }
+       
+       public HashMap<String, Integer> getGenresMap(){
+           HashMap<String, Integer> map = new HashMap<>();
+            PreparedStatement ps;
+           ResultSet rs;
+           try {
+            ps = DB.getConnection().prepareStatement("SELECT * FROM `bookgenres`");
+            rs = ps.executeQuery();
+            Genre genre;
+            
+            while(rs.next()){
+                genre = new Genre(rs.getInt("id"), rs.getString("name"));
+                map.put(genre.getName(), genre.getId());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Genre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+           return map;
        }
        
 }

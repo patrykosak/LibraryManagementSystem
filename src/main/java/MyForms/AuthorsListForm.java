@@ -186,6 +186,8 @@ public class AuthorsListForm extends javax.swing.JFrame {
         String fullName = name + " " + surname;
         
         AddBookForm.displayAuthorData(id, fullName);
+        
+        this.dispose();
     }//GEN-LAST:event_jButtonSelectAuthorActionPerformed
 
     

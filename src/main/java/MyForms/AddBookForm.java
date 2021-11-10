@@ -20,6 +20,7 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -28,7 +29,6 @@ import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author xxx
@@ -36,6 +36,8 @@ import javax.swing.table.DefaultTableModel;
 public class AddBookForm extends javax.swing.JFrame {
             Functions f = new Functions();
             Book book = new Book();
+            Genre genre = new Genre();
+            HashMap<String, Integer> genresMap = genre.getGenresMap();
             String imagePath=null;
             /**
      * Creates new form ManageGenresForm
@@ -54,6 +56,7 @@ public class AddBookForm extends javax.swing.JFrame {
         
         f.displayImage(90, 60,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\book.png", jLabelFormTitle);
 
+        fillJcomboboxWithGenres();
         
 //        f.displayImage(125, 80,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\blankProfilePicture.png", jLabelImage);
 
@@ -460,9 +463,19 @@ public class AddBookForm extends javax.swing.JFrame {
     private void jButtonSelectAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectAuthorActionPerformed
         AuthorsListForm authorsForm = new AuthorsListForm();
         authorsForm.setVisible(true);
+        
     }//GEN-LAST:event_jButtonSelectAuthorActionPerformed
 
+    public static void displayAuthorData(int id, String fullName){
+        jTextFieldAuthor.setText(fullName);
+    }
     
+    public void fillJcomboboxWithGenres(){
+        for(String genreName : genresMap.keySet())
+        {
+            jComboBoxGenre.addItem(genreName);
+        }
+    }
     
     
     /**
@@ -557,7 +570,7 @@ public class AddBookForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinnerQuantity;
     private javax.swing.JTextArea jTextAreaDescription;
-    private javax.swing.JTextField jTextFieldAuthor;
+    private static javax.swing.JTextField jTextFieldAuthor;
     private javax.swing.JTextField jTextFieldISBN;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldPrice;
