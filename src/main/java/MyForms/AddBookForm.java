@@ -33,7 +33,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AddBookForm extends javax.swing.JFrame {
             Functions f = new Functions();
-            Student student = new Student();
+            Book book = new Book();
             String imagePath=null;
             /**
      * Creates new form ManageGenresForm
@@ -401,13 +401,17 @@ public class AddBookForm extends javax.swing.JFrame {
 //        jLabelEmptySurname.setVisible(false);
 //        jLabelEmptyPhoneNumber.setVisible(false);
 //
-//        int id = Integer.parseInt(jTextFieldID.getText());
-//        String name = jTextFieldName.getText();
-//        String surname = jTextFieldSurname.getText();
-//        String phoneNumber = jTextFieldPhoneNumber.getText();
-//        String email = jTextFieldEmail.getText();
-//        String gender = jComboBox1.getSelectedItem().toString();
-//
+        String isbn = jTextFieldISBN.getText();
+        String name = jTextFieldName.getText();
+        Integer author = 0;
+        Integer genre = 0;
+        Integer quantity = Integer.parseInt(jSpinnerQuantity.getValue().toString());
+        String publisher = jTextFieldPublisher.getText();
+        Double price = Double.parseDouble(jTextFieldPrice.getText());
+        Date dateReceived = jDateChooser.getDate();
+        String description = jTextAreaDescription.getText();
+        
+        
 //        if(jTextFieldID.getText().isEmpty()){
 //            jLabelEmptyId.setVisible(true);
 //        }
@@ -421,23 +425,23 @@ public class AddBookForm extends javax.swing.JFrame {
 //            jLabelEmptySurname.setVisible(true);
 //        }
 //        else{
-//            byte[] img = null;
-//
-//            if(imagePath!=null){
-//                Path path = Paths.get(imagePath);
-//                try {
-//                    img = Files.readAllBytes(path);
-//                    student.addStudent(id, name, surname, phoneNumber, email, gender, img);
-//                } catch (IOException ex) {
-//                    Logger.getLogger(AddStudentForm.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//
-//            }
-//            else
-//            {
-//                JOptionPane.showMessageDialog(null, "Select a Profile Picture For This Student","No Picture Selected",2);
-//            }
-//
+            byte[] img = null;
+
+            if(imagePath!=null){
+                Path path = Paths.get(imagePath);
+                try {
+                    img = Files.readAllBytes(path);
+                    book.addBook(isbn, name, author, genre, quantity, publisher, price, dateReceived, img);
+                } catch (IOException ex) {
+                    Logger.getLogger(AddStudentForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Select a Profile Picture For This Student","No Picture Selected",2);
+            }
+
 //        }
     }//GEN-LAST:event_jButtonAddActionPerformed
 
