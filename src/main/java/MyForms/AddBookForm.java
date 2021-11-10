@@ -372,9 +372,26 @@ public class AddBookForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelCloseMouseClicked
 
     private void jButtonSelectPictureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectPictureActionPerformed
-
-        ManageGenresForm manageGenres = new ManageGenresForm();
-        manageGenres.setVisible(true);
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Select Profile Picture");
+        
+        fileChooser.setCurrentDirectory(new File("C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images"));
+        
+        FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image",".png",".jpg",".jpeg");
+        fileChooser.addChoosableFileFilter(extensionFilter);
+        
+        int fileState = fileChooser.showSaveDialog(null);
+        
+        if(fileState == JFileChooser.APPROVE_OPTION)
+        {
+            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            JLabelImagePath.setText(path);
+            imagePath=path;
+            
+            //displaying new image
+            f.displayImage(140, 110, null, imagePath, jLabelImage);
+            
+        }
     }//GEN-LAST:event_jButtonSelectPictureActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
