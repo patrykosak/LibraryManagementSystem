@@ -176,4 +176,27 @@ public class Student {
                return null;
            }
        }
+       
+       public ArrayList<Student> studentsList(){
+           ArrayList<Student> sList = new ArrayList<>();
+           
+           String selectQuery = "SELECT * FROM `students`";
+           PreparedStatement ps;
+           ResultSet rs;
+           
+        try {
+            ps = DB.getConnection().prepareStatement(selectQuery);
+            rs = ps.executeQuery();
+            Student student;
+            
+            while(rs.next()){
+                student = new Student(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(7),rs.getBytes(6));
+                sList.add(student);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+           return sList;
+       }
 }
