@@ -27,14 +27,14 @@ public class Book {
     private Integer quantity;
     private String publisher;
     private double price;
-    private Date dateReceived;
+    private String dateReceived;
     private String description;
     private byte[] cover;
  
     
     public Book(){}
 
-    public Book(String ISBN, String name, Integer authorId, Integer genreId, Integer quantity, String publisher, double price, Date dateReceived, String description, byte[] cover) {
+    public Book(String ISBN, String name, Integer authorId, Integer genreId, Integer quantity, String publisher, double price, String dateReceived, String description, byte[] cover) {
         this.ISBN = ISBN;
         this.name = name;
         this.authorId = authorId;
@@ -103,11 +103,11 @@ public class Book {
         this.price = price;
     }
 
-    public Date getDateReceived() {
+    public String getDateReceived() {
         return dateReceived;
     }
 
-    public void setDateReceived(Date dateReceived) {
+    public void setDateReceived(String dateReceived) {
         this.dateReceived = dateReceived;
     }
 
@@ -127,7 +127,7 @@ public class Book {
         this.cover = cover;
     }
     
-    public void addBook(String ISBN, String name, Integer authorId, Integer genreId, Integer quantity, String publisher, double price, Date dateRecived, String description, byte[] cover){
+    public void addBook(String ISBN, String name, Integer authorId, Integer genreId, Integer quantity, String publisher, double price, String dateRecived, String description, byte[] cover){
         
         String insertQuery = "INSERT INTO `books` (`isbn`,`name`,`authorid`,`genreid`,`quantity`,`publisher`,`price`,`datereceived`,`description`,`coverimage`) VALUES (?,?,?,?,?,?,?,?,?,?)";
         
@@ -140,7 +140,7 @@ public class Book {
             ps.setInt(5, quantity);
             ps.setString(6, publisher);
             ps.setDouble(7, price);
-            ps.setDate(8, dateRecived);
+            ps.setString(8, dateRecived);
             ps.setString(9, description);
             ps.setBytes(10, cover);
 
@@ -156,7 +156,7 @@ public class Book {
         }
        
     }
-    public void editBook(String ISBN, String name, Integer authorId, Integer genreId, Integer quantity, String publisher, double price, Date dateRecived, String description, byte[] cover){
+    public void editBook(String ISBN, String name, Integer authorId, Integer genreId, Integer quantity, String publisher, double price, String dateRecived, String description, byte[] cover){
         
         String editQuery = "UPDATE `books` SET `name` = ?,`surname`=?,`phonenumber`=?,`email`=?,`picture`=?,`gender`=? WHERE `id` = ?";
         

@@ -18,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -38,7 +39,7 @@ public class AddBookForm extends javax.swing.JFrame {
             Book book = new Book();
             Genre genre = new Genre();
             HashMap<String, Integer> genresMap = genre.getGenresMap();
-            String imagePath=null;
+            String imagePath="";
             /**
      * Creates new form ManageGenresForm
      */
@@ -51,8 +52,8 @@ public class AddBookForm extends javax.swing.JFrame {
         Border panelHeaderBorder = BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(221,84,0));
         jPanel1.setBorder(panelHeaderBorder);
         
-//        Border JlabelImageBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0,0,0));
-//        jLabelImage.setBorder(JlabelImageBorder);
+        Border JlabelImageBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0,0,0));
+        jLabelImage.setBorder(JlabelImageBorder);
         
         f.displayImage(90, 60,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\book.png", jLabelFormTitle);
 
@@ -173,6 +174,7 @@ public class AddBookForm extends javax.swing.JFrame {
         jLabel9.setText("Book Cover:");
 
         jTextAreaDescription.setColumns(20);
+        jTextAreaDescription.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         jTextAreaDescription.setRows(5);
         jScrollPane1.setViewportView(jTextAreaDescription);
 
@@ -400,11 +402,7 @@ public class AddBookForm extends javax.swing.JFrame {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
 
-//        jLabelEmptyId.setVisible(false);
-//        jLabelEmptyName.setVisible(false);
-//        jLabelEmptySurname.setVisible(false);
-//        jLabelEmptyPhoneNumber.setVisible(false);
-//
+
         String isbn = jTextFieldISBN.getText();
         String name = jTextFieldName.getText();
         Integer author = 0;
@@ -412,40 +410,33 @@ public class AddBookForm extends javax.swing.JFrame {
         Integer quantity = Integer.parseInt(jSpinnerQuantity.getValue().toString());
         String publisher = jTextFieldPublisher.getText();
         Double price = Double.parseDouble(jTextFieldPrice.getText());
-        Date dateReceived = jDateChooser.getDate();
-        String description = jTextAreaDescription.getText();
         
-//        if(jTextFieldID.getText().isEmpty()){
-//            jLabelEmptyId.setVisible(true);
-//        }
-//        if(name.isEmpty()){
-//            jLabelEmptyName.setVisible(true);
-//        }
-//        else if(surname.isEmpty()){
-//            jLabelEmptySurname.setVisible(true);
-//        }
-//        else if(phoneNumber.isEmpty()){
-//            jLabelEmptySurname.setVisible(true);
-//        }
-//        else{
-            byte[] img = null;
+        String description = jTextAreaDescription.getText();
 
-            if(imagePath!=null){
-                Path path = Paths.get(imagePath);
-                try {
-                    img = Files.readAllBytes(path);
-                    //book.addBook(isbn, name, author, genre, quantity, publisher, price, dateReceived, img);
-                } catch (IOException ex) {
+        try {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateReceived = dateFormat.format(jDateChooser.getDate());
+        Path path = Paths.get(imagePath);
+        byte[] img = Files.readAllBytes(path);
+        book.addBook(isbn, name, author, genre, quantity, publisher, price, dateReceived, description, img);
+        }
+        catch (IOException ex) {
                     Logger.getLogger(AddStudentForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
+//            if(imagePath!=null){
+//                Path path = Paths.get(imagePath);
+//                
+//                    img = Files.readAllBytes(path);
+//                   
+//                } 
+//
+//            }
+//            else
+//            {
+//                JOptionPane.showMessageDialog(null, "Select a Profile Picture For This Student","No Picture Selected",2);
+//            }
 
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Select a Profile Picture For This Student","No Picture Selected",2);
-            }
-
-//        }
+        
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
