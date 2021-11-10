@@ -50,9 +50,9 @@ public class StudentsListForm extends javax.swing.JFrame {
 
     
         f.customTable(jTableStudents);
-        f.customTableHeader(jTableStudents, new Color(34,167,240), 16);
+        f.customTableHeader(jTableStudents, new Color(36,37,42), 16);
         
-        populateJtableWithStudents();
+        populateJtableWithStudents("");
 
 
         //f.customTable(jTableAuthors);
@@ -61,9 +61,9 @@ public class StudentsListForm extends javax.swing.JFrame {
         
     }
 
-     public void populateJtableWithStudents()
+     public void populateJtableWithStudents(String  query)
     {
-        ArrayList<Student> students = student.studentsList();
+        ArrayList<Student> students = student.studentsList(query);
         
         //jtable columns
         String[] colNames = {"ID","Name","Surname","Phone","Email","Gender"};
@@ -96,7 +96,7 @@ public class StudentsListForm extends javax.swing.JFrame {
         jLabelFormTitle = new javax.swing.JLabel();
         jLabelClose = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldID = new javax.swing.JTextField();
+        jTextFieldSerachValue = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableStudents = new javax.swing.JTable();
         jButtonSearch = new javax.swing.JButton();
@@ -131,7 +131,7 @@ public class StudentsListForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel1.setText("Value to Search:");
 
-        jTextFieldID.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jTextFieldSerachValue.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
         jTableStudents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,6 +145,11 @@ public class StudentsListForm extends javax.swing.JFrame {
 
         jButtonSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonSearch.setText("search");
+        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,7 +168,7 @@ public class StudentsListForm extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldSerachValue, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)))
                         .addContainerGap())))
@@ -177,7 +182,7 @@ public class StudentsListForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldSerachValue, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,6 +206,13 @@ public class StudentsListForm extends javax.swing.JFrame {
     private void jLabelCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCloseMouseClicked
         this.dispose();
     }//GEN-LAST:event_jLabelCloseMouseClicked
+
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+        String searchValue = jTextFieldSerachValue.getText();
+        String query = "SELECT * FROM `students` WHERE `name` LIKE'%"+searchValue+"%' or `surname` LIKE'%"+searchValue+"%'";
+        populateJtableWithStudents(query);
+
+    }//GEN-LAST:event_jButtonSearchActionPerformed
 
     
     
@@ -264,6 +276,6 @@ public class StudentsListForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableStudents;
-    private javax.swing.JTextField jTextFieldID;
+    private javax.swing.JTextField jTextFieldSerachValue;
     // End of variables declaration//GEN-END:variables
 }

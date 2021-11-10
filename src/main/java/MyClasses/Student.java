@@ -177,15 +177,17 @@ public class Student {
            }
        }
        
-       public ArrayList<Student> studentsList(){
+       public ArrayList<Student> studentsList(String query){
            ArrayList<Student> sList = new ArrayList<>();
            
-           String selectQuery = "SELECT * FROM `students`";
            PreparedStatement ps;
            ResultSet rs;
            
         try {
-            ps = DB.getConnection().prepareStatement(selectQuery);
+            if(query.equals("")){
+            query = "SELECT * FROM `students`";
+        }
+            ps = DB.getConnection().prepareStatement(query);
             rs = ps.executeQuery();
             Student student;
             
