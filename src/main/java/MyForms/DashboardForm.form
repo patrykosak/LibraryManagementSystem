@@ -105,7 +105,7 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jButtonManageGenres" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
                                   <Component id="jButtonAddStudent" max="32767" attributes="0"/>
-                                  <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jButtonStudentsList" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jButtonEditStudent" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jButtonDeleteStudent" alignment="0" pref="133" max="32767" attributes="0"/>
                                   <Component id="jButtonManageAuthors" alignment="0" max="32767" attributes="0"/>
@@ -137,7 +137,7 @@
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Component id="jButtonDeleteStudent" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonStudentsList" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -226,7 +226,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddStudentActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="jButtonStudentsList">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -234,9 +234,12 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Add a New One"/>
+                <Property name="text" type="java.lang.String" value="Students List"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonStudentsListActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonEditStudent">
               <Properties>

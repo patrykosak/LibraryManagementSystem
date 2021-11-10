@@ -117,7 +117,7 @@ public class DashboardForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButtonAddStudent = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonStudentsList = new javax.swing.JButton();
         jButtonEditStudent = new javax.swing.JButton();
         jButtonDeleteStudent = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -190,10 +190,15 @@ public class DashboardForm extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Add a New One");
-        jButton2.setContentAreaFilled(false);
+        jButtonStudentsList.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonStudentsList.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonStudentsList.setText("Students List");
+        jButtonStudentsList.setContentAreaFilled(false);
+        jButtonStudentsList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonStudentsListActionPerformed(evt);
+            }
+        });
 
         jButtonEditStudent.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonEditStudent.setForeground(new java.awt.Color(255, 255, 255));
@@ -264,7 +269,7 @@ public class DashboardForm extends javax.swing.JFrame {
                         .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonManageGenres, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonAddStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonStudentsList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonEditStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonDeleteStudent, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
                             .addComponent(jButtonManageAuthors, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -291,7 +296,7 @@ public class DashboardForm extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(jButtonDeleteStudent)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(jButtonStudentsList)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -548,6 +553,11 @@ public class DashboardForm extends javax.swing.JFrame {
         deleteStudent.setVisible(true);
     }//GEN-LAST:event_jButtonDeleteStudentActionPerformed
 
+    private void jButtonStudentsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStudentsListActionPerformed
+        StudentsListForm studentsList = new StudentsListForm();
+        studentsList.setVisible(true);
+    }//GEN-LAST:event_jButtonStudentsListActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -584,12 +594,12 @@ public class DashboardForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAddStudent;
     private javax.swing.JButton jButtonDeleteStudent;
     private javax.swing.JButton jButtonEditStudent;
     private javax.swing.JButton jButtonManageAuthors;
     private javax.swing.JButton jButtonManageGenres;
+    private javax.swing.JButton jButtonStudentsList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
