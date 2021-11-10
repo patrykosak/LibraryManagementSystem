@@ -6,6 +6,7 @@
 package MyForms;
 
 import MyClasses.Author;
+import MyClasses.Book;
 import MyClasses.Functions;
 import MyClasses.Genre;
 import MyClasses.Student;
@@ -18,6 +19,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -372,26 +374,13 @@ public class AddBookForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelCloseMouseClicked
 
     private void jButtonSelectPictureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectPictureActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Select Profile Picture");
-        
-        fileChooser.setCurrentDirectory(new File("C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images"));
-        
-        FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image",".png",".jpg",".jpeg");
-        fileChooser.addChoosableFileFilter(extensionFilter);
-        
-        int fileState = fileChooser.showSaveDialog(null);
-        
-        if(fileState == JFileChooser.APPROVE_OPTION)
-        {
-            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            String path = f.selectImage();
             JLabelImagePath.setText(path);
             imagePath=path;
             
             //displaying new image
             f.displayImage(140, 110, null, imagePath, jLabelImage);
             
-        }
     }//GEN-LAST:event_jButtonSelectPictureActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
@@ -410,7 +399,6 @@ public class AddBookForm extends javax.swing.JFrame {
         Double price = Double.parseDouble(jTextFieldPrice.getText());
         Date dateReceived = jDateChooser.getDate();
         String description = jTextAreaDescription.getText();
-        
         
 //        if(jTextFieldID.getText().isEmpty()){
 //            jLabelEmptyId.setVisible(true);
@@ -431,7 +419,7 @@ public class AddBookForm extends javax.swing.JFrame {
                 Path path = Paths.get(imagePath);
                 try {
                     img = Files.readAllBytes(path);
-                    book.addBook(isbn, name, author, genre, quantity, publisher, price, dateReceived, img);
+                    //book.addBook(isbn, name, author, genre, quantity, publisher, price, dateReceived, img);
                 } catch (IOException ex) {
                     Logger.getLogger(AddStudentForm.class.getName()).log(Level.SEVERE, null, ex);
                 }

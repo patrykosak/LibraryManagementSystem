@@ -378,22 +378,10 @@ public class AddStudentForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelEmptyPhoneNumberMouseClicked
 
     private void jButtonSelectProfilePictureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectProfilePictureActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Select Profile Picture");
-        
-        fileChooser.setCurrentDirectory(new File("C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images"));
-        
-        FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image",".png",".jpg",".jpeg");
-        fileChooser.addChoosableFileFilter(extensionFilter);
-        
-        int fileState = fileChooser.showSaveDialog(null);
-        
-        if(fileState == JFileChooser.APPROVE_OPTION)
-        {
-            String path = fileChooser.getSelectedFile().getAbsolutePath();
+       
+            String path = f.selectImage();
             JLabelImagePath.setText(path);
             imagePath=path;
-        }
     }//GEN-LAST:event_jButtonSelectProfilePictureActionPerformed
 
     private void jLabelEmptyIdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelEmptyIdMouseClicked
