@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -100,6 +101,11 @@ public class StudentsListForm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableStudents = new javax.swing.JTable();
         jButtonSearch = new javax.swing.JButton();
+        jLabelImage = new javax.swing.JLabel();
+        jLabelPhone = new javax.swing.JLabel();
+        jLabelFullName = new javax.swing.JLabel();
+        jLabelGender = new javax.swing.JLabel();
+        jLabelEmail = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -141,6 +147,11 @@ public class StudentsListForm extends javax.swing.JFrame {
 
             }
         ));
+        jTableStudents.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableStudentsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableStudents);
 
         jButtonSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -150,6 +161,21 @@ public class StudentsListForm extends javax.swing.JFrame {
                 jButtonSearchActionPerformed(evt);
             }
         });
+
+        jLabelImage.setBackground(new java.awt.Color(153, 204, 255));
+        jLabelImage.setOpaque(true);
+
+        jLabelPhone.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabelPhone.setText("Phone");
+
+        jLabelFullName.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabelFullName.setText("Full Name");
+
+        jLabelGender.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabelGender.setText("Gender");
+
+        jLabelEmail.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabelEmail.setText("Email");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -164,14 +190,22 @@ public class StudentsListForm extends javax.swing.JFrame {
                         .addComponent(jLabelClose, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldSerachValue, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                                .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelPhone)
+                                    .addComponent(jLabelFullName)
+                                    .addComponent(jLabelGender)
+                                    .addComponent(jLabelEmail))))
+                        .addContainerGap(141, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +219,18 @@ public class StudentsListForm extends javax.swing.JFrame {
                     .addComponent(jTextFieldSerachValue, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabelFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabelGender, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -193,7 +238,7 @@ public class StudentsListForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 749, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1082, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,6 +258,34 @@ public class StudentsListForm extends javax.swing.JFrame {
         populateJtableWithStudents(query);
 
     }//GEN-LAST:event_jButtonSearchActionPerformed
+
+    private void jTableStudentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableStudentsMouseClicked
+       
+        try {
+                    int rowIndex = jTableStudents.getSelectedRow();
+                    int id = Integer.parseInt(jTableStudents.getModel().getValueAt(rowIndex, 0).toString());
+                    Student s = student.getStudentById(id);
+                    
+                    if(s!=null){
+                    jLabelFullName.setText(s.getName()+" "+s.getSurname());
+                    jLabelPhone.setText(s.getPhoneNumber());
+                    jLabelEmail.setText(s.getEmail());
+                    jLabelGender.setText(s.getGender());
+                    
+                    byte[] image = s.getPicture();
+                    f.displayImage(125, 80, image,"", jLabelImage);   
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "No Student With This Id Is Found", "Invalid ID",3);
+                    }
+                   
+                    
+                } catch (SQLException ex) {
+                    //Logger.getLogger(EditStudentForm.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Enter a Vaild Student Id", "Invalid ID",3);
+                }
+        
+    }//GEN-LAST:event_jTableStudentsMouseClicked
 
     
     
@@ -272,7 +345,12 @@ public class StudentsListForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelClose;
+    private javax.swing.JLabel jLabelEmail;
     private javax.swing.JLabel jLabelFormTitle;
+    private javax.swing.JLabel jLabelFullName;
+    private javax.swing.JLabel jLabelGender;
+    private javax.swing.JLabel jLabelImage;
+    private javax.swing.JLabel jLabelPhone;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableStudents;
