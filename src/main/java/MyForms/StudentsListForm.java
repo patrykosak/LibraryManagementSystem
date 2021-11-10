@@ -47,11 +47,18 @@ public class StudentsListForm extends javax.swing.JFrame {
         Border panelHeaderBorder = BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(1,152,117));
         jPanel1.setBorder(panelHeaderBorder);
         
-        f.displayImage(75, 60,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\members.png", jLabelFormTitle);
+        Border JlabelImageBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0,0,0));
+        jLabelImage.setBorder(JlabelImageBorder);
+        
+        f.displayImage(90, 60,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\members.png", jLabelFormTitle);
 
     
         f.customTable(jTableStudents);
         f.customTableHeader(jTableStudents, new Color(36,37,42), 16);
+        
+        f.displayImage(125, 80,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\blankProfilePicture.png", jLabelImage);
+
+
         
         populateJtableWithStudents("");
 
@@ -162,19 +169,23 @@ public class StudentsListForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelImage.setBackground(new java.awt.Color(153, 204, 255));
+        jLabelImage.setBackground(new java.awt.Color(255, 255, 255));
         jLabelImage.setOpaque(true);
 
         jLabelPhone.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabelPhone.setForeground(new java.awt.Color(0, 51, 153));
         jLabelPhone.setText("Phone");
 
         jLabelFullName.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabelFullName.setForeground(new java.awt.Color(0, 51, 153));
         jLabelFullName.setText("Full Name");
 
         jLabelGender.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabelGender.setForeground(new java.awt.Color(0, 51, 153));
         jLabelGender.setText("Gender");
 
         jLabelEmail.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabelEmail.setForeground(new java.awt.Color(0, 51, 153));
         jLabelEmail.setText("Email");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

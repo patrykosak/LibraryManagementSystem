@@ -50,7 +50,7 @@ public class EditStudentForm extends javax.swing.JFrame {
         Border JlabelImageBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0,0,0));
         jLabelImage.setBorder(JlabelImageBorder);
         
-        f.displayImage(75, 60,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\members.png", jLabelFormTitle);
+        f.displayImage(90, 60,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\members.png", jLabelFormTitle);
 
         //f.customTable(jTableAuthors);
         //f.customTableHeader(jTableAuthors, new Color(34,167,240), 16);
