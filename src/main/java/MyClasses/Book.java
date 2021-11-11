@@ -20,6 +20,9 @@ import javax.swing.JOptionPane;
  */
 public class Book {
  
+    Functions f = new Functions();
+    
+    private Integer id;
     private String ISBN;
     private String name;
     private Integer authorId;
@@ -34,7 +37,8 @@ public class Book {
     
     public Book(){}
 
-    public Book(String ISBN, String name, Integer authorId, Integer genreId, Integer quantity, String publisher, double price, String dateReceived, String description, byte[] cover) {
+    public Book(Integer id, String ISBN, String name, Integer authorId, Integer genreId, Integer quantity, String publisher, double price, String dateReceived, String description, byte[] cover) {
+        this.id=id;
         this.ISBN = ISBN;
         this.name = name;
         this.authorId = authorId;
@@ -45,6 +49,14 @@ public class Book {
         this.dateReceived = dateReceived;
         this.description = description;
         this.cover = cover;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getISBN() {
@@ -129,7 +141,7 @@ public class Book {
     
     public void addBook(String ISBN, String name, Integer authorId, Integer genreId, Integer quantity, String publisher, double price, String dateRecived, String description, byte[] cover){
         
-        String insertQuery = "INSERT INTO `books` (`isbn`,`name`,`authorid`,`genreid`,`quantity`,`publisher`,`price`,`datereceived`,`description`,`coverimage`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String insertQuery = "INSERT INTO `books` (,`isbn`,`name`,`authorid`,`genreid`,`quantity`,`publisher`,`price`,`datereceived`,`description`,`coverimage`) VALUES (?,?,?,?,?,?,?,?,?,?)";
         
         try {
             PreparedStatement ps = DB.getConnection().prepareStatement(insertQuery);
@@ -239,4 +251,21 @@ public class Book {
            return bList;
        }
     
+       public boolean isISBNexists(String isbn){
+           String query = "SELECT * FROM `books` WHERE `isbn` = '"+isbn+";";
+           ResultSet rs = f.getData(query);
+           try{
+           if(rs.next()){
+               return true;
+           }
+           else{
+               return false;
+           }
+           }
+           catch(SQLException ex){
+               Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           return true;
+       }
+       
 }

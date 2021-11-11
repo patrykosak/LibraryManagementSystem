@@ -443,8 +443,16 @@ public class AddBookForm extends javax.swing.JFrame {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
 
-
+        
         String isbn = jTextFieldISBN.getText();
+        if(!verify()){
+            JOptionPane.showMessageDialog(null, "one or more fields are empty","Empty Data",2);
+        }
+        else if(book.isISBNexists(isbn)){
+            JOptionPane.showMessageDialog(null, "This ISBN already exists","Wrong ISBN",2);
+        }
+        else{
+        
         String name = jTextFieldName.getText();
         Integer author = Integer.parseInt(jLabelAuthorId.getText());
         Integer genre = Integer.parseInt(jLabelGenreId.getText());
@@ -462,21 +470,15 @@ public class AddBookForm extends javax.swing.JFrame {
         book.addBook(isbn, name, author, genre, quantity, publisher, price, dateReceived, description, img);
         }
         catch (IOException ex) {
-                    Logger.getLogger(AddStudentForm.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Make Sure To Add a Cover Image","No Cover Image Found",2);
                 }
-//            if(imagePath!=null){
-//                Path path = Paths.get(imagePath);
-//                
-//                    img = Files.readAllBytes(path);
-//                   
-//                } 
-//
-//            }
-//            else
-//            {
-//                JOptionPane.showMessageDialog(null, "Select a Profile Picture For This Student","No Picture Selected",2);
-//            }
-
+        catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "You Entred Wrong Data In a Number Field","Wrong Data",2);
+                }
+        catch (NullPointerException ex) {
+                    JOptionPane.showMessageDialog(null, "You Need To Select a Date","Select Date",2);
+                }
+        }   
         
     }//GEN-LAST:event_jButtonAddActionPerformed
 
@@ -522,6 +524,16 @@ public class AddBookForm extends javax.swing.JFrame {
     public static void displayAuthorData(int id, String fullName){
         jTextFieldAuthor.setText(fullName);
         jLabelAuthorId.setText(String.valueOf(id));
+    }
+    
+    public boolean verify(){
+        if(jTextFieldISBN.getText().isEmpty()||jTextFieldAuthor.getText().isEmpty()||jTextFieldPrice.getText().isEmpty()||jTextFieldName.getText().isEmpty()||
+                jLabelGenreId.getText().equals("ID")){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
     
     public void fillJcomboboxWithGenres(){
