@@ -141,7 +141,7 @@ public class Book {
     
     public void addBook(String ISBN, String name, Integer authorId, Integer genreId, Integer quantity, String publisher, double price, String dateRecived, String description, byte[] cover){
         
-        String insertQuery = "INSERT INTO `books` (,`isbn`,`name`,`authorid`,`genreid`,`quantity`,`publisher`,`price`,`datereceived`,`description`,`coverimage`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String insertQuery = "INSERT INTO `books` (`isbn`,`name`,`authorid`,`genreid`,`quantity`,`publisher`,`price`,`datereceived`,`description`,`coverimage`) VALUES (?,?,?,?,?,?,?,?,?,?)";
         
         try {
             PreparedStatement ps = DB.getConnection().prepareStatement(insertQuery);
@@ -168,22 +168,41 @@ public class Book {
         }
        
     }
-    public void editBook(String ISBN, String name, Integer authorId, Integer genreId, Integer quantity, String publisher, double price, String dateRecived, String description, byte[] cover){
+    public void editBook(int id, String name, Integer authorId, Integer genreId, Integer quantity, String publisher, double price, String dateRecived, String description, byte[] cover){
         
-        String editQuery = "UPDATE `books` SET `name` = ?,`surname`=?,`phonenumber`=?,`email`=?,`picture`=?,`gender`=? WHERE `id` = ?";
+        String editQuery;
+        PreparedStatement ps;
         
-        try {
-            PreparedStatement ps = DB.getConnection().prepareStatement(editQuery);
-              
-            
-//            ps.setString(1, name);
-//            ps.setString(2, surname);
-//            ps.setString(3, phoneNumber);
-//            ps.setString(4, email);
-//            ps.setBytes(5, picture);
-//            ps.setString(6, gender);
-//            ps.setInt(7, id);
-            
+                try {
+        if(cover != null){
+            editQuery = "UPDATE `books` SET `name` = ?,`authorid`=?,`genreid`=?,`quantity`=?,`publisher`=?,`price`=?,`datereceived`=?,`description`=?,`coverimage`=? WHERE `id` = ?";
+            ps = DB.getConnection().prepareStatement(editQuery);   
+            ps.setString(1, name);
+            ps.setInt(2, authorId);
+            ps.setInt(3, genreId);
+            ps.setInt(4, quantity);
+            ps.setString(5, publisher);
+            ps.setDouble(6, price);
+            ps.setString(7, dateRecived);
+            ps.setString(8, description);
+            ps.setBytes(9, cover);
+            ps.setInt(10, id);
+        }
+        else{
+            editQuery = "UPDATE `books` SET `name` = ?,`authorid`=?,`genreid`=?,`quantity`=?,`publisher`=?,`price`=?,`datereceived`=?,`description`=? WHERE `id` = ?";
+            ps = DB.getConnection().prepareStatement(editQuery);   
+            ps.setString(1, name);
+            ps.setInt(2, authorId);
+            ps.setInt(3, genreId);
+            ps.setInt(4, quantity);
+            ps.setString(5, publisher);
+            ps.setDouble(6, price);
+            ps.setString(7, dateRecived);
+            ps.setString(8, description);
+            ps.setInt(9, id);
+        }
+        
+
             if(ps.executeUpdate() != 0){
                 JOptionPane.showMessageDialog(null, "Book Edited","edit book",1);
             }
@@ -214,17 +233,24 @@ public class Book {
         }
        
     }
-//       public Book getBookById(int id) throws SQLException{
-//           Functions f = new Functions();
-//           String query="SELECT * FROM `books` WHERE `id`="+id;
-//           ResultSet rs = f.getData(query);
-//           if(rs.next()){
-////               return new Book(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(7),rs.getBytes(6));
-//           }
-//           else{
-//               return null;
-//           }
-//       }
+       public Book searchBookByIdorISBN(int id, String isbn) throws SQLException{
+           String query="SELECT * FROM `books` WHERE `id`="+id+" or `isbn` = '"+isbn+"'";
+  
+           ResultSet rs = f.getData(query);
+           Book book = null;
+           try{
+           if(rs.next()){
+               book = new Book(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getString(7),rs.getDouble(8),rs.getString(9),rs.getString(10),rs.getBytes(11));
+           }
+           else{
+               return book;
+           }
+           }
+           catch(SQLException ex){
+               
+           }
+           return book;
+       }
        
        public ArrayList<Book> booksList(String query){
            ArrayList<Book> bList = new ArrayList<>();
@@ -252,7 +278,7 @@ public class Book {
        }
     
        public boolean isISBNexists(String isbn){
-           String query = "SELECT * FROM `books` WHERE `isbn` = '"+isbn+";";
+           String query = "SELECT * FROM `books` WHERE `isbn` = '"+isbn+"'";
            ResultSet rs = f.getData(query);
            try{
            if(rs.next()){

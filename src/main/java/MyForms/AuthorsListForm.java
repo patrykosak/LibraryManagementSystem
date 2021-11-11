@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class AuthorsListForm extends javax.swing.JFrame {
             Functions f = new Functions();
             Author author = new Author();
+            public String formType = "";
     /**
      * Creates new form ManageGenresForm
      */
@@ -185,7 +186,12 @@ public class AuthorsListForm extends javax.swing.JFrame {
         String surname = jTableAuthors.getValueAt(index, 2).toString();
         String fullName = name + " " + surname;
         
-        AddBookForm.displayAuthorData(id, fullName);
+        if(formType.equals("edit")){
+            EditBookForm.displayAuthorData(id, fullName);
+        }
+        else{
+         AddBookForm.displayAuthorData(id, fullName);   
+        }
         
         this.dispose();
     }//GEN-LAST:event_jButtonSelectAuthorActionPerformed

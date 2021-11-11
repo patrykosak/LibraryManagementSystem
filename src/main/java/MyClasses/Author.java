@@ -171,4 +171,20 @@ public class Author {
            return aList;
        }
     
+       public Author getAuthorById(Integer id) throws SQLException{
+           String selectQuery = "SELECT * FROM `authors` where id = "+id;
+           PreparedStatement ps;
+           ResultSet rs;
+           Author author = null;
+            ps = DB.getConnection().prepareStatement(selectQuery);
+            rs = ps.executeQuery();
+           try {
+            if(rs.next())
+                author = new Author(rs.getInt("id"), rs.getString("name"), rs.getString("surname"), rs.getString("expertise"), rs.getString("about"));
+        }
+            catch (SQLException ex) {
+            Logger.getLogger(Author.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return author;
+}
 }
