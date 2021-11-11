@@ -215,7 +215,7 @@ public class Book {
     }
         public void removeBook(int id){
         
-        String removeQuery = "DELETE FROM `students` WHERE `id` = ?";
+        String removeQuery = "DELETE FROM `books` WHERE `id` = ?";
         
         try {
             PreparedStatement ps = DB.getConnection().prepareStatement(removeQuery);
