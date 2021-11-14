@@ -6,7 +6,9 @@
 package MyClasses;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -16,6 +18,8 @@ import javax.swing.JOptionPane;
  * @author xxx
  */
 public class IssueBook {
+    
+    Book book = new Book();
     
     private int bookId;
     private int studentId;
@@ -46,6 +50,50 @@ public class IssueBook {
         } catch (SQLException ex) {
             Logger.getLogger(IssueBook.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
     }
+    
+    public boolean checkBookAvailability(int bookId){
+        boolean availability = false;
+        try {
+            Book selectedBook = book.getBookById(bookId);
+            int quantity = selectedBook.getQuantity();
+            
+            int issuedBook = countData(bookId);
+            if(quantity>issuedBook){
+                availability = true;
+            }
+            else{
+                availability = false;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(IssueBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return availability;
+    }
+    
+     public int countData(int bookId){
+        int total = 0;
+        ResultSet rs;
+        PreparedStatement ps;
+        
+        try{
+        ps = DB.getConnection().prepareStatement("SELECT COUNT(*) as total FROM `issuebooks` WHERE bookid = ? and `status` = 'issued'");
+        rs = ps.executeQuery();
+        
+        ps.setInt(1, bookId);
+        
+        if(rs.next()){
+            total = rs.getInt("total");
+        }
+        }
+        catch(SQLException ex){
+             Logger.getLogger(IssueBook.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        return total;
+    }
+
+    
 }

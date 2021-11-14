@@ -191,7 +191,7 @@ public class IssueBookForm extends javax.swing.JFrame {
 
         jLabelAvailable.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabelAvailable.setForeground(new java.awt.Color(51, 102, 255));
-        jLabelAvailable.setText("Yes-or-No");
+        jLabelAvailable.setText("YES-or-NO");
 
         jLabel8.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel8.setText("Return Date:");
@@ -348,10 +348,21 @@ public class IssueBookForm extends javax.swing.JFrame {
                     if(selectedBook!=null){
                     jLabelBookName.setText(selectedBook.getName());
                     bookExist=true;
+                    if(issueBook.checkBookAvailability(bookId)){
+                        jLabelAvailable.setText("YES");
+                        jLabelAvailable.setForeground(Color.green);
+                    }
+                    else{
+                        jLabelAvailable.setText("NO");
+                        jLabelAvailable.setForeground(Color.red);
+                    }
                     }
                     else{
                     JOptionPane.showMessageDialog(null, "This Book Doesn't exist","Book Not Found",2);
+                    jLabelBookName.setText("Book Name");
                     bookExist=false;
+                    jLabelAvailable.setText("YES-or-NO");
+                    jLabelAvailable.setForeground(new Color(51,102,255));
                     }
                     } catch (SQLException ex) {
                     Logger.getLogger(IssueBookForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -384,6 +395,10 @@ public class IssueBookForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "You Need To Check If This Student Exist First By Clicking The Search Student Button","Check If The Student Exists",2);
         }
         
+        else if(!issueBook.checkBookAvailability(bookId)){
+            JOptionPane.showMessageDialog(null, "This Book Is Not Available Right Now","Book Not Available",2);
+        }
+        
         else if(retDate.before(issDate)){
             JOptionPane.showMessageDialog(null, "The Return Date Must Be After The Issue Date","Wrong Return Date",2);
         }
@@ -410,6 +425,7 @@ public class IssueBookForm extends javax.swing.JFrame {
                     }
                     else{
                     JOptionPane.showMessageDialog(null, "This Student Doesn't exist","Student Not Found",2);
+                    jLabelStudentFullName.setText("Student Full-Name");
                     studentExist=false;
                     }
                 } catch (SQLException ex) {
