@@ -39,6 +39,7 @@ public class IssueBookForm extends javax.swing.JFrame {
             Functions f = new Functions();
             Book book = new Book();
             Genre genre = new Genre();
+            Student student = new Student();
             HashMap<String, Integer> genresMap = genre.getGenresMap();
             String imagePath="";
             /**
@@ -77,21 +78,21 @@ public class IssueBookForm extends javax.swing.JFrame {
         jLabelFormTitle = new javax.swing.JLabel();
         jLabelClose = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldBookID = new javax.swing.JTextField();
-        jButtonAdd = new javax.swing.JButton();
+        jButtonIssue = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
         jButtonSearchBook = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jDateChooserIssueDate = new com.toedter.calendar.JDateChooser();
         jLabelBookName = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldStudentID = new javax.swing.JTextField();
         jButtonSearchStudent = new javax.swing.JButton();
         jLabelStudentFullName = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabelAvailable = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jDateChooserReturnDate = new com.toedter.calendar.JDateChooser();
+        jSpinnerBookId = new javax.swing.JSpinner();
+        jSpinnerStudentId = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -123,13 +124,11 @@ public class IssueBookForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel1.setText("Enter Book ID:");
 
-        jTextFieldBookID.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-
-        jButtonAdd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonAdd.setText("Issue Book");
-        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
+        jButtonIssue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonIssue.setText("Issue Book");
+        jButtonIssue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddActionPerformed(evt);
+                jButtonIssueActionPerformed(evt);
             }
         });
 
@@ -161,8 +160,6 @@ public class IssueBookForm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel3.setText("Is This Book Available:");
 
-        jTextFieldStudentID.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-
         jButtonSearchStudent.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButtonSearchStudent.setText("search student");
         jButtonSearchStudent.addActionListener(new java.awt.event.ActionListener() {
@@ -187,6 +184,10 @@ public class IssueBookForm extends javax.swing.JFrame {
 
         jDateChooserReturnDate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        jSpinnerBookId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jSpinnerStudentId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -209,7 +210,7 @@ public class IssueBookForm extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jDateChooserIssueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButtonAdd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonIssue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel8)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -223,17 +224,17 @@ public class IssueBookForm extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelBookName)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTextFieldBookID, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jSpinnerBookId, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButtonSearchBook, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabelStudentFullName)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jTextFieldStudentID, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerStudentId, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jButtonSearchStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(20, 20, 20)
@@ -250,14 +251,14 @@ public class IssueBookForm extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextFieldBookID, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jSpinnerBookId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButtonSearchBook, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelBookName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldStudentID, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSearchStudent, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSearchStudent)
+                    .addComponent(jSpinnerStudentId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelStudentFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -278,9 +279,9 @@ public class IssueBookForm extends javax.swing.JFrame {
                         .addComponent(jDateChooserReturnDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonIssue, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(193, 193, 193)
@@ -303,9 +304,16 @@ public class IssueBookForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSearchBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchBookActionPerformed
-        AuthorsListForm authorsForm = new AuthorsListForm();
-        authorsForm.formType = "add";
-        authorsForm.setVisible(true);
+        int bookId = (int)jSpinnerBookId.getValue();
+                try {
+                    Book selectedBook = book.getBookById(bookId);
+                    if(selectedBook!=null)
+                    jLabelBookName.setText(selectedBook.getName());
+                    else
+                    JOptionPane.showMessageDialog(null, "This Book Doesn't exist","Book Not Found",2);
+                } catch (SQLException ex) {
+                    Logger.getLogger(IssueBookForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
     }//GEN-LAST:event_jButtonSearchBookActionPerformed
 
@@ -313,18 +321,27 @@ public class IssueBookForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
-    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
+    private void jButtonIssueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIssueActionPerformed
 
        
 
-    }//GEN-LAST:event_jButtonAddActionPerformed
+    }//GEN-LAST:event_jButtonIssueActionPerformed
 
     private void jLabelCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCloseMouseClicked
         this.dispose();
     }//GEN-LAST:event_jLabelCloseMouseClicked
 
     private void jButtonSearchStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchStudentActionPerformed
-        // TODO add your handling code here:
+        int studentId = (int)jSpinnerStudentId.getValue();
+                try {
+                    Student selectedStudent = student.getStudentById(studentId);
+                    if(selectedStudent!=null)
+                    jLabelStudentFullName.setText(selectedStudent.getName()+" "+selectedStudent.getSurname());
+                    else
+                    JOptionPane.showMessageDialog(null, "This Student Doesn't exist","Student Not Found",2);
+                } catch (SQLException ex) {
+                    Logger.getLogger(IssueBookForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
     }//GEN-LAST:event_jButtonSearchStudentActionPerformed
 
     public static void displayAuthorData(int id, String fullName){
@@ -437,8 +454,8 @@ public class IssueBookForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonCancel;
+    private javax.swing.JButton jButtonIssue;
     private javax.swing.JButton jButtonSearchBook;
     private javax.swing.JButton jButtonSearchStudent;
     private com.toedter.calendar.JDateChooser jDateChooserIssueDate;
@@ -454,7 +471,7 @@ public class IssueBookForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFormTitle;
     private javax.swing.JLabel jLabelStudentFullName;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextFieldBookID;
-    private javax.swing.JTextField jTextFieldStudentID;
+    private javax.swing.JSpinner jSpinnerBookId;
+    private javax.swing.JSpinner jSpinnerStudentId;
     // End of variables declaration//GEN-END:variables
 }
