@@ -153,4 +153,20 @@ public class Genre {
            return map;
        }
        
+        public Genre getGenreById(Integer id) throws SQLException{
+           String selectQuery = "SELECT * FROM `bookgenres` where id = "+id;
+           PreparedStatement ps;
+           ResultSet rs;
+           Genre genre = null;
+            ps = DB.getConnection().prepareStatement(selectQuery);
+            rs = ps.executeQuery();
+           try {
+            if(rs.next())
+               genre = new Genre(rs.getInt("id"), rs.getString("name"));
+        }
+            catch (SQLException ex) {
+            Logger.getLogger(Author.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return genre;
+        }
 }
