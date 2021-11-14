@@ -191,7 +191,10 @@ public class DeleteBookForm extends javax.swing.JFrame {
        
 
         try {
-        book.removeBook(id);
+            int confirm = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Delete This Book?","Confirmation Box",JOptionPane.YES_NO_OPTION);
+          if(confirm==JOptionPane.YES_OPTION){
+              book.removeBook(id);
+          }
         }
         catch (NullPointerException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(),"Delete Error",2);
