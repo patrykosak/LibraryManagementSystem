@@ -351,7 +351,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel_1_header" max="32767" attributes="0"/>
-                  <Component id="jLabel5" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jLabelBooksCount" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -359,7 +359,7 @@
                   <Group type="102" attributes="0">
                       <Component id="jPanel_1_header" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" pref="66" max="-2" attributes="0"/>
+                      <Component id="jLabelBooksCount" min="-2" pref="66" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="83" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -407,7 +407,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabel5">
+            <Component class="javax.swing.JLabel" name="jLabelBooksCount">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="SansSerif" size="36" style="1"/>
@@ -434,7 +434,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel_2_header" alignment="0" max="32767" attributes="0"/>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Component id="jLabel6" alignment="1" pref="280" max="32767" attributes="0"/>
+                      <Component id="jLabelStudentsCount" alignment="1" pref="280" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -447,7 +447,7 @@
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-                          <Component id="jLabel6" min="-2" pref="66" max="-2" attributes="0"/>
+                          <Component id="jLabelStudentsCount" min="-2" pref="66" max="-2" attributes="0"/>
                           <EmptySpace pref="88" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -496,7 +496,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabel6">
+            <Component class="javax.swing.JLabel" name="jLabelStudentsCount">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="SansSerif" size="36" style="1"/>
@@ -523,7 +523,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel_3_header" alignment="0" max="32767" attributes="0"/>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Component id="jLabel7" alignment="1" pref="280" max="32767" attributes="0"/>
+                      <Component id="jLabelAuthorsCount" alignment="1" pref="280" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -536,7 +536,7 @@
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-                          <Component id="jLabel7" min="-2" pref="66" max="-2" attributes="0"/>
+                          <Component id="jLabelAuthorsCount" min="-2" pref="66" max="-2" attributes="0"/>
                           <EmptySpace pref="89" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -585,7 +585,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabel7">
+            <Component class="javax.swing.JLabel" name="jLabelAuthorsCount">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="SansSerif" size="36" style="1"/>

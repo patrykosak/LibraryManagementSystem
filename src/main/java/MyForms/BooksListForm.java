@@ -418,13 +418,18 @@ public class BooksListForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelCloseMouseClicked
 
     private void jButtonSearchBeetwenTwoDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchBeetwenTwoDateActionPerformed
+        
+        try{
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date1 = dateFormat.format(jDateChooser1.getDate());
         String date2 = dateFormat.format(jDateChooser2.getDate());
         String searchValue = jTextFieldSerachValue.getText();
         String query = "SELECT * FROM `books` WHERE `datereceived` BETWEEN '"+date1+"' AND '"+date2+"'";
         populateJtableWithBooks(query);
-
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Select The Two Date Before Clicking Search", "No Dates Selected",2);
+        }
     }//GEN-LAST:event_jButtonSearchBeetwenTwoDateActionPerformed
 
     private void jTableBooksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBooksMouseClicked

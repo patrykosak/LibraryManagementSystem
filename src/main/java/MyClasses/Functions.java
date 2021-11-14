@@ -5,6 +5,7 @@
  */
 package MyClasses;
 
+import MyForms.DashboardForm;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -12,6 +13,7 @@ import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -102,6 +104,23 @@ public class Functions {
             Logger.getLogger(Functions.class.getName()).log(Level.SEVERE,null,ex);
         }
         return rs; 
+    }
+    
+    public int countData(String tableName){
+        int total = 0;
+        ResultSet rs;
+        Statement st;
+        try{
+        st = DB.getConnection().createStatement();
+        rs = st.executeQuery("SELECT COUNT(*) FROM `"+tableName+"`");
+        if(rs.next()){
+            total = rs.getInt(1);
+        }
+        }
+        catch(SQLException ex){
+             Logger.getLogger(Functions.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        return total;
     }
 
 }
