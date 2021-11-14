@@ -45,7 +45,6 @@ public class ReturnBookForm extends javax.swing.JFrame {
             Student student = new Student();
             IssueBook issueBook = new IssueBook();
             HashMap<String, Integer> genresMap = genre.getGenresMap();
-            IssueBook issue = new IssueBook();
             String imagePath="";
             
             boolean bookExist = false;
@@ -79,7 +78,7 @@ public class ReturnBookForm extends javax.swing.JFrame {
  
       public void populateJtableWithIssuedBooks(String status)
     {
-        ArrayList<IssueBook> issuedBooksList = issue.issuedBooksList(status);
+        ArrayList<IssueBook> issuedBooksList = issueBook.issuedBooksList(status);
         
         //jtable columns
         String[] colNames = {"Book","Student","Status","Iss-Date","Rtn-Date","Note"};
@@ -420,14 +419,13 @@ public class ReturnBookForm extends javax.swing.JFrame {
         try{
         String returnDate = dateFormat.format(jDateChooserReturnDate.getDate());
         
-        String issueDate = dateFormat.format(jDateChooserReturnDate.getDate());
+        String issueDate = dateFormat.format(jDateChooserIssueDate.getDate());
 
-        
-        
-                 issueBook.updateIssue(bookId, studentId, "lost", issueDate, returnDate,note); 
-                 int quantity = book.getBookById(bookId).getQuantity();
-                 book.setQuantityMinusOne(bookId, quantity-1);
-                 populateJtableWithIssuedBooks("");
+                
+                issueBook.updateIssue(bookId, studentId, "lost", issueDate, returnDate,note); 
+                int quantity = book.getBookById(bookId).getQuantity();
+                book.setQuantityMinusOne(bookId, quantity-1);
+                populateJtableWithIssuedBooks("");
                  
                  jSpinnerBookId.setValue(0);
                  jSpinnerStudentId.setValue(0);
@@ -438,9 +436,10 @@ public class ReturnBookForm extends javax.swing.JFrame {
                  jTextAreaNote.setText("");
         
         }
-        catch (HeadlessException| NullPointerException | ParseException ex) {
+        catch (HeadlessException | NullPointerException ex) {
                     JOptionPane.showMessageDialog(null, "Select An Item From The Table","Select Item",2);
-                } catch (SQLException ex) {
+                } 
+        catch (SQLException ex) {
                     Logger.getLogger(ReturnBookForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
     }//GEN-LAST:event_jButtonLostActionPerformed
@@ -524,15 +523,15 @@ public class ReturnBookForm extends javax.swing.JFrame {
         try{
         selectedBook = book.getBookById(bookId);
         jSpinnerBookId.setValue(selectedBook.getId());
+        
         jLabelBookName.setText(selectedBook.getName());
         selectedStudent = student.getStudentById(studentId);
         jSpinnerStudentId.setValue(selectedStudent.getId());
         jLabelStudentFullName.setText(selectedStudent.getName()+" "+selectedStudent.getSurname());
         
-        
+        String status = jTableIssueBooks.getValueAt(index, 2).toString();
         String issuedDate = jTableIssueBooks.getValueAt(index, 3).toString();
         String returnDate = jTableIssueBooks.getValueAt(index, 4).toString();
-        //String status = jTableIssueBooks.getValueAt(index, 4).toString();
         String note = jTableIssueBooks.getValueAt(index, 5).toString();
 
         Date issDate = new SimpleDateFormat("yyyy-MM-dd").parse(issuedDate);
@@ -562,11 +561,16 @@ public class ReturnBookForm extends javax.swing.JFrame {
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         int index = jTableIssueBooks.getSelectedRow();
         
+        try{
         int bookId = Integer.parseInt(jTableIssueBooks.getValueAt(index, 0).toString());
         int studentId = Integer.parseInt(jTableIssueBooks.getValueAt(index, 1).toString());
         String issuedDate = jTableIssueBooks.getValueAt(index, 3).toString();
-        
-        issue.removeIssueBook(bookId, studentId, issuedDate);
+        issueBook.removeIssueBook(bookId, studentId, issuedDate);
+        populateJtableWithIssuedBooks("");
+        }
+        catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Select The Element You Want To Delete From The Table","Delete Error",2);
+        }
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
 

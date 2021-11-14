@@ -325,7 +325,7 @@ public class Book {
         }
        }
        
-       public void setQuantityMinusOne(int bookId, int Quantity){
+       public void setQuantityMinusOne(int bookId, int quantity){
         String updateQuantityQuery;
         PreparedStatement ps;
         
@@ -334,7 +334,7 @@ public class Book {
             updateQuantityQuery = "UPDATE `books` SET `quantity`=? WHERE `id` =?";
             ps = DB.getConnection().prepareStatement(updateQuantityQuery);   
             ps.setInt(1, quantity);
-            ps.setInt(2, id);
+            ps.setInt(2, bookId);
             
             if(ps.executeUpdate() != 0){
                 JOptionPane.showMessageDialog(null, "This Book Is Set To Lost -> The Quantity Is Set To -1","Edit Book Quantity",1);

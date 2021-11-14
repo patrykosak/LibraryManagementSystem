@@ -222,9 +222,9 @@ public class IssueBook {
        }
     
      
-        public void removeIssueBook(int bookId, int studentId, String issuedDate){
+        public void removeIssueBook(int bookId, int studentId, String issueDate){
         
-        String removeQuery = "DELETE FROM `issuebooks` WHERE `bookid` =? AND `studentid` =? AND `issuedate` =?";
+        String removeQuery = "DELETE FROM `issuebooks` WHERE `bookid`=? AND `studentid`=? AND `issuedate`=?";
         
         try {
             PreparedStatement ps = DB.getConnection().prepareStatement(removeQuery);
