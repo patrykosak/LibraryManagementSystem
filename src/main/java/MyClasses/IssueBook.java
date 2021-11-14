@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -27,6 +28,73 @@ public class IssueBook {
     private String issueDate;
     private String returnDate;
     private String note;
+
+    public IssueBook(){}
+    
+    public IssueBook(int bookId, int studentId, String status, String issueDate, String returnDate, String note){
+        this.bookId=bookId;
+        this.studentId=studentId;
+        this.status=status;
+        this.issueDate=issueDate;
+        this.returnDate=returnDate;
+        this.note=note;
+    }
+    
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public int getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getIssueDate() {
+        return issueDate;
+    }
+
+    public void setIssueDate(String issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    public String getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(String returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
     
     public void addIssue(int bookId, int studentId, String status, String issueDate, String returnDate, String note){
         String insertQuery = "INSERT INTO `issuebooks` (`bookid`,`studentid`,`status`,`issuedate`,`returndate`,`note`) VALUES (?,?,?,?,?,?)";
@@ -95,5 +163,37 @@ public class IssueBook {
         return total;
     }
 
+     public ArrayList<IssueBook> issuedBooksList(String status){
+           ArrayList<IssueBook> ibList = new ArrayList<>();
+           String query;
+           
+           if(status.equals("")){
+               query = "SELECT * FROM `issuebooks`";
+           }
+           else{
+               query = "SELECT * FROM `issuebooks` WHERE `status` = '"+ status + "'";
+           }
+           
+          
+           
+           PreparedStatement ps;
+           ResultSet rs;
+           
+        try {
+
+            ps = DB.getConnection().prepareStatement(query);
+            rs = ps.executeQuery();
+            IssueBook ibook;
+            
+            while(rs.next()){
+                ibook = new IssueBook(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+                ibList.add(ibook);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IssueBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+           return ibList;
+       }
     
 }

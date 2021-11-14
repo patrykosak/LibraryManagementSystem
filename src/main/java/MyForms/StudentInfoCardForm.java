@@ -44,24 +44,24 @@ public class StudentInfoCardForm extends javax.swing.JFrame {
             /**
      * Creates new form ManageGenresForm
      */
-    public StudentInfoCardForm(int bookId) {
+    public StudentInfoCardForm(int studentId) {
         initComponents();
         
         this.setLocationRelativeTo(null);
     
         // add gray border 
-        Border panelHeaderBorder = BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(211,84,0));
+        Border panelHeaderBorder = BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(1,152,117));
         jPanel1.setBorder(panelHeaderBorder);
         
         Border JlabelImageBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(0,0,0));
         jLabelImage.setBorder(JlabelImageBorder);
         
-        //f.displayImage(90, 60,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\book.png", jLabelFormTitle);
+        f.displayImage(90, 60,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\members.png", jLabelFormTitle);
 
 
-        f.displayImage(125, 80,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\blankProfilePicture.png", jLabelImage);
+        f.displayImage(173, 199,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\blankProfilePicture.png", jLabelImage);
 
-        displayBookInfo(bookId);
+        displayStudentInfo(studentId);
 
 
 
@@ -71,7 +71,7 @@ public class StudentInfoCardForm extends javax.swing.JFrame {
         
     }
 
-    public void displayBookInfo(int studentId){
+    public void displayStudentInfo(int studentId){
                 try {
                     Student selectedStudent = student.getStudentById(studentId);
                     if(selectedStudent!=null){
@@ -129,14 +129,14 @@ public class StudentInfoCardForm extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(408, 217));
 
-        jLabelFormTitle.setBackground(new java.awt.Color(211, 84, 0));
+        jLabelFormTitle.setBackground(new java.awt.Color(1, 152, 117));
         jLabelFormTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabelFormTitle.setForeground(new java.awt.Color(255, 255, 255));
         jLabelFormTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFormTitle.setText("Student Info Card");
         jLabelFormTitle.setOpaque(true);
 
-        jLabelClose.setBackground(new java.awt.Color(211, 84, 0));
+        jLabelClose.setBackground(new java.awt.Color(1, 152, 117));
         jLabelClose.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
         jLabelClose.setForeground(new java.awt.Color(255, 255, 255));
         jLabelClose.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -188,7 +188,7 @@ public class StudentInfoCardForm extends javax.swing.JFrame {
                     .addComponent(jLabelGender))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabelFormTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                .addComponent(jLabelFormTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelClose, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -218,7 +218,9 @@ public class StudentInfoCardForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
