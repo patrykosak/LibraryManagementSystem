@@ -172,16 +172,18 @@
                                       <Component id="jTextFieldName" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel3" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                                      <Component id="jTextFieldAuthor" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                                      <Component id="jButtonSelectAuthor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabelAuthorId" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel3" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                          <Component id="jTextFieldAuthor" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                          <Component id="jButtonSelectAuthor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel8" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jComboBoxGenre" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
+                                      <Component id="jLabel8" min="-2" pref="38" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="jLabelGenreId" min="-2" pref="38" max="-2" attributes="0"/>
@@ -199,7 +201,6 @@
                           <Component id="jScrollPane1" min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">

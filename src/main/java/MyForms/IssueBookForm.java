@@ -9,15 +9,18 @@ import MyClasses.Author;
 import MyClasses.Book;
 import MyClasses.Functions;
 import MyClasses.Genre;
+import MyClasses.IssueBook;
 import MyClasses.Student;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,8 +43,12 @@ public class IssueBookForm extends javax.swing.JFrame {
             Book book = new Book();
             Genre genre = new Genre();
             Student student = new Student();
+            IssueBook issueBook = new IssueBook();
             HashMap<String, Integer> genresMap = genre.getGenresMap();
             String imagePath="";
+            
+            boolean bookExist = false;
+            boolean studentExist = false;
             /**
      * Creates new form ManageGenresForm
      */
@@ -74,6 +81,7 @@ public class IssueBookForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabelFormTitle = new javax.swing.JLabel();
         jLabelClose = new javax.swing.JLabel();
@@ -93,6 +101,12 @@ public class IssueBookForm extends javax.swing.JFrame {
         jDateChooserReturnDate = new com.toedter.calendar.JDateChooser();
         jSpinnerBookId = new javax.swing.JSpinner();
         jSpinnerStudentId = new javax.swing.JSpinner();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaNote = new javax.swing.JTextArea();
+
+        jLabel9.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel9.setText("Return Date:");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -188,6 +202,13 @@ public class IssueBookForm extends javax.swing.JFrame {
 
         jSpinnerStudentId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        jLabel10.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel10.setText("Note:");
+
+        jTextAreaNote.setColumns(20);
+        jTextAreaNote.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaNote);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -199,42 +220,51 @@ public class IssueBookForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelAvailable))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooserIssueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButtonIssue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel8)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jDateChooserReturnDate, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBookName)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jSpinnerBookId, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButtonSearchBook, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabelStudentFullName)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jSpinnerStudentId, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButtonSearchStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                                        .addComponent(jLabelAvailable))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jDateChooserIssueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jDateChooserReturnDate, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelBookName)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jSpinnerBookId, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jButtonSearchBook, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabelStudentFullName)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jSpinnerStudentId, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jButtonSearchStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(0, 8, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonIssue, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(20, 20, 20)
@@ -277,16 +307,24 @@ public class IssueBookForm extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jDateChooserReturnDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonIssue, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonIssue, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(193, 193, 193)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(282, Short.MAX_VALUE)))
+                    .addContainerGap(436, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -297,7 +335,7 @@ public class IssueBookForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
         );
 
         pack();
@@ -307,11 +345,15 @@ public class IssueBookForm extends javax.swing.JFrame {
         int bookId = (int)jSpinnerBookId.getValue();
                 try {
                     Book selectedBook = book.getBookById(bookId);
-                    if(selectedBook!=null)
+                    if(selectedBook!=null){
                     jLabelBookName.setText(selectedBook.getName());
-                    else
+                    bookExist=true;
+                    }
+                    else{
                     JOptionPane.showMessageDialog(null, "This Book Doesn't exist","Book Not Found",2);
-                } catch (SQLException ex) {
+                    bookExist=false;
+                    }
+                    } catch (SQLException ex) {
                     Logger.getLogger(IssueBookForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
@@ -322,9 +364,36 @@ public class IssueBookForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonIssueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIssueActionPerformed
-
-       
-
+        int bookId = (int)jSpinnerBookId.getValue();
+        int studentId = (int)jSpinnerStudentId.getValue();
+        String note = jTextAreaNote.getText();
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        
+        try{
+        String issueDate = dateFormat.format(jDateChooserIssueDate.getDate());
+        String returnDate = dateFormat.format(jDateChooserReturnDate.getDate());
+        
+        Date issDate = dateFormat.parse(issueDate);
+        Date retDate = dateFormat.parse(returnDate);
+        
+        if(!bookExist){
+            JOptionPane.showMessageDialog(null, "You Need To Check If This Book Exist First By Clicking The Search Book Button","Check If The Book Exists",2);
+        }
+        else if(!studentExist){
+            JOptionPane.showMessageDialog(null, "You Need To Check If This Student Exist First By Clicking The Search Student Button","Check If The Student Exists",2);
+        }
+        
+        else if(retDate.before(issDate)){
+            JOptionPane.showMessageDialog(null, "The Return Date Must Be After The Issue Date","Wrong Return Date",2);
+        }
+        else{
+                 issueBook.addIssue(bookId, studentId, "issued", issueDate, returnDate,note);   
+        }
+        }
+        catch (HeadlessException| NullPointerException | ParseException ex) {
+                    JOptionPane.showMessageDialog(null, "Select Issue And Return Date","Select Date",2);
+                }
     }//GEN-LAST:event_jButtonIssueActionPerformed
 
     private void jLabelCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCloseMouseClicked
@@ -335,23 +404,19 @@ public class IssueBookForm extends javax.swing.JFrame {
         int studentId = (int)jSpinnerStudentId.getValue();
                 try {
                     Student selectedStudent = student.getStudentById(studentId);
-                    if(selectedStudent!=null)
+                    if(selectedStudent!=null){
                     jLabelStudentFullName.setText(selectedStudent.getName()+" "+selectedStudent.getSurname());
-                    else
+                    studentExist=true;
+                    }
+                    else{
                     JOptionPane.showMessageDialog(null, "This Student Doesn't exist","Student Not Found",2);
+                    studentExist=false;
+                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(IssueBookForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
     }//GEN-LAST:event_jButtonSearchStudentActionPerformed
 
-    public static void displayAuthorData(int id, String fullName){
-        
-    }
-    
-    public boolean verify(){
-        return true;
-    }
-    
 
     
     /**
@@ -461,17 +526,21 @@ public class IssueBookForm extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDateChooserIssueDate;
     private com.toedter.calendar.JDateChooser jDateChooserReturnDate;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelAvailable;
     private javax.swing.JLabel jLabelBookName;
     private javax.swing.JLabel jLabelClose;
     private javax.swing.JLabel jLabelFormTitle;
     private javax.swing.JLabel jLabelStudentFullName;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinnerBookId;
     private javax.swing.JSpinner jSpinnerStudentId;
+    private javax.swing.JTextArea jTextAreaNote;
     // End of variables declaration//GEN-END:variables
 }
