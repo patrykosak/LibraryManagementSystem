@@ -120,6 +120,30 @@ public class IssueBook {
         }
     }
     
+     public void updateIssue(int bookId, int studentId, String status, String returnDate, String note){
+        
+         String updateQuery = "UPDATE `issuebooks` SET `status`= ?, `returndate`= ?,`note`=? WHERE `bookid`=? AND `studentid`=?";
+      try {
+            PreparedStatement ps = DB.getConnection().prepareStatement(updateQuery);
+
+            ps.setString(1, status);
+            ps.setString(2, returnDate);
+            ps.setString(3, note);
+            ps.setInt(4, bookId);
+            ps.setInt(5, studentId);
+
+            
+            if(ps.executeUpdate() != 0){
+                JOptionPane.showMessageDialog(null, "Status Updated","Book Issue",1);
+            }
+            else{
+                    JOptionPane.showMessageDialog(null, "Status Not Updated","Book Issue",2);
+                    }
+        } catch (SQLException ex) {
+            Logger.getLogger(IssueBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public boolean checkBookAvailability(int bookId){
         boolean availability = false;
         try {

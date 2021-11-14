@@ -408,28 +408,18 @@ public class ReturnBookForm extends javax.swing.JFrame {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         
         try{
-        String issueDate = dateFormat.format(jDateChooserIssueDate.getDate());
         String returnDate = dateFormat.format(jDateChooserReturnDate.getDate());
-        
-        Date issDate = dateFormat.parse(issueDate);
         Date retDate = dateFormat.parse(returnDate);
         
-        if(!bookExist){
-            JOptionPane.showMessageDialog(null, "You Need To Check If This Book Exist First By Clicking The Search Book Button","Check If The Book Exists",2);
-        }
-        else if(!studentExist){
-            JOptionPane.showMessageDialog(null, "You Need To Check If This Student Exist First By Clicking The Search Student Button","Check If The Student Exists",2);
-        }
+        String issueDate = dateFormat.format(jDateChooserReturnDate.getDate());
+        Date issDate = dateFormat.parse(issueDate);
         
-        else if(!issueBook.checkBookAvailability(bookId)){
-            JOptionPane.showMessageDialog(null, "This Book Is Not Available Right Now","Book Not Available",2);
-        }
-        
-        else if(retDate.before(issDate)){
+        if(retDate.before(issDate)){
             JOptionPane.showMessageDialog(null, "The Return Date Must Be After The Issue Date","Wrong Return Date",2);
         }
         else{
-                 issueBook.addIssue(bookId, studentId, "issued", issueDate, returnDate,note);   
+                 issueBook.updateIssue(bookId, studentId, "returned", returnDate,note); 
+                 populateJtableWithIssuedBooks("");
                  jSpinnerBookId.setValue(0);
                  jSpinnerStudentId.setValue(0);
                  jLabelBookName.setText("Book Name");
@@ -510,7 +500,9 @@ public class ReturnBookForm extends javax.swing.JFrame {
         }
         catch(SQLException ex){
             Logger.getLogger(ReturnBookForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }       catch (ParseException ex) {
+                    Logger.getLogger(ReturnBookForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
     }//GEN-LAST:event_jTableIssueBooksMouseClicked
 
