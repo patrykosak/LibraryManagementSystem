@@ -324,4 +324,27 @@ public class Book {
              Logger.getLogger(Book.class.getName()).log(Level.SEVERE,null,ex);
         }
        }
+       
+       public void setQuantityMinusOne(int bookId, int Quantity){
+        String updateQuantityQuery;
+        PreparedStatement ps;
+        
+                try {
+      
+            updateQuantityQuery = "UPDATE `books` SET `quantity`=? WHERE `id` =?";
+            ps = DB.getConnection().prepareStatement(updateQuantityQuery);   
+            ps.setInt(1, quantity);
+            ps.setInt(2, id);
+            
+            if(ps.executeUpdate() != 0){
+                JOptionPane.showMessageDialog(null, "This Book Is Set To Lost -> The Quantity Is Set To -1","Edit Book Quantity",1);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Book Quantity Not Edited","Edit Book Quantity",2);
+                  }
+        } catch (SQLException ex) {
+            Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       }
+       
 }

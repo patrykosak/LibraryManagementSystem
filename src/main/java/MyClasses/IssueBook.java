@@ -120,17 +120,18 @@ public class IssueBook {
         }
     }
     
-     public void updateIssue(int bookId, int studentId, String status, String returnDate, String note){
+     public void updateIssue(int bookId, int studentId, String status,String issueDate, String returnDate, String note){
         
-         String updateQuery = "UPDATE `issuebooks` SET `status`= ?, `returndate`= ?,`note`=? WHERE `bookid`=? AND `studentid`=?";
+         String updateQuery = "UPDATE `issuebooks` SET `status`= ?, `issuedate`= ?, `returndate`= ?,`note`=? WHERE `bookid`=? AND `studentid`=?";
       try {
             PreparedStatement ps = DB.getConnection().prepareStatement(updateQuery);
 
             ps.setString(1, status);
-            ps.setString(2, returnDate);
-            ps.setString(3, note);
-            ps.setInt(4, bookId);
-            ps.setInt(5, studentId);
+            ps.setString(2, issueDate);
+            ps.setString(3, returnDate);
+            ps.setString(4, note);
+            ps.setInt(5, bookId);
+            ps.setInt(6, studentId);
 
             
             if(ps.executeUpdate() != 0){
