@@ -560,7 +560,13 @@ public class ReturnBookForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxStatusActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        // TODO add your handling code here:
+        int index = jTableIssueBooks.getSelectedRow();
+        
+        int bookId = Integer.parseInt(jTableIssueBooks.getValueAt(index, 0).toString());
+        int studentId = Integer.parseInt(jTableIssueBooks.getValueAt(index, 1).toString());
+        String issuedDate = jTableIssueBooks.getValueAt(index, 3).toString();
+        
+        issue.removeIssueBook(bookId, studentId, issuedDate);
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
 

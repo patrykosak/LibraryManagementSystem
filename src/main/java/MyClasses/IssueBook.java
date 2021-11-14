@@ -221,4 +221,27 @@ public class IssueBook {
            return ibList;
        }
     
+     
+        public void removeIssueBook(int bookId, int studentId, String issuedDate){
+        
+        String removeQuery = "DELETE FROM `issuebooks` WHERE `bookid` =? AND `studentid` =? AND `issuedate` =?";
+        
+        try {
+            PreparedStatement ps = DB.getConnection().prepareStatement(removeQuery);
+            ps.setInt(1, bookId);
+            ps.setInt(2, studentId);
+            ps.setString(3, issueDate);
+            
+            if(ps.executeUpdate() != 0){
+                JOptionPane.showMessageDialog(null, "Deleted Succesfully","Remove",1);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Deleted Not Succesfully","Remove",2);
+                  }
+        } catch (SQLException ex) {
+            Logger.getLogger(IssueBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+     
 }
