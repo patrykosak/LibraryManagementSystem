@@ -10,8 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -304,4 +306,22 @@ public class Book {
            return true;
        }
        
+       public void displayBooksCover(JLabel[] labels){
+        ResultSet rs;
+        Statement st;
+        try{
+        st = DB.getConnection().createStatement();
+        rs = st.executeQuery("SELECT `coverimage` FROM `books` LIMIT 5");
+        byte[] image;
+        int i = 0;
+        while(rs.next()){
+            image = rs.getBytes("coverimage");
+            f.displayImage(labels[0].getWidth(), labels[0].getHeight(), image, name, labels[0]);
+            i++;
+        }
+        }
+        catch(SQLException ex){
+             Logger.getLogger(Book.class.getName()).log(Level.SEVERE,null,ex);
+        }
+       }
 }

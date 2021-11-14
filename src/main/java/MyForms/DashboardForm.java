@@ -5,6 +5,7 @@
  */
 package MyForms;
 
+import MyClasses.Book;
 import MyClasses.Functions;
 import java.awt.Color;
 import java.awt.Component;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.border.Border;
 
 /**
@@ -28,8 +30,10 @@ public class DashboardForm extends javax.swing.JFrame {
     //button border
     Border buttonBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.white);
     Border buttonWithoutBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(36,37,42));
-    
+
     Functions f = new Functions();
+    Book book = new Book();
+    JLabel[] labels = new JLabel[5];
     /**
      * Creates new form DashboardForm
      */
@@ -63,6 +67,12 @@ public class DashboardForm extends javax.swing.JFrame {
         
         displayCount();
    
+        labels[0]=jLabelImage1;
+        labels[1]=jLabelImage2;
+        labels[2]=jLabelImage3;
+        labels[3]=jLabelImage4;
+        labels[4]=jLabelImage5;
+        book.displayBooksCover(labels);
     }
 
    
@@ -518,11 +528,11 @@ public class DashboardForm extends javax.swing.JFrame {
                 .addComponent(jLabelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelImage3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelImage4, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelImage5, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_4Layout.setVerticalGroup(
             jPanel_4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
