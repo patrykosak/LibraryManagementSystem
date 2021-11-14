@@ -105,9 +105,9 @@ public class DashboardForm extends javax.swing.JFrame {
     }
     
     public void displayCount(){
-        int total = f.countData("books");
-        jLabelBooksCount.setText(String.valueOf(total));
-       
+        jLabelBooksCount.setText(String.valueOf(f.countData("books")));
+        jLabelStudentsCount.setText(String.valueOf(f.countData("students")));
+        jLabelAuthorsCount.setText(String.valueOf(f.countData("authors")));
         }
     
     
