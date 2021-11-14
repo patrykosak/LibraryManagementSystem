@@ -39,10 +39,11 @@ public class BookInfoCardForm extends javax.swing.JFrame {
             Book book = new Book();
             Genre genre = new Genre();
             String imagePath=null;
+            
             /**
      * Creates new form ManageGenresForm
      */
-    public BookInfoCardForm() {
+    public BookInfoCardForm(int bookId) {
         initComponents();
         
         this.setLocationRelativeTo(null);
@@ -56,12 +57,10 @@ public class BookInfoCardForm extends javax.swing.JFrame {
         
         f.displayImage(90, 60,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\book.png", jLabelFormTitle);
 
-    
 
-        
         f.displayImage(125, 80,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\blankProfilePicture.png", jLabelImage);
 
-        displayBookInfo(1);
+        displayBookInfo(bookId);
 
 
 
@@ -91,7 +90,7 @@ public class BookInfoCardForm extends javax.swing.JFrame {
                     jTextAreaDescription.setText(selectedBook.getDescription());
                     
                     byte[] image = selectedBook.getCover();
-                    f.displayImage(125, 130, image,"", jLabelImage);                   
+                    f.displayImage(173, 320, image,"", jLabelImage);                   
     }
                 } catch (SQLException ex) {
                     Logger.getLogger(BookInfoCardForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -198,6 +197,7 @@ public class BookInfoCardForm extends javax.swing.JFrame {
         jLabelQuantity.setText("Quantity");
 
         jTextAreaDescription.setColumns(20);
+        jTextAreaDescription.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jTextAreaDescription.setRows(5);
         jTextAreaDescription.setEnabled(false);
         jScrollPane1.setViewportView(jTextAreaDescription);
@@ -439,7 +439,7 @@ public class BookInfoCardForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BookInfoCardForm().setVisible(true);
+                new BookInfoCardForm(0).setVisible(true);
             }
         });
     }

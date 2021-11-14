@@ -81,10 +81,10 @@ public class IssueBook {
         
         try{
         ps = DB.getConnection().prepareStatement("SELECT COUNT(*) as total FROM `issuebooks` WHERE bookid = ? and `status` = 'issued'");
-        rs = ps.executeQuery();
-        
+
         ps.setInt(1, bookId);
         
+        rs = ps.executeQuery();
         if(rs.next()){
             total = rs.getInt("total");
         }

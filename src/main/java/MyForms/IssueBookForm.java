@@ -454,7 +454,9 @@ public class IssueBookForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSearchStudentActionPerformed
 
     private void jLabelBookNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBookNameMouseClicked
-        // TODO add your handling code here:
+        int bookId = (int)jSpinnerBookId.getValue();
+        BookInfoCardForm infoCard = new BookInfoCardForm(bookId);
+        infoCard.setVisible(true);
     }//GEN-LAST:event_jLabelBookNameMouseClicked
 
     private void jLabelStudentFullNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelStudentFullNameMouseClicked
