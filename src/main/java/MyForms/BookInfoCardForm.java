@@ -57,14 +57,12 @@ public class BookInfoCardForm extends javax.swing.JFrame {
         f.displayImage(90, 60,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\book.png", jLabelFormTitle);
 
     
-        f.customTable(jTableBooks);
-        f.customTableHeader(jTableBooks, new Color(36,37,42), 16);
+
         
         f.displayImage(125, 80,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\blankProfilePicture.png", jLabelImage);
 
+        displayBookInfo(1);
 
-        
-        populateJtableWithBooks("");
 
 
         //f.customTable(jTableAuthors);
@@ -73,31 +71,34 @@ public class BookInfoCardForm extends javax.swing.JFrame {
         
     }
 
-     public void populateJtableWithBooks(String  query)
-    {
-        ArrayList<Book> books = book.booksList(query);
-        
-        //jtable columns
-        String[] colNames = {"ID","ISBN","Title","Author","Genre","Quantity","Publisher","Price","Date-RCV"};
-        
-        //rows
-        Object[][] rows = new Object[books.size()][colNames.length];
-        
-        for(int i = 0; i < books.size(); i++){
-            rows[i][0] = books.get(i).getId();
-            rows[i][1] = books.get(i).getISBN();
-            rows[i][2] = books.get(i).getName();
-            rows[i][3] = books.get(i).getAuthorId();
-            rows[i][4] = books.get(i).getGenreId();
-            rows[i][5] = books.get(i).getQuantity();
-            rows[i][6] = books.get(i).getPublisher();
-            rows[i][7] = books.get(i).getPrice();
-            rows[i][8] = books.get(i).getDateReceived();
-        }
-        
-        DefaultTableModel model  = new DefaultTableModel(rows, colNames);
-        jTableBooks.setModel(model);
+    public void displayBookInfo(int bookId){
+                try {
+                    Book selectedBook = book.getBookById(bookId);
+                    if(selectedBook!=null){
+                    jLabelISBN.setText(selectedBook.getISBN());
+                    jLabelName.setText(selectedBook.getName());
+                    
+                    int authorid = selectedBook.getAuthorId();
+                    Author a = author.getAuthorById(authorid);
+                    jLabelAuthor.setText(a.getName()+" "+a.getSurname());
+                    
+                    
+                    jLabelGenre.setText(genre.getGenreById(selectedBook.getGenreId()).getName());
+                    
+                    jLabelPublisher.setText(selectedBook.getPublisher());
+                    jLabelPrice.setText(String.valueOf(selectedBook.getPrice()));
+                    jLabelQuantity.setText(selectedBook.getQuantity().toString());
+                    jTextAreaDescription.setText(selectedBook.getDescription());
+                    
+                    byte[] image = selectedBook.getCover();
+                    f.displayImage(125, 130, image,"", jLabelImage);                   
     }
+                } catch (SQLException ex) {
+                    Logger.getLogger(BookInfoCardForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }
+    
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -119,7 +120,9 @@ public class BookInfoCardForm extends javax.swing.JFrame {
         jLabelPublisher = new javax.swing.JLabel();
         jLabelPrice = new javax.swing.JLabel();
         jLabelDateReceived = new javax.swing.JLabel();
-        jLabelQuantity1 = new javax.swing.JLabel();
+        jLabelQuantity = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaDescription = new javax.swing.JTextArea();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -190,9 +193,14 @@ public class BookInfoCardForm extends javax.swing.JFrame {
         jLabelDateReceived.setForeground(new java.awt.Color(0, 51, 153));
         jLabelDateReceived.setText("Date Received");
 
-        jLabelQuantity1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabelQuantity1.setForeground(new java.awt.Color(0, 51, 153));
-        jLabelQuantity1.setText("Quantity");
+        jLabelQuantity.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabelQuantity.setForeground(new java.awt.Color(0, 51, 153));
+        jLabelQuantity.setText("Quantity");
+
+        jTextAreaDescription.setColumns(20);
+        jTextAreaDescription.setRows(5);
+        jTextAreaDescription.setEnabled(false);
+        jScrollPane1.setViewportView(jTextAreaDescription);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -202,12 +210,8 @@ public class BookInfoCardForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelFormTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelClose, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
+                        .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelName)
                             .addComponent(jLabelISBN)
@@ -216,18 +220,24 @@ public class BookInfoCardForm extends javax.swing.JFrame {
                             .addComponent(jLabelPrice)
                             .addComponent(jLabelPublisher)
                             .addComponent(jLabelDateReceived)
-                            .addComponent(jLabelQuantity1))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jLabelQuantity))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelFormTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelClose, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabelClose, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                    .addComponent(jLabelFormTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabelFormTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                    .addComponent(jLabelClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabelISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)
@@ -236,22 +246,25 @@ public class BookInfoCardForm extends javax.swing.JFrame {
                         .addComponent(jLabelAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)
                         .addComponent(jLabelGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelDateReceived, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelQuantity1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelDateReceived, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(265, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,8 +455,10 @@ public class BookInfoCardForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelName;
     private javax.swing.JLabel jLabelPrice;
     private javax.swing.JLabel jLabelPublisher;
-    private javax.swing.JLabel jLabelQuantity1;
+    private javax.swing.JLabel jLabelQuantity;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextAreaDescription;
     // End of variables declaration//GEN-END:variables
 }
