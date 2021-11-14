@@ -6,6 +6,7 @@
 package MyForms;
 
 import MyClasses.Author;
+import MyClasses.Book;
 import MyClasses.Functions;
 import MyClasses.Genre;
 import MyClasses.Student;
@@ -33,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BooksListForm extends javax.swing.JFrame {
             Functions f = new Functions();
-            Student student = new Student();
+            Book book = new Book();
             String imagePath=null;
             /**
      * Creates new form ManageGenresForm
@@ -53,14 +54,14 @@ public class BooksListForm extends javax.swing.JFrame {
         f.displayImage(90, 60,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\book.png", jLabelFormTitle);
 
     
-        f.customTable(jTableStudents);
-        f.customTableHeader(jTableStudents, new Color(36,37,42), 16);
+        f.customTable(jTableBooks);
+        f.customTableHeader(jTableBooks, new Color(36,37,42), 16);
         
         f.displayImage(125, 80,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\blankProfilePicture.png", jLabelImage);
 
 
         
-        populateJtableWithStudents("");
+        populateJtableWithBooks("");
 
 
         //f.customTable(jTableAuthors);
@@ -69,27 +70,30 @@ public class BooksListForm extends javax.swing.JFrame {
         
     }
 
-     public void populateJtableWithStudents(String  query)
+     public void populateJtableWithBooks(String  query)
     {
-        ArrayList<Student> students = student.studentsList(query);
+        ArrayList<Book> books = book.booksList(query);
         
         //jtable columns
-        String[] colNames = {"ID","Name","Surname","Phone","Email","Gender"};
+        String[] colNames = {"ID","ISBN","Title","Author","Genre","Quantity","Publisher","Price","Date-RCV"};
         
         //rows
-        Object[][] rows = new Object[students.size()][colNames.length];
+        Object[][] rows = new Object[books.size()][colNames.length];
         
-        for(int i = 0; i < students.size(); i++){
-            rows[i][0] = students.get(i).getId();
-            rows[i][1] = students.get(i).getName();
-            rows[i][2] = students.get(i).getSurname();
-            rows[i][3] = students.get(i).getPhoneNumber();
-            rows[i][4] = students.get(i).getEmail();
-            rows[i][5] = students.get(i).getGender();
+        for(int i = 0; i < books.size(); i++){
+            rows[i][0] = books.get(i).getId();
+            rows[i][1] = books.get(i).getISBN();
+            rows[i][2] = books.get(i).getName();
+            rows[i][3] = books.get(i).getAuthorId();
+            rows[i][4] = books.get(i).getGenreId();
+            rows[i][5] = books.get(i).getQuantity();
+            rows[i][6] = books.get(i).getPublisher();
+            rows[i][7] = books.get(i).getPrice();
+            rows[i][8] = books.get(i).getDateReceived();
         }
         
         DefaultTableModel model  = new DefaultTableModel(rows, colNames);
-        jTableStudents.setModel(model);
+        jTableBooks.setModel(model);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -106,7 +110,7 @@ public class BooksListForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextFieldSerachValue = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableStudents = new javax.swing.JTable();
+        jTableBooks = new javax.swing.JTable();
         jButtonSearch = new javax.swing.JButton();
         jLabelImage = new javax.swing.JLabel();
         jLabelName = new javax.swing.JLabel();
@@ -148,7 +152,7 @@ public class BooksListForm extends javax.swing.JFrame {
 
         jTextFieldSerachValue.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
-        jTableStudents.setModel(new javax.swing.table.DefaultTableModel(
+        jTableBooks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -156,12 +160,12 @@ public class BooksListForm extends javax.swing.JFrame {
 
             }
         ));
-        jTableStudents.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableBooks.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableStudentsMouseClicked(evt);
+                jTableBooksMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTableStudents);
+        jScrollPane1.setViewportView(jTableBooks);
 
         jButtonSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonSearch.setText("search");
@@ -284,37 +288,39 @@ public class BooksListForm extends javax.swing.JFrame {
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
         String searchValue = jTextFieldSerachValue.getText();
         String query = "SELECT * FROM `students` WHERE `name` LIKE'%"+searchValue+"%' or `surname` LIKE'%"+searchValue+"%'";
-        populateJtableWithStudents(query);
+        populateJtableWithBooks(query);
 
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
-    private void jTableStudentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableStudentsMouseClicked
+    private void jTableBooksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableBooksMouseClicked
        
         try {
-                    int rowIndex = jTableStudents.getSelectedRow();
-                    int id = Integer.parseInt(jTableStudents.getModel().getValueAt(rowIndex, 0).toString());
-                    Student s = student.getStudentById(id);
+                    int rowIndex = jTableBooks.getSelectedRow();
+                    int id = Integer.parseInt(jTableBooks.getModel().getValueAt(rowIndex, 0).toString());
+                    Book b = book.getBookById(id);
                     
-                    if(s!=null){
-                    jLabelISBN.setText(s.getName()+" "+s.getSurname());
-                    jLabelName.setText(s.getPhoneNumber());
-                    jLabelAuthor.setText(s.getEmail());
-                    jLabelGenre.setText(s.getGender());
+                    if(b!=null){
+                    jLabelISBN.setText(b.getISBN());
+                    jLabelName.setText(b.getName());
+                    jLabelAuthor.setText(b.getAuthorId().toString());
+                    jLabelGenre.setText(b.getGenreId().toString());
+                    jLabelPublisher.setText(b.getPublisher());
+                    jLabelPrice.setText(String.valueOf(b.getPrice()));
                     
-                    byte[] image = s.getPicture();
+                    byte[] image = b.getCover();
                     f.displayImage(125, 80, image,"", jLabelImage);   
                     }
                     else{
-                        JOptionPane.showMessageDialog(null, "No Student With This Id Is Found", "Invalid ID",3);
+                        JOptionPane.showMessageDialog(null, "No Book With This Id Is Found", "Invalid ID",3);
                     }
                    
                     
                 } catch (SQLException ex) {
                     //Logger.getLogger(EditStudentForm.class.getName()).log(Level.SEVERE, null, ex);
-                    JOptionPane.showMessageDialog(null, "Enter a Vaild Student Id", "Invalid ID",3);
+                    JOptionPane.showMessageDialog(null, "Enter a Vaild Book Id", "Invalid ID",3);
                 }
         
-    }//GEN-LAST:event_jTableStudentsMouseClicked
+    }//GEN-LAST:event_jTableBooksMouseClicked
 
     
     
@@ -400,7 +406,7 @@ public class BooksListForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPublisher;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableStudents;
+    private javax.swing.JTable jTableBooks;
     private javax.swing.JTextField jTextFieldSerachValue;
     // End of variables declaration//GEN-END:variables
 }
