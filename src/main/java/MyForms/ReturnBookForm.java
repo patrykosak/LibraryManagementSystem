@@ -70,6 +70,9 @@ public class ReturnBookForm extends javax.swing.JFrame {
         setBordetToJlable(jLabelStudentFullName, Color.white);
 //        f.displayImage(125, 80,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\blankProfilePicture.png", jLabelImage);
 
+
+        f.customTable(jTableIssueBooks);
+        f.customTableHeader(jTableIssueBooks, new Color(34, 167, 240), 15);
         populateJtableWithIssuedBooks("");
     }
 
@@ -79,7 +82,7 @@ public class ReturnBookForm extends javax.swing.JFrame {
         ArrayList<IssueBook> issuedBooksList = issue.issuedBooksList(status);
         
         //jtable columns
-        String[] colNames = {"Book ID","Student ID","Status","Issued Date","Return Date","Note"};
+        String[] colNames = {"Book","Student","Status","Iss-Date","Rtn-Date","Note"};
         
         //rows
         Object[][] rows = new Object[issuedBooksList.size()][colNames.length];
@@ -258,6 +261,11 @@ public class ReturnBookForm extends javax.swing.JFrame {
 
         jComboBoxStatus.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Issued", "Returned", "Lost" }));
+        jComboBoxStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxStatusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -473,14 +481,46 @@ public class ReturnBookForm extends javax.swing.JFrame {
 
         //get selected row index
         int index = jTableIssueBooks.getSelectedRow();
-        String id = jTableIssueBooks.getValueAt(index, 0).toString();
-        String name = jTableIssueBooks.getValueAt(index, 1).toString();
-        String surname = jTableIssueBooks.getValueAt(index, 2).toString();
-        String expertise = jTableIssueBooks.getValueAt(index, 3).toString();
-        String about = jTableIssueBooks.getValueAt(index, 4).toString();
+        int bookId = Integer.parseInt(jTableIssueBooks.getValueAt(index, 0).toString());
+        int studentId = Integer.parseInt(jTableIssueBooks.getValueAt(index, 1).toString());
+        
+        Book selectedBook;
+        Student selectedStudent;
+        try{
+        selectedBook = book.getBookById(bookId);
+        jSpinnerBookId.setValue(selectedBook.getId());
+        jLabelBookName.setText(selectedBook.getName());
+        selectedStudent = student.getStudentById(studentId);
+        jSpinnerStudentId.setValue(selectedStudent.getId());
+        jLabelStudentFullName.setText(student.getName()+" "+student.getSurname());
+        
+        
+        String issuedDate = jTableIssueBooks.getValueAt(index, 3).toString();
+        String returnDate = jTableIssueBooks.getValueAt(index, 4).toString();
+        //String status = jTableIssueBooks.getValueAt(index, 4).toString();
+        String note = jTableIssueBooks.getValueAt(index, 5).toString();
 
+        Date issDate = new SimpleDateFormat("yyyy-MM-dd").parse(issuedDate);
+        jDateChooserIssueDate.setDate(issDate);
+        
+        Date retDate = new SimpleDateFormat("yyyy-MM-dd").parse(returnDate);
+        jDateChooserReturnDate.setDate(retDate);
+        
+        jTextAreaNote.setText(note);
+        }
+        catch(SQLException ex){
+            Logger.getLogger(ReturnBookForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_jTableIssueBooksMouseClicked
+
+    private void jComboBoxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxStatusActionPerformed
+        String status = jComboBoxStatus.getSelectedItem().toString();
+        if(status.equals("All")){
+            status="";
+        }
+        populateJtableWithIssuedBooks(status);
+    }//GEN-LAST:event_jComboBoxStatusActionPerformed
 
 
     public void setBordetToJlable(JLabel label, Color color){
