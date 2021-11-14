@@ -65,7 +65,8 @@ public class IssueBookForm extends javax.swing.JFrame {
         
         f.displayImage(90, 60,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\organizer.png", jLabelFormTitle);
 
-        
+        setBordetToJlable(jLabelBookName, Color.white);
+        setBordetToJlable(jLabelStudentFullName, Color.white);
 //        f.displayImage(125, 80,null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\blankProfilePicture.png", jLabelImage);
 
 
@@ -170,9 +171,16 @@ public class IssueBookForm extends javax.swing.JFrame {
         jLabelBookName.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabelBookName.setForeground(new java.awt.Color(51, 102, 255));
         jLabelBookName.setText("Book Name");
+        jLabelBookName.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelBookName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelBookNameMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabelBookNameMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabelBookNameMouseExited(evt);
             }
         });
 
@@ -190,9 +198,16 @@ public class IssueBookForm extends javax.swing.JFrame {
         jLabelStudentFullName.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabelStudentFullName.setForeground(new java.awt.Color(51, 102, 255));
         jLabelStudentFullName.setText("Student Full-Name");
+        jLabelStudentFullName.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelStudentFullName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelStudentFullNameMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabelStudentFullNameMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabelStudentFullNameMouseExited(evt);
             }
         });
 
@@ -294,14 +309,14 @@ public class IssueBookForm extends javax.swing.JFrame {
                         .addComponent(jSpinnerBookId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButtonSearchBook, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelBookName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jLabelBookName)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSearchStudent)
                     .addComponent(jSpinnerStudentId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelStudentFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelStudentFullName)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -460,10 +475,32 @@ public class IssueBookForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelBookNameMouseClicked
 
     private void jLabelStudentFullNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelStudentFullNameMouseClicked
-        // TODO add your handling code here:
+        int studentId = (int)jSpinnerStudentId.getValue();
+        StudentInfoCardForm infoCard = new StudentInfoCardForm(studentId);
+        infoCard.setVisible(true);
     }//GEN-LAST:event_jLabelStudentFullNameMouseClicked
 
+    private void jLabelBookNameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBookNameMouseEntered
+        setBordetToJlable(jLabelBookName,new Color(51,102,255));
+    }//GEN-LAST:event_jLabelBookNameMouseEntered
 
+    private void jLabelBookNameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBookNameMouseExited
+        setBordetToJlable(jLabelBookName,new Color(255,255,255));
+    }//GEN-LAST:event_jLabelBookNameMouseExited
+
+    private void jLabelStudentFullNameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelStudentFullNameMouseEntered
+       setBordetToJlable(jLabelStudentFullName,new Color(51,102,255));
+    }//GEN-LAST:event_jLabelStudentFullNameMouseEntered
+
+    private void jLabelStudentFullNameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelStudentFullNameMouseExited
+        setBordetToJlable(jLabelStudentFullName,new Color(255,255,255));
+    }//GEN-LAST:event_jLabelStudentFullNameMouseExited
+
+
+    public void setBordetToJlable(JLabel label, Color color){
+        Border border = BorderFactory.createMatteBorder(0, 0, 1, 0, color);
+        label.setBorder(border);
+    }
     
     /**
      * @param args the command line arguments
