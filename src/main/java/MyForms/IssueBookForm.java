@@ -170,6 +170,11 @@ public class IssueBookForm extends javax.swing.JFrame {
         jLabelBookName.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabelBookName.setForeground(new java.awt.Color(51, 102, 255));
         jLabelBookName.setText("Book Name");
+        jLabelBookName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelBookNameMouseClicked(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel3.setText("Is This Book Available:");
@@ -185,6 +190,11 @@ public class IssueBookForm extends javax.swing.JFrame {
         jLabelStudentFullName.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabelStudentFullName.setForeground(new java.awt.Color(51, 102, 255));
         jLabelStudentFullName.setText("Student Full-Name");
+        jLabelStudentFullName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelStudentFullNameMouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel4.setText("Enter Student ID:");
@@ -404,6 +414,16 @@ public class IssueBookForm extends javax.swing.JFrame {
         }
         else{
                  issueBook.addIssue(bookId, studentId, "issued", issueDate, returnDate,note);   
+                 jSpinnerBookId.setValue(0);
+                 jSpinnerStudentId.setValue(0);
+                 jLabelAvailable.setText("YES-or-NO");
+                 jLabelAvailable.setForeground(new Color(51,102,255));
+                 jLabelBookName.setText("Book Name");
+                 jLabelStudentFullName.setText("Student Full-Name");
+                 jDateChooserIssueDate.setDate(new Date());
+                 jDateChooserReturnDate.setDate(new Date());
+                 bookExist = false;
+                 studentExist = false;
         }
         }
         catch (HeadlessException| NullPointerException | ParseException ex) {
@@ -432,6 +452,14 @@ public class IssueBookForm extends javax.swing.JFrame {
                     Logger.getLogger(IssueBookForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
     }//GEN-LAST:event_jButtonSearchStudentActionPerformed
+
+    private void jLabelBookNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelBookNameMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelBookNameMouseClicked
+
+    private void jLabelStudentFullNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelStudentFullNameMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelStudentFullNameMouseClicked
 
 
     
