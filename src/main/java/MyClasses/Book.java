@@ -264,11 +264,11 @@ public class Book {
         }
             ps = DB.getConnection().prepareStatement(query);
             rs = ps.executeQuery();
-            Student student;
+            Book book;
             
             while(rs.next()){
-//                book = new Book(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(7),rs.getBytes(6));
-//                bList.add(book);
+                book = new Book(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getString(7),rs.getDouble(8),rs.getString(9),rs.getString(10),rs.getBytes(11));
+                bList.add(book);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
