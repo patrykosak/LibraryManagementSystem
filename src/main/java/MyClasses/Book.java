@@ -337,7 +337,7 @@ public class Book {
             ps.setInt(2, bookId);
             
             if(ps.executeUpdate() != 0){
-                JOptionPane.showMessageDialog(null, "This Book Is Set To Lost -> The Quantity Is Set To -1","Edit Book Quantity",1);
+                JOptionPane.showMessageDialog(null, "This Book Quantity Has Changed","Edit Book Quantity",1);
             }
             else{
                 JOptionPane.showMessageDialog(null, "Book Quantity Not Edited","Edit Book Quantity",2);
