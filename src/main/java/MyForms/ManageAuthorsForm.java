@@ -347,10 +347,10 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         String expertise = jTextFieldExpertise.getText();
         String about = jTextArea1.getText();
         
-        if(name.isEmpty()){
+        if(name.trim().isEmpty()){
             jLabelEmptyName.setVisible(true);
         }
-        else if(surname.isEmpty()){
+        else if(surname.trim().isEmpty()){
             jLabelEmptySurname.setVisible(true);
         }
         else{

@@ -340,13 +340,13 @@ public class EditStudentForm extends javax.swing.JFrame {
         String email = jTextFieldEmail.getText();
         String gender = jComboBox1.getSelectedItem().toString();
         
-        if(name.isEmpty()){
+        if(name.trim().isEmpty()){
             jLabelEmptyName.setVisible(true);
         }
-        else if(surname.isEmpty()){
+        else if(surname.trim().isEmpty()){
             jLabelEmptySurname.setVisible(true);
         }
-        else if(phoneNumber.isEmpty()){
+        else if(phoneNumber.trim().isEmpty()){
             jLabelEmptySurname.setVisible(true);
         }
         else{

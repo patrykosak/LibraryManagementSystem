@@ -280,7 +280,7 @@ public class ManageGenresForm extends javax.swing.JFrame {
 
         String name = jTextFieldName.getText();
 
-        if(name.isEmpty()){
+        if(name.trim().isEmpty()){
             jLabelEmptyName.setVisible(true);
         }
         else{
@@ -296,7 +296,7 @@ public class ManageGenresForm extends javax.swing.JFrame {
 
         String newName = jTextFieldName.getText();
 
-        if(newName.isEmpty()){
+        if(newName.trim().isEmpty()){
             jLabelEmptyName.setVisible(true);
         }
         else{
