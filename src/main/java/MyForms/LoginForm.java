@@ -12,23 +12,23 @@ import javax.swing.border.Border;
 public class LoginForm extends javax.swing.JFrame {  
 User user = new User();
 Functions f = new Functions();
-
     public LoginForm() {
         initComponents();
         
         this.setLocationRelativeTo(null);
         
         f.displayImage(jLabelLogo.getWidth(), jLabelLogo.getHeight(),null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\bookLoginLogo.png", jLabelLogo);
-
+        ImageIcon icon = new ImageIcon("C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\icon.png");
+        setIconImage(icon.getImage());
         Border jlabelBoerder = BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white);
         jLabelLogin.setBorder(jlabelBoerder);
     }
 
     public void displayImage()
     {
-        ImageIcon imgIco = new ImageIcon("C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\bookLoginLogo.png");
+       ImageIcon imgIco = new ImageIcon("C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\bookLoginLogo.png");
        Image image = imgIco.getImage().getScaledInstance(jLabelLogo.getWidth(), jLabelLogo.getHeight(), Image.SCALE_SMOOTH);
-        jLabelLogo.setIcon(new ImageIcon(image));
+       jLabelLogo.setIcon(new ImageIcon(image));
     }
     /**
      * This method is called from within the constructor to initialize the form.

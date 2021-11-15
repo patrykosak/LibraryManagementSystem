@@ -7,6 +7,7 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
@@ -24,7 +25,8 @@ public class DashboardForm extends javax.swing.JFrame {
         
         this.setLocationRelativeTo(null);
         f.displayImage(jLabelDashboardLogo.getWidth(), jLabelDashboardLogo.getHeight(),null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\dashboardLogo.png", jLabelDashboardLogo);
-
+        ImageIcon icon = new ImageIcon("C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\icon.png");
+        setIconImage(icon.getImage());
 
         Border panelHeaderBorder = BorderFactory.createMatteBorder(0, 0, 1, 0, Color.white);
         jPanelHeader.setBorder(panelHeaderBorder);
