@@ -1,36 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package MyForms;
 
-import MyClasses.DB;
 import MyClasses.Functions;
 import MyClasses.User;
 import java.awt.Color;
 import java.awt.Image;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 
-/**
- *
- * @author xxx
- */
-public class LoginForm extends javax.swing.JFrame {
-    
-    User user = new User();
+public class LoginForm extends javax.swing.JFrame {  
+User user = new User();
 Functions f = new Functions();
-    /**
-     * Creates new form LoginForm
-     */
+
     public LoginForm() {
         initComponents();
         
@@ -42,15 +24,10 @@ Functions f = new Functions();
         jLabelLogin.setBorder(jlabelBoerder);
     }
 
-    //display image in label
     public void displayImage()
     {
-        //get image
-        //ImageIcon imgIco = new ImageIcon(getClass().getResource("/images/bookLoginLogo"));      
         ImageIcon imgIco = new ImageIcon("C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\bookLoginLogo.png");
-//        //make image fit in label
        Image image = imgIco.getImage().getScaledInstance(jLabelLogo.getWidth(), jLabelLogo.getHeight(), Image.SCALE_SMOOTH);
-//        //set image in label
         jLabelLogo.setIcon(new ImageIcon(image));
     }
     /**
