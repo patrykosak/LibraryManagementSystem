@@ -36,7 +36,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -64,7 +67,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jPanelMenu" alignment="0" max="32767" attributes="0"/>
+              <Component id="jPanelMenu" alignment="0" pref="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -76,7 +79,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   <Component id="jPanel_4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="54" max="32767" attributes="0"/>
+                  <EmptySpace pref="79" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -96,45 +99,48 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel9" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
-                          <Component id="jLabel8" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
-                          <Component id="jLabel10" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                              <Component id="jLabelCirculation" min="-2" pref="133" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jLabel12" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jButtonBooksList" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jButtonEditBook" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jButtonDeleteBook" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
-                                      <Component id="jButtonAddBook" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel9" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
+                                  <Component id="jLabel8" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
+                                  <Component id="jLabel10" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                      <Component id="jLabelCirculation" min="-2" pref="133" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jButtonManageGenres" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
-                                      <Component id="jButtonAddStudent" max="32767" attributes="0"/>
-                                      <Component id="jButtonStudentsList" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jButtonEditStudent" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jButtonDeleteStudent" alignment="0" pref="133" max="32767" attributes="0"/>
-                                      <Component id="jButtonManageAuthors" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel12" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jButtonBooksList" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jButtonEditBook" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jButtonDeleteBook" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
+                                              <Component id="jButtonAddBook" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jButtonManageGenres" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
+                                              <Component id="jButtonAddStudent" max="32767" attributes="0"/>
+                                              <Component id="jButtonStudentsList" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jButtonEditStudent" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jButtonDeleteStudent" alignment="0" pref="133" max="32767" attributes="0"/>
+                                              <Component id="jButtonManageAuthors" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
                               </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButtonManageUsers" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jButtonManageUsers2" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jButtonIssueBook" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabelBreak" min="-2" pref="13" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="jButtonManageUsers" min="-2" pref="229" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jButtonIssueBook" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Component id="jLabelBreak" min="-2" pref="7" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButtonReturnBook" min="-2" pref="109" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -184,6 +190,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonManageUsers" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButtonManageUsers2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -553,6 +561,27 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonManageUsersActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonManageUsers2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="22" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="About Us"/>
+                <Property name="contentAreaFilled" type="boolean" value="false"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonManageUsers2ActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
