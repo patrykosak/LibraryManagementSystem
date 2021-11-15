@@ -408,44 +408,54 @@ public class ManageUsersForm extends javax.swing.JFrame {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
 
-                try {
-                    String name = jTextFieldName.getText();
-                    String surname = jTextFieldSurname.getText();
-                    String username = jTextFieldUsername.getText();
-                    String password = String.valueOf(jPasswordField1.getPassword());
-                    String confirmPassword = String.valueOf(jPasswordField2.getPassword());
-                    String userType = "user";
-                    
-                    if(jCheckBoxSetAdmin.isSelected()){
-                        userType = "admin";
-                    }
-                    
-                    if(name.trim().isEmpty()){
-                        jLabelEmptyName.setForeground(Color.red);
-                    }
-                    else if(surname.trim().isEmpty()){
-                        jLabelEmptySurname.setForeground(Color.red);
-                    }
-                    else if(username.trim().isEmpty()){
-                        jLabelEmptyUsername.setForeground(Color.red);
-                    }
-                    else if(password.trim().isEmpty()){
-                        jLabelEmptyPassword.setForeground(Color.red);
-                    }
-                    else if(!password.equals(confirmPassword)){
-                        JOptionPane.showMessageDialog(null, "Retype The Correct Password","Password Error",0);
-                    }
-                    else if(user.checkUsernameExists(username)){
-                        JOptionPane.showMessageDialog(null, "This Username Already Exists Try Another One","Username Error",0);
-                    }
-                    else{
-                        
-                        user.addUser(name, surname, username, password, userType);
-                        
-                        populateJtableWithUsers();
-                    }       } catch (SQLException ex) {
-                    Logger.getLogger(ManageUsersForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        String name = jTextFieldName.getText();
+        String surname = jTextFieldSurname.getText();
+        String username = jTextFieldUsername.getText();
+        String password = String.valueOf(jPasswordField1.getPassword());
+        String confirmPassword = String.valueOf(jPasswordField2.getPassword());
+        String userType = "user";
+        int id = 0;
+        if(!jTextFieldID.getText().isEmpty()){
+            id = Integer.parseInt(jTextFieldID.getText());
+        }
+        if(jCheckBoxSetAdmin.isSelected()){
+            userType = "admin";
+        }
+        if(name.trim().isEmpty()){
+            jLabelEmptyName.setForeground(Color.red);
+        }
+        else if(surname.trim().isEmpty()){
+            jLabelEmptySurname.setForeground(Color.red);
+        }
+        else if(username.trim().isEmpty()){
+            jLabelEmptyUsername.setForeground(Color.red);
+        }
+        else if(password.trim().isEmpty()){
+            jLabelEmptyPassword.setForeground(Color.red);
+        }
+        else if(!password.equals(confirmPassword)){
+            JOptionPane.showMessageDialog(null, "Retype The Correct Password","Password Error",0);
+        }
+        else try {
+            if(user.checkUsernameExists(id, username)){
+                JOptionPane.showMessageDialog(null, "This Username Already Exists Try Another One","Username Error",0);
+            }
+            else{
+                
+                user.addUser(name, surname, username, password, userType);
+                
+                populateJtableWithUsers();
+                jTextFieldID.setText("");
+                jTextFieldName.setText("");
+                jTextFieldSurname.setText("");
+                jTextFieldUsername.setText("");
+                jPasswordField1.setText("");
+                jPasswordField2.setText("");
+                jCheckBoxSetAdmin.setSelected(false);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ManageUsersForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_jButtonAddActionPerformed
 
@@ -478,26 +488,36 @@ public class ManageUsersForm extends javax.swing.JFrame {
                     else if(!password.equals(confirmPassword)){
                         JOptionPane.showMessageDialog(null, "Retype The Correct Password","Password Error",0);
                     }
-                    else if(user.checkUsernameExists(username)){
-                        JOptionPane.showMessageDialog(null, "This Username Already Exists Try Another One","Username Error",0);
-                    }
                     else{
                         try{
                         int id = Integer.parseInt(jTextFieldID.getText());
-                        user.editUser(id, name, surname, username, password, userType);
-                    }catch(NumberFormatException ex){
-                        JOptionPane.showMessageDialog(null, "Select The User You Want To Edit From The Table","No ID Selected",0);
+                         if(user.checkUsernameExists(id, username)){
+                        JOptionPane.showMessageDialog(null, "This Username Already Exists Try Another One","Username Error",0);
                     }
-                        
-                        
-                        
-                        populateJtableWithUsers();
-                    }       } catch (SQLException ex) {
+                         else{
+                         user.editUser(id, name, surname, username, password, userType);
+                         populateJtableWithUsers();
+                         jTextFieldID.setText("");
+            jTextFieldName.setText("");
+            jTextFieldSurname.setText("");
+            jTextFieldUsername.setText("");
+            jPasswordField1.setText("");
+            jPasswordField2.setText("");
+            jCheckBoxSetAdmin.setSelected(false);
+                         }
+                         }
+                                            catch(NumberFormatException ex){
+                        JOptionPane.showMessageDialog(null, "Select The User You Want To Edit From The Table","No ID Selected",0);
+                    }  
+                      
+                        }
+   
+    }//GEN-LAST:event_jButtonEditActionPerformed
+      catch (SQLException ex) {
                     Logger.getLogger(ManageUsersForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-    }//GEN-LAST:event_jButtonEditActionPerformed
-
+    }
+      
     private void jLabelCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCloseMouseClicked
         this.dispose();
     }//GEN-LAST:event_jLabelCloseMouseClicked

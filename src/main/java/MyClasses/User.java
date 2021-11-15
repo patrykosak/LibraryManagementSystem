@@ -180,8 +180,8 @@ public class User {
            return uList;
        }
  
- public boolean checkUsernameExists(String username) throws SQLException{
-           String selectQuery = "SELECT * FROM `userstable` where username = '"+username+"'";
+ public boolean checkUsernameExists(int id, String username) throws SQLException{
+           String selectQuery = "SELECT * FROM `userstable` where username = '"+username+"' and id<> "+id;
            PreparedStatement ps;
            ResultSet rs;
            boolean exists = false;
