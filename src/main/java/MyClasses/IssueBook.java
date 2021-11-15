@@ -131,9 +131,9 @@ public class IssueBook {
         }
     }
     
-     public void updateIssue(int bookId, int studentId, String status,String issueDate, String returnDate, String note){
+     public void updateIssue(int id, String status,String issueDate, String returnDate, String note){
         
-         String updateQuery = "UPDATE `issuebooks` SET `status`= ?, `issuedate`= ?, `returndate`= ?,`note`=? WHERE `bookid`=? AND `studentid`=?";
+         String updateQuery = "UPDATE `issuebooks` SET `status`= ?, `issuedate`= ?, `returndate`= ?,`note`=? WHERE `id`=? ";
       try {
             PreparedStatement ps = DB.getConnection().prepareStatement(updateQuery);
 
@@ -141,8 +141,7 @@ public class IssueBook {
             ps.setString(2, issueDate);
             ps.setString(3, returnDate);
             ps.setString(4, note);
-            ps.setInt(5, bookId);
-            ps.setInt(6, studentId);
+            ps.setInt(5, id);
 
             
             if(ps.executeUpdate() != 0){
@@ -222,7 +221,7 @@ public class IssueBook {
             IssueBook ibook;
             
             while(rs.next()){
-                ibook = new IssueBook(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+                ibook = new IssueBook(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7));
                 ibList.add(ibook);
             }
         } catch (SQLException ex) {
@@ -233,15 +232,14 @@ public class IssueBook {
        }
     
      
-        public void removeIssueBook(int bookId, int studentId, String issueDate){
+        public void removeIssueBook(int id){
         
-        String removeQuery = "DELETE FROM `issuebooks` WHERE `bookid`=? AND `studentid`=? AND `issuedate`=?";
+        String removeQuery = "DELETE FROM `issuebooks` WHERE `id`=?";
         
         try {
             PreparedStatement ps = DB.getConnection().prepareStatement(removeQuery);
-            ps.setInt(1, bookId);
-            ps.setInt(2, studentId);
-            ps.setString(3, issueDate);
+            ps.setInt(1, id);
+
             
             if(ps.executeUpdate() != 0){
                 JOptionPane.showMessageDialog(null, "Deleted Succesfully","Remove",1);

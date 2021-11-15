@@ -81,18 +81,19 @@ public class ReturnBookForm extends javax.swing.JFrame {
         ArrayList<IssueBook> issuedBooksList = issueBook.issuedBooksList(status);
         
         //jtable columns
-        String[] colNames = {"Book","Student","Status","Iss-Date","Rtn-Date","Note"};
+        String[] colNames = {"ID","Book","Student","Status","Iss-Date","Rtn-Date","Note"};
         
         //rows
         Object[][] rows = new Object[issuedBooksList.size()][colNames.length];
         
         for(int i = 0; i < issuedBooksList.size(); i++){
-            rows[i][0] = issuedBooksList.get(i).getBookId();
-            rows[i][1] = issuedBooksList.get(i).getStudentId();
-            rows[i][2] = issuedBooksList.get(i).getStatus();
-            rows[i][3] = issuedBooksList.get(i).getIssueDate();
-            rows[i][4] = issuedBooksList.get(i).getReturnDate();
-            rows[i][5] = issuedBooksList.get(i).getNote();
+            rows[i][0] = issuedBooksList.get(i).getId();
+            rows[i][1] = issuedBooksList.get(i).getBookId();
+            rows[i][2] = issuedBooksList.get(i).getStudentId();
+            rows[i][3] = issuedBooksList.get(i).getStatus();
+            rows[i][4] = issuedBooksList.get(i).getIssueDate();
+            rows[i][5] = issuedBooksList.get(i).getReturnDate();
+            rows[i][6] = issuedBooksList.get(i).getNote();
         }
         
         DefaultTableModel model  = new DefaultTableModel(rows, colNames);
@@ -410,6 +411,8 @@ public class ReturnBookForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLostActionPerformed
+        int index = jTableIssueBooks.getSelectedRow();
+        int id = Integer.parseInt(jTableIssueBooks.getValueAt(index, 0).toString());
         int bookId = (int)jSpinnerBookId.getValue();
         int studentId = (int)jSpinnerStudentId.getValue();
         String note = jTextAreaNote.getText();
@@ -422,7 +425,7 @@ public class ReturnBookForm extends javax.swing.JFrame {
         String issueDate = dateFormat.format(jDateChooserIssueDate.getDate());
 
                 
-                issueBook.updateIssue(bookId, studentId, "lost", issueDate, returnDate,note); 
+                issueBook.updateIssue(id, "lost", issueDate, returnDate,note); 
                 int quantity = book.getBookById(bookId).getQuantity();
                 book.setQuantity(bookId, quantity-1);
                 populateJtableWithIssuedBooks("");
@@ -445,8 +448,11 @@ public class ReturnBookForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonLostActionPerformed
 
     private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
-        int bookId = (int)jSpinnerBookId.getValue();
-        int studentId = (int)jSpinnerStudentId.getValue();
+        int index = jTableIssueBooks.getSelectedRow();
+        int id = Integer.parseInt(jTableIssueBooks.getValueAt(index, 0).toString());
+
+
+
         String note = jTextAreaNote.getText();
         
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -466,7 +472,7 @@ public class ReturnBookForm extends javax.swing.JFrame {
 //                int quantity = book.getBookById(bookId).getQuantity();
 //                book.setQuantity(bookId, quantity+1);
 //                }
-                 issueBook.updateIssue(bookId, studentId, "returned", issueDate, returnDate,note); 
+                 issueBook.updateIssue(id, "returned", issueDate, returnDate,note); 
                  populateJtableWithIssuedBooks("");
                  jSpinnerBookId.setValue(0);
                  jSpinnerStudentId.setValue(0);
@@ -519,8 +525,8 @@ public class ReturnBookForm extends javax.swing.JFrame {
 
         //get selected row index
         int index = jTableIssueBooks.getSelectedRow();
-        int bookId = Integer.parseInt(jTableIssueBooks.getValueAt(index, 0).toString());
-        int studentId = Integer.parseInt(jTableIssueBooks.getValueAt(index, 1).toString());
+        int bookId = Integer.parseInt(jTableIssueBooks.getValueAt(index, 1).toString());
+        int studentId = Integer.parseInt(jTableIssueBooks.getValueAt(index, 2).toString());
         
         Book selectedBook;
         Student selectedStudent;
@@ -533,10 +539,10 @@ public class ReturnBookForm extends javax.swing.JFrame {
         jSpinnerStudentId.setValue(selectedStudent.getId());
         jLabelStudentFullName.setText(selectedStudent.getName()+" "+selectedStudent.getSurname());
         
-        String status = jTableIssueBooks.getValueAt(index, 2).toString();
-        String issuedDate = jTableIssueBooks.getValueAt(index, 3).toString();
-        String returnDate = jTableIssueBooks.getValueAt(index, 4).toString();
-        String note = jTableIssueBooks.getValueAt(index, 5).toString();
+        String status = jTableIssueBooks.getValueAt(index, 3).toString();
+        String issuedDate = jTableIssueBooks.getValueAt(index, 4).toString();
+        String returnDate = jTableIssueBooks.getValueAt(index, 5).toString();
+        String note = jTableIssueBooks.getValueAt(index, 6).toString();
 
             System.out.println(status);
             //System.out.println(issuedDate);
@@ -570,10 +576,11 @@ public class ReturnBookForm extends javax.swing.JFrame {
         int index = jTableIssueBooks.getSelectedRow();
         
         try{
-        int bookId = Integer.parseInt(jTableIssueBooks.getValueAt(index, 0).toString());
-        int studentId = Integer.parseInt(jTableIssueBooks.getValueAt(index, 1).toString());
-        String issuedDate = jTableIssueBooks.getValueAt(index, 3).toString();
-        issueBook.removeIssueBook(bookId, studentId, issuedDate);
+        int id = Integer.parseInt(jTableIssueBooks.getValueAt(index, 0).toString());
+        int bookId = Integer.parseInt(jTableIssueBooks.getValueAt(index, 1).toString());
+        int studentId = Integer.parseInt(jTableIssueBooks.getValueAt(index, 2).toString());
+        String issuedDate = jTableIssueBooks.getValueAt(index, 4).toString();
+        issueBook.removeIssueBook(id);
         populateJtableWithIssuedBooks("");
                  jSpinnerBookId.setValue(0);
                  jSpinnerStudentId.setValue(0);
