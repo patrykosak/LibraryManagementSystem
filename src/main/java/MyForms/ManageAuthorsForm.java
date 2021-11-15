@@ -375,8 +375,11 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         String newAbout = jTextArea1.getText();
         
 
-        if(newName.isEmpty()){
+        if(newName.trim().isEmpty()){
             jLabelEmptyName.setVisible(true);
+        }
+        if(newSurname.trim().isEmpty()){
+            jLabelEmptySurname.setVisible(true);
         }
         else{
             try{

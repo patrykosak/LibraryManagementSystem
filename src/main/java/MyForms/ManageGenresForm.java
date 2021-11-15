@@ -288,7 +288,7 @@ public class ManageGenresForm extends javax.swing.JFrame {
         else{
 
             genre.addGenre(name);
-            
+            jLabelEmptyName.setVisible(false);
             populateJtableWithGenres();
         }
 
@@ -305,6 +305,7 @@ public class ManageGenresForm extends javax.swing.JFrame {
             try{
                 int id = Integer.parseInt(jTextFieldID.getText());
                 genre.editGenre(id, newName);
+                jLabelEmptyName.setVisible(false);
                 populateJtableWithGenres();
             }
             catch(NumberFormatException ex){

@@ -182,6 +182,9 @@ public class DeleteStudentForm extends javax.swing.JFrame {
           int confirm = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Delete This Student?","Confirmation Box",JOptionPane.YES_NO_OPTION);
           if(confirm==JOptionPane.YES_OPTION){
               student.removeStudent(id);
+              
+              jTextFieldID.setText("");
+              jLabelEmptyId.setForeground(Color.white);
           }
           
         }

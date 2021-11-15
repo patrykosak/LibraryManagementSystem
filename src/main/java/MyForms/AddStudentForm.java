@@ -161,6 +161,14 @@ public class AddStudentForm extends javax.swing.JFrame {
         jLabel4.setText("Phone Number:");
 
         jTextFieldPhoneNumber.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jTextFieldPhoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldPhoneNumberKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldPhoneNumberKeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel5.setText("Email:");
@@ -380,13 +388,25 @@ public class AddStudentForm extends javax.swing.JFrame {
     private void jButtonSelectProfilePictureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectProfilePictureActionPerformed
        
             String path = f.selectImage();
+            if(!path.equals("")){
             JLabelImagePath.setText(path);
             imagePath=path;
+            }
     }//GEN-LAST:event_jButtonSelectProfilePictureActionPerformed
 
     private void jLabelEmptyIdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelEmptyIdMouseClicked
         jLabelEmptyId.setVisible(false);
     }//GEN-LAST:event_jLabelEmptyIdMouseClicked
+
+    private void jTextFieldPhoneNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPhoneNumberKeyPressed
+
+    }//GEN-LAST:event_jTextFieldPhoneNumberKeyPressed
+
+    private void jTextFieldPhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPhoneNumberKeyTyped
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldPhoneNumberKeyTyped
 
     
     

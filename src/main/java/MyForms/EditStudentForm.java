@@ -165,6 +165,11 @@ public class EditStudentForm extends javax.swing.JFrame {
         jLabel4.setText("Phone Number:");
 
         jTextFieldPhoneNumber.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jTextFieldPhoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldPhoneNumberKeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel5.setText("Email:");
@@ -357,8 +362,8 @@ public class EditStudentForm extends javax.swing.JFrame {
                 try {
                     img = Files.readAllBytes(path);
                     student.editStudent(id, name, surname, phoneNumber, email, gender, img);
-                } catch (IOException ex) {
-                    Logger.getLogger(EditStudentForm.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException | NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Make Sure To Enter The Member ID And Select a Profile Picture","No Picture Selected",2);    
                 }
             
             } 
@@ -423,6 +428,12 @@ public class EditStudentForm extends javax.swing.JFrame {
                 }
                 
     }//GEN-LAST:event_jButtonSearchActionPerformed
+
+    private void jTextFieldPhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPhoneNumberKeyTyped
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldPhoneNumberKeyTyped
 
     
     
