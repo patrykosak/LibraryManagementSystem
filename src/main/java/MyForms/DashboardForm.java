@@ -798,8 +798,8 @@ public class DashboardForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonIssueBookBookActionPerformed
 
     private void jButtonManageUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonManageUsersActionPerformed
-        DashboardForm dashboard = new DashboardForm();
-        dashboard.setVisible(true);
+        ManageUsersForm manageUsers = new ManageUsersForm();
+        manageUsers.setVisible(true);
     }//GEN-LAST:event_jButtonManageUsersActionPerformed
 
     /**

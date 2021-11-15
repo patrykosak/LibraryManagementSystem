@@ -203,19 +203,25 @@ Functions f = new Functions();
 
                 if(loggedUser!=null){
                     DashboardForm dash = new DashboardForm();
-                    if(user.getUserType().equals("admin")){
+                    
+
+                    if(loggedUser.getUserType().equals("admin")){
                     dash.jButtonManageUsers.setVisible(false);
+
                     }
-                    else if(user.getUserType().equals("user")){
+                    else if(loggedUser.getUserType().equals("user")){
                     dash.jButtonManageUsers.setVisible(false);
                     dash.jButtonIssueBook.setVisible(false);
                     dash.jButtonReturnBook.setVisible(false);
                     dash.jLabelCirculation.setVisible(false);
                     dash.jLabelBreak.setVisible(false);
+
                     }
+                    this.dispose();
                     dash.setVisible(true);
                     
-                    this.dispose();
+                    
+                    
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "invalid username or password", "Wrong data",0);

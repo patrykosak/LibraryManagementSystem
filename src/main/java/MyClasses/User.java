@@ -162,7 +162,7 @@ public class User {
   public ArrayList<User> usersList(){
            ArrayList<User> uList = new ArrayList<>();
            
-           String selectQuery = "SELECT * FROM `userstable`";
+           String selectQuery = "SELECT * FROM `userstable` where usertype <> 'owner'";
            PreparedStatement ps;
            ResultSet rs;
            
