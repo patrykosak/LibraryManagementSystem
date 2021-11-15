@@ -399,6 +399,7 @@ public class ManageUsersForm extends javax.swing.JFrame {
             jPasswordField1.setText("");
             jPasswordField2.setText("");
             jCheckBoxSetAdmin.setSelected(false);
+            hideLabels();
         }
         catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Invalid User ID - " + ex.getMessage(),"error",0);
@@ -452,6 +453,7 @@ public class ManageUsersForm extends javax.swing.JFrame {
                 jPasswordField1.setText("");
                 jPasswordField2.setText("");
                 jCheckBoxSetAdmin.setSelected(false);
+                hideLabels();
             }
         } catch (SQLException ex) {
             Logger.getLogger(ManageUsersForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -459,6 +461,13 @@ public class ManageUsersForm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonAddActionPerformed
 
+    public void hideLabels(){
+        jLabelEmptyName.setForeground(Color.white);
+        jLabelEmptySurname.setForeground(Color.white);
+        jLabelEmptyUsername.setForeground(Color.white);
+        jLabelEmptyPassword.setForeground(Color.white);
+    }
+    
     private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
 
       try {
@@ -504,6 +513,7 @@ public class ManageUsersForm extends javax.swing.JFrame {
             jPasswordField1.setText("");
             jPasswordField2.setText("");
             jCheckBoxSetAdmin.setSelected(false);
+            hideLabels();
                          }
                          }
                                             catch(NumberFormatException ex){

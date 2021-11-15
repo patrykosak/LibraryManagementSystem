@@ -567,6 +567,13 @@ public class ReturnBookForm extends javax.swing.JFrame {
         String issuedDate = jTableIssueBooks.getValueAt(index, 3).toString();
         issueBook.removeIssueBook(bookId, studentId, issuedDate);
         populateJtableWithIssuedBooks("");
+                 jSpinnerBookId.setValue(0);
+                 jSpinnerStudentId.setValue(0);
+                 jLabelBookName.setText("Book Name");
+                 jLabelStudentFullName.setText("Student Full-Name");
+                 jDateChooserIssueDate.setDate(new Date());
+                 jDateChooserReturnDate.setDate(new Date());
+                 jTextAreaNote.setText("");
         }
         catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Select The Element You Want To Delete From The Table","Delete Error",2);
