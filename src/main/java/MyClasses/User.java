@@ -6,7 +6,9 @@
 package MyClasses;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -107,5 +109,91 @@ public class User {
         }
        
     }
-
+ 
+        public void editUser(int id,String name,String surname,String username, String password, String userType){
+        
+        String editQuery = "UPDATE `userstable` SET `firstname` = ?,`surname`=?,`username`=?,`password`=?,`usertype`=? WHERE `id` = ?";
+        
+        try {
+            PreparedStatement ps = DB.getConnection().prepareStatement(editQuery);
+              
+            ps.setString(1, name);
+            ps.setString(2, surname);
+            ps.setString(3, username);
+            ps.setString(4, password);
+            ps.setString(5, userType);
+            ps.setInt(6, id);
+            
+            
+            if(ps.executeUpdate() != 0){
+                JOptionPane.showMessageDialog(null, "User Edited","Edit User",1);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "User Not Edited","Edit User",2);
+                  }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+        
+        public void removeUser(int id){
+        
+        String removeQuery = "DELETE FROM `userstable` WHERE `id` = ?";
+        
+        try {
+            PreparedStatement ps = DB.getConnection().prepareStatement(removeQuery);
+            ps.setInt(1, id);
+            
+            
+            if(ps.executeUpdate() != 0){
+                JOptionPane.showMessageDialog(null, "User Removed","Remove User",1);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "User Not Removed","Remove User",2);
+                  }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+ 
+  public ArrayList<User> usersList(){
+           ArrayList<User> uList = new ArrayList<>();
+           
+           String selectQuery = "SELECT * FROM `userstable`";
+           PreparedStatement ps;
+           ResultSet rs;
+           
+        try {
+            ps = DB.getConnection().prepareStatement(selectQuery);
+            rs = ps.executeQuery();
+            User user;
+            
+            while(rs.next()){
+                user = new User(rs.getInt("id"), rs.getString("firstname"), rs.getString("surname"), rs.getString("username"), rs.getString("password"), rs.getString("usertype"));
+                uList.add(user);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+           return uList;
+       }
+ 
+ public boolean checkUsernameExists(String username) throws SQLException{
+           String selectQuery = "SELECT * FROM `userstable` where username = '"+username+"'";
+           PreparedStatement ps;
+           ResultSet rs;
+           boolean exists = false;
+            ps = DB.getConnection().prepareStatement(selectQuery);
+            rs = ps.executeQuery();
+           try {
+            if(rs.next())
+                exists = true;
+        }
+            catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return exists;
+}
 }

@@ -8,9 +8,13 @@ package MyForms;
 import MyClasses.Author;
 import MyClasses.Functions;
 import MyClasses.Genre;
+import MyClasses.User;
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
@@ -56,7 +60,7 @@ public class ManageUsersForm extends javax.swing.JFrame {
         jLabelEmptySurname.setForeground(Color.white);
         jLabelEmptyUsername.setForeground(Color.white);
         jLabelEmptyPassword.setForeground(Color.white);
-        populateJtableWithAuthors();
+        populateJtableWithUsers();
     }
 
     /**
@@ -92,6 +96,7 @@ public class ManageUsersForm extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabelEmptyUsername = new javax.swing.JLabel();
         jLabelEmptyPassword = new javax.swing.JLabel();
+        jCheckBoxSetAdmin = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -128,6 +133,7 @@ public class ManageUsersForm extends javax.swing.JFrame {
         jTextFieldName.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
 
         jTextFieldID.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jTextFieldID.setEnabled(false);
 
         jButtonEdit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonEdit.setText("Edit");
@@ -225,6 +231,9 @@ public class ManageUsersForm extends javax.swing.JFrame {
             }
         });
 
+        jCheckBoxSetAdmin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBoxSetAdmin.setText("Make This User an Admin");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -261,7 +270,8 @@ public class ManageUsersForm extends javax.swing.JFrame {
                             .addComponent(jLabelEmptyUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)
                             .addComponent(jLabelEmptyPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabel7)
+                            .addComponent(jCheckBoxSetAdmin))
                         .addGap(0, 1, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
@@ -305,16 +315,18 @@ public class ManageUsersForm extends javax.swing.JFrame {
                         .addComponent(jLabelEmptyPassword)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jCheckBoxSetAdmin)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                         .addContainerGap())))
         );
 
@@ -349,88 +361,137 @@ public class ManageUsersForm extends javax.swing.JFrame {
         String id = jTableUsers.getValueAt(index, 0).toString();
         String name = jTableUsers.getValueAt(index, 1).toString();
         String surname = jTableUsers.getValueAt(index, 2).toString();
-        String expertise = jTableUsers.getValueAt(index, 3).toString();
-        String about = jTableUsers.getValueAt(index, 4).toString();
+        String username = jTableUsers.getValueAt(index, 3).toString();
+        String password = jTableUsers.getValueAt(index, 4).toString();
+        String userType = jTableUsers.getValueAt(index, 5).toString();
         
         
         
         jTextFieldID.setText(id);
         jTextFieldName.setText(name);
         jTextFieldSurname.setText(surname);
-        jTextFieldUsername.setText(expertise);
+        jTextFieldUsername.setText(username);
+        jPasswordField1.setText(password);
+        jPasswordField2.setText(password);
         
+        if(userType.equals("admin")){
+            jCheckBoxSetAdmin.setSelected(true);
+        }
+        else{
+            jCheckBoxSetAdmin.setSelected(false);
+        }
         
     }//GEN-LAST:event_jTableUsersMouseClicked
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         try{
             int id = Integer.parseInt(jTextFieldID.getText());
-            author.removeAuthor(id);
-            populateJtableWithAuthors();
+            user.removeUser(id);
+            populateJtableWithUsers();
             
             jTextFieldID.setText("");
             jTextFieldName.setText("");
             jTextFieldSurname.setText("");
             jTextFieldUsername.setText("");
+            jPasswordField1.setText("");
+            jPasswordField2.setText("");
+            jCheckBoxSetAdmin.setSelected(false);
         }
         catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "Invalid Author ID - " + ex.getMessage(),"error",0);
+            JOptionPane.showMessageDialog(null, "Invalid User ID - " + ex.getMessage(),"error",0);
         }
 
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
 
-        String name = jTextFieldName.getText();
-        String surname = jTextFieldSurname.getText();
-        String username = jTextFieldUsername.getText();
-        String password = String.valueOf(jPasswordField1.getPassword());
-        String confirmPassword = String.valueOf(jPasswordField2.getPassword());
-        if(name.trim().isEmpty()){
-            jLabelEmptyName.setForeground(Color.red);
-        }
-        else if(surname.trim().isEmpty()){
-            jLabelEmptySurname.setForeground(Color.red);
-        }
-        else if(username.trim().isEmpty()){
-            jLabelEmptyUsername.setForeground(Color.red);
-        }
-        else if(password.trim().isEmpty()){
-            jLabelEmptyPassword.setForeground(Color.red);
-        }
-        else if(!password.equals(confirmPassword)){
-            JOptionPane.showMessageDialog(null, "Retype The Correct Password","Password Error",0);
-        }
-        else{
-
-            user.addUser(name, surname, username, password, "user");
-            
-            populateJtableWithAuthors();
-        }
+                try {
+                    String name = jTextFieldName.getText();
+                    String surname = jTextFieldSurname.getText();
+                    String username = jTextFieldUsername.getText();
+                    String password = String.valueOf(jPasswordField1.getPassword());
+                    String confirmPassword = String.valueOf(jPasswordField2.getPassword());
+                    String userType = "user";
+                    
+                    if(jCheckBoxSetAdmin.isSelected()){
+                        userType = "admin";
+                    }
+                    
+                    if(name.trim().isEmpty()){
+                        jLabelEmptyName.setForeground(Color.red);
+                    }
+                    else if(surname.trim().isEmpty()){
+                        jLabelEmptySurname.setForeground(Color.red);
+                    }
+                    else if(username.trim().isEmpty()){
+                        jLabelEmptyUsername.setForeground(Color.red);
+                    }
+                    else if(password.trim().isEmpty()){
+                        jLabelEmptyPassword.setForeground(Color.red);
+                    }
+                    else if(!password.equals(confirmPassword)){
+                        JOptionPane.showMessageDialog(null, "Retype The Correct Password","Password Error",0);
+                    }
+                    else if(user.checkUsernameExists(username)){
+                        JOptionPane.showMessageDialog(null, "This Username Already Exists Try Another One","Username Error",0);
+                    }
+                    else{
+                        
+                        user.addUser(name, surname, username, password, userType);
+                        
+                        populateJtableWithUsers();
+                    }       } catch (SQLException ex) {
+                    Logger.getLogger(ManageUsersForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
 
-        String newName = jTextFieldName.getText();
-        String newSurname = jTextFieldSurname.getText();
-        String newExpertise = jTextFieldUsername.getText();
-       
-        
-
-        if(newName.isEmpty()){
-            jLabelEmptyName.setVisible(true);
-        }
-        else{
-            try{
-                int id = Integer.parseInt(jTextFieldID.getText());
-                //author.editAuthor(id, newName, newSurname, newExpertise, newAbout);
-                populateJtableWithAuthors();
-            }
-            catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(null, "Invalid Author ID","error",0);
-            }
-        }
+      try {
+                    String name = jTextFieldName.getText();
+                    String surname = jTextFieldSurname.getText();
+                    String username = jTextFieldUsername.getText();
+                    String password = String.valueOf(jPasswordField1.getPassword());
+                    String confirmPassword = String.valueOf(jPasswordField2.getPassword());
+                    String userType = "user";
+                    
+                    if(jCheckBoxSetAdmin.isSelected()){
+                        userType = "admin";
+                    }
+                    
+                    if(name.trim().isEmpty()){
+                        jLabelEmptyName.setForeground(Color.red);
+                    }
+                    else if(surname.trim().isEmpty()){
+                        jLabelEmptySurname.setForeground(Color.red);
+                    }
+                    else if(username.trim().isEmpty()){
+                        jLabelEmptyUsername.setForeground(Color.red);
+                    }
+                    else if(password.trim().isEmpty()){
+                        jLabelEmptyPassword.setForeground(Color.red);
+                    }
+                    else if(!password.equals(confirmPassword)){
+                        JOptionPane.showMessageDialog(null, "Retype The Correct Password","Password Error",0);
+                    }
+                    else if(user.checkUsernameExists(username)){
+                        JOptionPane.showMessageDialog(null, "This Username Already Exists Try Another One","Username Error",0);
+                    }
+                    else{
+                        try{
+                        int id = Integer.parseInt(jTextFieldID.getText());
+                        user.editUser(id, name, surname, username, password, userType);
+                    }catch(NumberFormatException ex){
+                        JOptionPane.showMessageDialog(null, "Select The User You Want To Edit From The Table","No ID Selected",0);
+                    }
+                        
+                        
+                        
+                        populateJtableWithUsers();
+                    }       } catch (SQLException ex) {
+                    Logger.getLogger(ManageUsersForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
     }//GEN-LAST:event_jButtonEditActionPerformed
 
@@ -452,22 +513,23 @@ public class ManageUsersForm extends javax.swing.JFrame {
 
     
     //function to populate jtable with genres
-    public void populateJtableWithAuthors()
+    public void populateJtableWithUsers()
     {
-        ArrayList<Author> authors = author.authorsList();
+        ArrayList<User> users = user.usersList();
         
         //jtable columns
-        String[] colNames = {"ID","NAME","SURNAME","EXPERTISE","ABOUT"};
+        String[] colNames = {"ID","NAME","SURNAME","USERNAME","PASSWORD","USERTYPE"};
         
         //rows
-        Object[][] rows = new Object[authors.size()][colNames.length];
+        Object[][] rows = new Object[users.size()][colNames.length];
         
-        for(int i = 0; i < authors.size(); i++){
-            rows[i][0] = authors.get(i).getId();
-            rows[i][1] = authors.get(i).getName();
-            rows[i][2] = authors.get(i).getSurname();
-            rows[i][3] = authors.get(i).getFieldOfExpertise();
-            rows[i][4] = authors.get(i).getAbout();
+        for(int i = 0; i < users.size(); i++){
+            rows[i][0] = users.get(i).getId();
+            rows[i][1] = users.get(i).getFirstname();
+            rows[i][2] = users.get(i).getSurname();
+            rows[i][3] = users.get(i).getUsername();
+            rows[i][4] = users.get(i).getPassword();
+            rows[i][5] = users.get(i).getUserType();
         }
         
         DefaultTableModel model  = new DefaultTableModel(rows, colNames);
@@ -517,6 +579,7 @@ public class ManageUsersForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonEdit;
+    private javax.swing.JCheckBox jCheckBoxSetAdmin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
