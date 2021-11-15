@@ -1,43 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package MyForms;
 
-import MyClasses.Author;
 import MyClasses.Book;
 import MyClasses.Functions;
-import MyClasses.Genre;
 import MyClasses.IssueBook;
 import MyClasses.Student;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.HeadlessException;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-/**
- *
- * @author xxx
- */
+
 public class ReturnBookForm extends javax.swing.JFrame {
             Functions f = new Functions();
             Book book = new Book();
@@ -49,7 +30,6 @@ public class ReturnBookForm extends javax.swing.JFrame {
         
         this.setLocationRelativeTo(null);
     
-        // add gray border 
         Border panelHeaderBorder = BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(108,122,137));
         jPanel1.setBorder(panelHeaderBorder);
         
@@ -68,10 +48,8 @@ public class ReturnBookForm extends javax.swing.JFrame {
     {
         ArrayList<IssueBook> issuedBooksList = issueBook.issuedBooksList(status);
         
-        //jtable columns
         String[] colNames = {"ID","Book","Student","Status","Iss-Date","Rtn-Date","Note"};
-        
-        //rows
+
         Object[][] rows = new Object[issuedBooksList.size()][colNames.length];
         
         for(int i = 0; i < issuedBooksList.size(); i++){
@@ -508,7 +486,6 @@ public class ReturnBookForm extends javax.swing.JFrame {
 
     private void jTableIssueBooksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableIssueBooksMouseClicked
 
-        //get selected row index
         int index = jTableIssueBooks.getSelectedRow();
         int bookId = Integer.parseInt(jTableIssueBooks.getValueAt(index, 1).toString());
         int studentId = Integer.parseInt(jTableIssueBooks.getValueAt(index, 2).toString());
