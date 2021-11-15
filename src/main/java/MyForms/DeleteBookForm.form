@@ -63,10 +63,10 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButtonCancel" pref="200" max="32767" attributes="0"/>
                       <Component id="jSpinnerId" max="32767" attributes="0"/>
+                      <Component id="jButtonCancel" pref="191" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

@@ -1,50 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package MyForms;
 
 import MyClasses.Book;
 import MyClasses.Functions;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
-/**
- *
- * @author xxx
- */
 public class DashboardForm extends javax.swing.JFrame {
-    //button border
     Border buttonBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.white);
     Border buttonWithoutBorder = BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(36,37,42));
 
     Functions f = new Functions();
     Book book = new Book();
     JLabel[] labels = new JLabel[5];
-    /**
-     * Creates new form DashboardForm
-     */
+
     public DashboardForm() {
         initComponents();
         
         this.setLocationRelativeTo(null);
         f.displayImage(jLabelDashboardLogo.getWidth(), jLabelDashboardLogo.getHeight(),null, "C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\dashboardLogo.png", jLabelDashboardLogo);
 
-        
-        //add border to header
+
         Border panelHeaderBorder = BorderFactory.createMatteBorder(0, 0, 1, 0, Color.white);
         jPanelHeader.setBorder(panelHeaderBorder);
         
@@ -60,9 +41,8 @@ public class DashboardForm extends javax.swing.JFrame {
         Border panelHeader4Border = BorderFactory.createMatteBorder(0, 0, 3, 0, new Color(58,83,155));
         jPanel_4_header.setBorder(panelHeader4Border);
     
-            //addBorders
         AddBorders();
-        // hover effect 
+
         buttonsHoverEffect();
         
         displayCount();
