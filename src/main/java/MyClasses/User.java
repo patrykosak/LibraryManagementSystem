@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
  * @author xxx
  */
 public class User {
+    Functions f = new Functions();
+    
     private int id;
     private String firstname;
     private String surname;
@@ -196,4 +198,21 @@ public class User {
         }
        return exists;
 }
+ 
+ public User tryLogin(String username, String password){
+     
+
+           ResultSet rs = f.getData("SELECT * FROM `userstable` where username = '"+username+"' and password = '"+password+"'");
+           User user = null;
+
+           try {
+            if(rs.next())
+                user = new User(rs.getInt("id"), rs.getString("firstname"), rs.getString("surname"), rs.getString("username"), rs.getString("password"), rs.getString("usertype"));
+        }
+            catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return user;
+ }
+ 
 }

@@ -7,6 +7,7 @@ package MyForms;
 
 import MyClasses.DB;
 import MyClasses.Functions;
+import MyClasses.User;
 import java.awt.Image;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -103,7 +104,7 @@ Functions f = new Functions();
         jLabel4.setText("Password:");
 
         jComboBoxUsertype.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBoxUsertype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxUsertype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "user", "admin", "owner" }));
 
         jButtonLogin.setBackground(new java.awt.Color(248, 148, 6));
         jButtonLogin.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
@@ -205,23 +206,16 @@ Functions f = new Functions();
         String username = jTextFieldUsername.getText();
         String password = String.valueOf(jPasswordField1.getPassword());
         
-        ResultSet rs;
-        PreparedStatement ps;
-        
-        String query = "SELECT * FROM `users` WHERE `username` = ? AND `password` = ?";
         
         if(username.trim().equals("")|| password.trim().equals("")){
             JOptionPane.showMessageDialog(null, "Enter all fields", "Empty fields",2);
         }
         else{
-            try {
-                ps = DB.getConnection().prepareStatement(query);
-                ps.setString(1, username);
-                ps.setString(2, password);
-                
-                rs = ps.executeQuery();
-                
-                if(rs.next()){
+            
+          
+                User user = new User();
+
+                if(user.tryLogin(username, password)!=null){
                     DashboardForm dash = new DashboardForm();
                     dash.setVisible(true);
                     
@@ -230,10 +224,8 @@ Functions f = new Functions();
                 else{
                     JOptionPane.showMessageDialog(null, "invalid username or password", "Wrong data",0);
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+            } 
+        
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
     /**
