@@ -54,7 +54,7 @@ public class ManageUsersForm extends javax.swing.JFrame {
 //        jTableAuthors.getTableHeader().setForeground(Color.white);
 //        jTableAuthors.getTableHeader().setFont(new Font("Verdana", Font.BOLD,16));
 //        jTableAuthors.getTableHeader().setOpaque(false);
-        f.customTableHeader(jTableUsers, new Color(34,167,240), 16);
+        f.customTableHeader(jTableUsers, new Color(34,167,240), 15);
         // hiding jlabel empty message
         jLabelEmptyName.setForeground(Color.white);
         jLabelEmptySurname.setForeground(Color.white);
@@ -386,9 +386,12 @@ public class ManageUsersForm extends javax.swing.JFrame {
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         try{
             int id = Integer.parseInt(jTextFieldID.getText());
+          int confirm = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Delete This User?","Confirmation Box",JOptionPane.YES_NO_OPTION);
+          if(confirm==JOptionPane.YES_OPTION){
             user.removeUser(id);
             populateJtableWithUsers();
-            
+          }
+          
             jTextFieldID.setText("");
             jTextFieldName.setText("");
             jTextFieldSurname.setText("");
@@ -518,7 +521,7 @@ public class ManageUsersForm extends javax.swing.JFrame {
         ArrayList<User> users = user.usersList();
         
         //jtable columns
-        String[] colNames = {"ID","NAME","SURNAME","USERNAME","PASSWORD","USERTYPE"};
+        String[] colNames = {"ID","NAME","SURNAME","U-NAME","PASS","TYPE"};
         
         //rows
         Object[][] rows = new Object[users.size()][colNames.length];

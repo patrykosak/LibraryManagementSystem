@@ -325,9 +325,11 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         try{
             int id = Integer.parseInt(jTextFieldID.getText());
+          int confirm = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Delete This Author?","Confirmation Box",JOptionPane.YES_NO_OPTION);
+          if(confirm==JOptionPane.YES_OPTION){
             author.removeAuthor(id);
             populateJtableWithAuthors();
-            
+          }
             jTextFieldID.setText("");
             jTextFieldName.setText("");
             jTextFieldSurname.setText("");

@@ -264,9 +264,11 @@ public class ManageGenresForm extends javax.swing.JFrame {
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         try{
             int id = Integer.parseInt(jTextFieldID.getText());
+          int confirm = JOptionPane.showConfirmDialog(null, "Are You Sure You Want To Delete This Genre?","Confirmation Box",JOptionPane.YES_NO_OPTION);
+          if(confirm==JOptionPane.YES_OPTION){
             genre.removeGenre(id);
             populateJtableWithGenres();
-            
+          }
             jTextFieldID.setText("");
             jTextFieldName.setText("");
         }
