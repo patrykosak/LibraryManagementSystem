@@ -335,6 +335,8 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
             jTextFieldSurname.setText("");
             jTextFieldExpertise.setText("");
             jTextArea1.setText("");
+            jLabelEmptyName.setVisible(false);
+            jLabelEmptySurname.setVisible(false);
         }
         catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Invalid Author ID - " + ex.getMessage(),"error",0);
@@ -358,7 +360,8 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
         else{
 
             author.addAuthor(name, surname, expertise, about);
-            
+            jLabelEmptyName.setVisible(false);
+            jLabelEmptySurname.setVisible(false);
             populateJtableWithAuthors();
         }
 
@@ -379,6 +382,8 @@ public class ManageAuthorsForm extends javax.swing.JFrame {
             try{
                 int id = Integer.parseInt(jTextFieldID.getText());
                 author.editAuthor(id, newName, newSurname, newExpertise, newAbout);
+                jLabelEmptyName.setVisible(false);
+                jLabelEmptySurname.setVisible(false);
                 populateJtableWithAuthors();
             }
             catch(NumberFormatException ex){
