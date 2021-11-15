@@ -22,6 +22,7 @@ public class IssueBook {
     
     Book book = new Book();
     
+    private int id;
     private int bookId;
     private int studentId;
     private String status;
@@ -31,7 +32,8 @@ public class IssueBook {
 
     public IssueBook(){}
     
-    public IssueBook(int bookId, int studentId, String status, String issueDate, String returnDate, String note){
+    public IssueBook(int id, int bookId, int studentId, String status, String issueDate, String returnDate, String note){
+        this.id=id;
         this.bookId=bookId;
         this.studentId=studentId;
         this.status=status;
@@ -39,6 +41,15 @@ public class IssueBook {
         this.returnDate=returnDate;
         this.note=note;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     
     public Book getBook() {
         return book;

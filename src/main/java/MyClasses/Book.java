@@ -325,7 +325,7 @@ public class Book {
         }
        }
        
-       public void setQuantityMinusOne(int bookId, int quantity){
+       public void setQuantity(int bookId, int quantity){
         String updateQuantityQuery;
         PreparedStatement ps;
         

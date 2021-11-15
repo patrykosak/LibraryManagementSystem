@@ -424,7 +424,7 @@ public class ReturnBookForm extends javax.swing.JFrame {
                 
                 issueBook.updateIssue(bookId, studentId, "lost", issueDate, returnDate,note); 
                 int quantity = book.getBookById(bookId).getQuantity();
-                book.setQuantityMinusOne(bookId, quantity-1);
+                book.setQuantity(bookId, quantity-1);
                 populateJtableWithIssuedBooks("");
                  
                  jSpinnerBookId.setValue(0);
@@ -455,13 +455,17 @@ public class ReturnBookForm extends javax.swing.JFrame {
         String returnDate = dateFormat.format(jDateChooserReturnDate.getDate());
         Date retDate = dateFormat.parse(returnDate);
         
-        String issueDate = dateFormat.format(jDateChooserReturnDate.getDate());
+        String issueDate = dateFormat.format(jDateChooserIssueDate.getDate());
         Date issDate = dateFormat.parse(issueDate);
         
         if(retDate.before(issDate)){
             JOptionPane.showMessageDialog(null, "The Return Date Must Be After The Issue Date","Wrong Return Date",2);
         }
         else{
+//                if(issueBook.getStatus().equals("lost")){
+//                int quantity = book.getBookById(bookId).getQuantity();
+//                book.setQuantity(bookId, quantity+1);
+//                }
                  issueBook.updateIssue(bookId, studentId, "returned", issueDate, returnDate,note); 
                  populateJtableWithIssuedBooks("");
                  jSpinnerBookId.setValue(0);
@@ -523,8 +527,8 @@ public class ReturnBookForm extends javax.swing.JFrame {
         try{
         selectedBook = book.getBookById(bookId);
         jSpinnerBookId.setValue(selectedBook.getId());
-        
         jLabelBookName.setText(selectedBook.getName());
+        
         selectedStudent = student.getStudentById(studentId);
         jSpinnerStudentId.setValue(selectedStudent.getId());
         jLabelStudentFullName.setText(selectedStudent.getName()+" "+selectedStudent.getSurname());
@@ -534,6 +538,10 @@ public class ReturnBookForm extends javax.swing.JFrame {
         String returnDate = jTableIssueBooks.getValueAt(index, 4).toString();
         String note = jTableIssueBooks.getValueAt(index, 5).toString();
 
+            System.out.println(status);
+            //System.out.println(issuedDate);
+            //System.out.println(returnDate);
+            //System.out.println(note);
         Date issDate = new SimpleDateFormat("yyyy-MM-dd").parse(issuedDate);
         jDateChooserIssueDate.setDate(issDate);
         
