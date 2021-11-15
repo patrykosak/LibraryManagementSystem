@@ -1,57 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package MyForms;
 
 import MyClasses.Author;
 import MyClasses.Functions;
-import MyClasses.Genre;
 import java.awt.Color;
-import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
-import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author xxx
- */
 public class AuthorsListForm extends javax.swing.JFrame {
             Functions f = new Functions();
             Author author = new Author();
             public String formType = "";
-    /**
-     * Creates new form ManageGenresForm
-     */
+
     public AuthorsListForm() {
         initComponents();
         
         this.setLocationRelativeTo(null);
     
-        // add gray border 
         Border panelHeaderBorder = BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(1,50,67));
         jPanel1.setBorder(panelHeaderBorder);
     
         f.displayImage(75, 60,null,"C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\notepad.png", jLabelFormTitle);
 
-//        jTableAuthors.setSelectionBackground(new Color(249,105,14));
-//        jTableAuthors.setSelectionForeground(Color.white);
-//        jTableAuthors.setRowHeight(35);
-//        jTableAuthors.setShowGrid(false);
-//        jTableAuthors.setBackground(new Color(248,248,248));
-//        jTableAuthors.setShowHorizontalLines(true);
-//        jTableAuthors.setGridColor(Color.orange);
         f.customTable(jTableAuthors);
-//        jTableAuthors.getTableHeader().setBackground(new Color(34,167,240));
-//        jTableAuthors.getTableHeader().setForeground(Color.white);
-//        jTableAuthors.getTableHeader().setFont(new Font("Verdana", Font.BOLD,16));
-//        jTableAuthors.getTableHeader().setOpaque(false);
         f.customTableHeader(jTableAuthors, new Color(34,167,240), 16);
-        // hiding jlabel empty message
         populateJtableWithAuthors();
     }
 
@@ -126,14 +99,14 @@ public class AuthorsListForm extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabelFormTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addComponent(jLabelFormTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelClose, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jButtonSelectAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+                    .addComponent(jButtonSelectAuthor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -143,25 +116,21 @@ public class AuthorsListForm extends javax.swing.JFrame {
                     .addComponent(jLabelFormTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                     .addComponent(jLabelClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonSelectAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonSelectAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -179,7 +148,7 @@ public class AuthorsListForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelCloseMouseClicked
 
     private void jButtonSelectAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectAuthorActionPerformed
-               //get selected row index
+
         int index = jTableAuthors.getSelectedRow();
         int id = Integer.parseInt(jTableAuthors.getValueAt(index, 0).toString());
         String name = jTableAuthors.getValueAt(index, 1).toString();
@@ -197,15 +166,12 @@ public class AuthorsListForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSelectAuthorActionPerformed
 
     
-    //function to populate jtable with genres
     public void populateJtableWithAuthors()
     {
         ArrayList<Author> authors = author.authorsList();
         
-        //jtable columns
         String[] colNames = {"ID","NAME","SURNAME","EXPERTISE","ABOUT"};
         
-        //rows
         Object[][] rows = new Object[authors.size()][colNames.length];
         
         for(int i = 0; i < authors.size(); i++){
