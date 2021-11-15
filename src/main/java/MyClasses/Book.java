@@ -316,7 +316,7 @@ public class Book {
         int i = 0;
         while(rs.next()){
             image = rs.getBytes("coverimage");
-            f.displayImage(labels[0].getWidth(), labels[0].getHeight(), image, name, labels[0]);
+            f.displayImage(labels[i].getWidth(), labels[0].getHeight(), image, name, labels[i]);
             i++;
         }
         }

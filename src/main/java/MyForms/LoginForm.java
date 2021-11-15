@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  */
 public class LoginForm extends javax.swing.JFrame {
     
-    
+    User user = new User();
 Functions f = new Functions();
     /**
      * Creates new form LoginForm
@@ -61,12 +61,10 @@ Functions f = new Functions();
         jPanel1 = new javax.swing.JPanel();
         jLabelLogo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jTextFieldUsername = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBoxUsertype = new javax.swing.JComboBox<>();
         jButtonLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,9 +75,6 @@ Functions f = new Functions();
         jLabelLogo.setOpaque(true);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("User type:");
 
         jTextFieldUsername.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextFieldUsername.setForeground(new java.awt.Color(0, 102, 204));
@@ -103,9 +98,6 @@ Functions f = new Functions();
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Password:");
 
-        jComboBoxUsertype.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBoxUsertype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "user", "admin", "owner" }));
-
         jButtonLogin.setBackground(new java.awt.Color(248, 148, 6));
         jButtonLogin.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         jButtonLogin.setForeground(new java.awt.Color(255, 255, 255));
@@ -126,14 +118,12 @@ Functions f = new Functions();
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPasswordField1)
                     .addComponent(jTextFieldUsername)
-                    .addComponent(jComboBoxUsertype, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel3))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButtonLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -147,13 +137,9 @@ Functions f = new Functions();
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBoxUsertype, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(30, 30, 30)
+                .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -213,10 +199,20 @@ Functions f = new Functions();
         else{
             
           
-                User user = new User();
+                User loggedUser = user.tryLogin(username, password);
 
-                if(user.tryLogin(username, password)!=null){
+                if(loggedUser!=null){
                     DashboardForm dash = new DashboardForm();
+                    if(user.getUserType().equals("admin")){
+                    dash.jButtonManageUsers.setVisible(false);
+                    }
+                    else if(user.getUserType().equals("user")){
+                    dash.jButtonManageUsers.setVisible(false);
+                    dash.jButtonIssueBook.setVisible(false);
+                    dash.jButtonReturnBook.setVisible(false);
+                    dash.jLabelCirculation.setVisible(false);
+                    dash.jLabelBreak.setVisible(false);
+                    }
                     dash.setVisible(true);
                     
                     this.dispose();
@@ -265,8 +261,6 @@ Functions f = new Functions();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogin;
-    private javax.swing.JComboBox<String> jComboBoxUsertype;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelLogo;
