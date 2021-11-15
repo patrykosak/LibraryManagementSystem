@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package MyForms;
 
 import MyClasses.Author;
 import MyClasses.Functions;
-import MyClasses.Genre;
 import MyClasses.User;
 import java.awt.Color;
-import java.awt.Font;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -20,42 +13,24 @@ import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author xxx
- */
 public class ManageUsersForm extends javax.swing.JFrame {
             Functions f = new Functions();
             Author author = new Author();
             User user = new User();
-    /**
-     * Creates new form ManageGenresForm
-     */
+
     public ManageUsersForm() {
         initComponents();
         
         this.setLocationRelativeTo(null);
     
-        // add gray border 
         Border panelHeaderBorder = BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(242,217,132));
         jPanel1.setBorder(panelHeaderBorder);
     
         f.displayImage(75, 60,null,"C:\\Users\\xxx\\Documents\\NetBeansProjects\\LibraryManagmentSystem\\src\\main\\java\\images\\users.png", jLabelFormTitle);
 
-//        jTableAuthors.setSelectionBackground(new Color(249,105,14));
-//        jTableAuthors.setSelectionForeground(Color.white);
-//        jTableAuthors.setRowHeight(35);
-//        jTableAuthors.setShowGrid(false);
-//        jTableAuthors.setBackground(new Color(248,248,248));
-//        jTableAuthors.setShowHorizontalLines(true);
-//        jTableAuthors.setGridColor(Color.orange);
         f.customTable(jTableUsers);
-//        jTableAuthors.getTableHeader().setBackground(new Color(34,167,240));
-//        jTableAuthors.getTableHeader().setForeground(Color.white);
-//        jTableAuthors.getTableHeader().setFont(new Font("Verdana", Font.BOLD,16));
-//        jTableAuthors.getTableHeader().setOpaque(false);
         f.customTableHeader(jTableUsers, new Color(34,167,240), 15);
-        // hiding jlabel empty message
+
         jLabelEmptyName.setForeground(Color.white);
         jLabelEmptySurname.setForeground(Color.white);
         jLabelEmptyUsername.setForeground(Color.white);
@@ -272,9 +247,9 @@ public class ManageUsersForm extends javax.swing.JFrame {
                             .addComponent(jLabelEmptyPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(jCheckBoxSetAdmin))
-                        .addGap(0, 1, Short.MAX_VALUE)))
+                        .addGap(0, 6, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
@@ -317,7 +292,7 @@ public class ManageUsersForm extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addComponent(jCheckBoxSetAdmin)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -326,7 +301,7 @@ public class ManageUsersForm extends javax.swing.JFrame {
                             .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1)
                         .addContainerGap())))
         );
 
@@ -334,16 +309,11 @@ public class ManageUsersForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -356,7 +326,6 @@ public class ManageUsersForm extends javax.swing.JFrame {
 
     private void jTableUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableUsersMouseClicked
 
-        //get selected row index
         int index = jTableUsers.getSelectedRow();
         String id = jTableUsers.getValueAt(index, 0).toString();
         String name = jTableUsers.getValueAt(index, 1).toString();
@@ -364,8 +333,6 @@ public class ManageUsersForm extends javax.swing.JFrame {
         String username = jTableUsers.getValueAt(index, 3).toString();
         String password = jTableUsers.getValueAt(index, 4).toString();
         String userType = jTableUsers.getValueAt(index, 5).toString();
-        
-        
         
         jTextFieldID.setText(id);
         jTextFieldName.setText(name);
@@ -502,25 +469,24 @@ public class ManageUsersForm extends javax.swing.JFrame {
                         int id = Integer.parseInt(jTextFieldID.getText());
                          if(user.checkUsernameExists(id, username)){
                         JOptionPane.showMessageDialog(null, "This Username Already Exists Try Another One","Username Error",0);
-                    }
-                         else{
-                         user.editUser(id, name, surname, username, password, userType);
-                         populateJtableWithUsers();
-                         jTextFieldID.setText("");
-            jTextFieldName.setText("");
-            jTextFieldSurname.setText("");
-            jTextFieldUsername.setText("");
-            jPasswordField1.setText("");
-            jPasswordField2.setText("");
-            jCheckBoxSetAdmin.setSelected(false);
-            hideLabels();
-                         }
-                         }
-                                            catch(NumberFormatException ex){
-                        JOptionPane.showMessageDialog(null, "Select The User You Want To Edit From The Table","No ID Selected",0);
-                    }  
-                      
                         }
+                        else{
+                        user.editUser(id, name, surname, username, password, userType);
+                        populateJtableWithUsers();
+                        jTextFieldID.setText("");
+                        jTextFieldName.setText("");
+                        jTextFieldSurname.setText("");
+                        jTextFieldUsername.setText("");
+                        jPasswordField1.setText("");
+                        jPasswordField2.setText("");
+                        jCheckBoxSetAdmin.setSelected(false);
+                        hideLabels();
+                        }
+                        }
+                        catch(NumberFormatException ex){
+                        JOptionPane.showMessageDialog(null, "Select The User You Want To Edit From The Table","No ID Selected",0);
+                        }  
+                    }
    
     }//GEN-LAST:event_jButtonEditActionPerformed
       catch (SQLException ex) {
@@ -550,10 +516,8 @@ public class ManageUsersForm extends javax.swing.JFrame {
     {
         ArrayList<User> users = user.usersList();
         
-        //jtable columns
         String[] colNames = {"ID","NAME","SURNAME","U-NAME","PASS","TYPE"};
         
-        //rows
         Object[][] rows = new Object[users.size()][colNames.length];
         
         for(int i = 0; i < users.size(); i++){
