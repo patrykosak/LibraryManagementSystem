@@ -19,8 +19,10 @@ The application provides for 3 types of users:
 ## Functionality in app
 
 - Login
+
 ![Screenshot 2021-11-16 01-10-12](https://user-images.githubusercontent.com/69324884/141872262-500985f0-aa52-43ad-b2c0-32cc772442e8.jpg)
 - Dashboard
+
 ![Screenshot 2021-11-16 01-11-23](https://user-images.githubusercontent.com/69324884/141872331-362f6f21-de49-4ccb-b48c-74c55ff6cc0d.jpg)
 - Display students list
 - Display books list
@@ -35,6 +37,7 @@ The application provides for 3 types of users:
 - Display book information
 - Display student information
 - Display informations about library
+
 ![Screenshot 2021-11-16 01-14-06](https://user-images.githubusercontent.com/69324884/141872545-6166d5b6-82fc-4f0d-b91a-81039cbac96b.jpg)
 - Edit book information
 - Edit student information
