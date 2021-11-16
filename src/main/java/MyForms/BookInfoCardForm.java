@@ -55,7 +55,7 @@ public class BookInfoCardForm extends javax.swing.JFrame {
                     jLabelPrice.setText(String.valueOf(selectedBook.getPrice()));
                     jLabelQuantity.setText(selectedBook.getQuantity().toString());
                     jTextAreaDescription.setText(selectedBook.getDescription());
-                    
+                    jLabelDateReceived.setText(selectedBook.getDateReceived());
                     byte[] image = selectedBook.getCover();
                     f.displayImage(173, 320, image,"", jLabelImage);                   
     }
@@ -163,6 +163,7 @@ public class BookInfoCardForm extends javax.swing.JFrame {
         jLabelQuantity.setForeground(new java.awt.Color(0, 51, 153));
         jLabelQuantity.setText("Quantity");
 
+        jTextAreaDescription.setEditable(false);
         jTextAreaDescription.setColumns(20);
         jTextAreaDescription.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jTextAreaDescription.setRows(5);
