@@ -79,12 +79,12 @@ In student list you can filter students by name or surname
 
    
 ## How to install:
-Download <a href="https://drive.google.com/file/d/1R8v_VPzQTboMPm3qpV8ygYY1yLlec-sQ/view?usp=sharing">Libary.zip</a> extract it and open KCK.jar
+Download repository, configure connection with your mysqldatabase in db class and make database with script.sql file
 
 
 ## Technologies used in this project:
 - Java version 11
-
+- Swing
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
